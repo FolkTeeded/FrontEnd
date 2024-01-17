@@ -6,6 +6,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Kanit', sans-serif;
+    overflow: hidden;
 }
 
 .main_login {
@@ -21,13 +22,13 @@
 
 .bt-select {
     width: 100%;
-    height: 10dvh;
+    height: 13dvh;
     padding-bottom: 15px;
 }
 
 .container-personal_record {
     width: 100%;
-    height: calc(80dvh - 10dvh);
+    height: calc(66dvh - 10dvh);
     background-color: rgb(255, 255, 255);
 }
 
@@ -39,7 +40,7 @@
 
 .bt-con-select {
     width: 80%;
-    height: 8dvh;
+    height: 7dvh;
     background-color: #7C00A8;
     border-radius: 40px;
     display: flex;
