@@ -28,7 +28,7 @@
 
 .container-personal_record {
     width: 100%;
-    height: calc(66dvh - 10dvh);
+    height: 56dvh;
     background-color: rgb(255, 255, 255);
 }
 

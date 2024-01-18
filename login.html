@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="login.css">
 
     <!-- main js -->
-    <script src='global.js'></script>
-    <script src="login.js"></script>
+    
     <title>Document</title>
 </head>
 
@@ -31,11 +30,11 @@
                     <form id="stripe-login">
                         <div class="field padding-bottom--24">
                             <label for="user" class="brtop">รหัสนักศึกษา</label>
-                            <input type="user" name="uesr">
+                            <input type="text" name="uesr" id="userid" value="" >
                         </div>
                         <div class="field padding-bottom--24">
                             <label for="password" class="brtop">รหัสผ่าน</label>
-                            <input type="password" name="password">
+                            <input type="password" name="password" id="password" value="">
                         </div>
                         <div class="reset-pass">
                             <a href="">ลืมรหัสผ่าน</a>
@@ -46,7 +45,7 @@
         </div>
 
         <div class="bt-select padding-10">
-            <div onclick="closeOverlay('next1')" class="bt-con-select">
+            <div onclick="closeOverlay('next1')" class="bt-con-select" id="loginpress" name="loginpress">
                 <p>เข้าสู่ระบบ</p>
             </div>
             <div class="bt-register">
@@ -57,6 +56,8 @@
     </div>
     <div class="overlay_login1 overlay-slide_R_to_L">
     </div>
+        <!-- <script src='global.js'></script> -->
+        <script src="login.js"></script>
 </body>
-    <form action="#" id="form">
+
 </html>
