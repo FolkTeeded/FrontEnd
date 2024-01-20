@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- jquery -->
+      <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+
+      <!-- main css -->
+      <!-- <link rel="stylesheet" type="text/css" href="css/register.css" /> -->
+      <link rel="stylesheet" type="text/css" href="css/global.css" />
+      <link rel="stylesheet" href="css/register.css">
+
+      <title>Register</title>
+</head>
+
+<body>
+      <div class="main_regis">
+            <div class="regis">
+                  <p><i class="arrow left"></i>ลงทะเบียน</p>
+            </div>
+
+            <div class="container-personal_record">
+                  <div class="formbg-inner padding-horizontal--48">
+                        <form id="form_resister">
+                              <div class="field padding-bottom--24">
+                                    <label for="name" class="brtop">ชื่อ</label>
+                                    <input type="text" name="name">
+                              </div>
+                              <div class="field padding-bottom--24">
+                                    <label for="lastname" class="brtop">นามสกุล</label>
+                                    <input type="text" name="lastname">
+                              </div>
+                              <div class="field padding-bottom--24">
+                                    <label for="phone" class="brtop">เบอร์โทรศัพท์</label>
+                                    <input type="number" name="phone">
+                              </div>
+                              <div class="field padding-bottom--24">
+                                    <label for="email" class="brtop">อีเมล์</label>
+                                    <input type="email" name="email">
+                              </div>
+                              <div class="field padding-bottom--24">
+                                    <label for="car" class="brtop">ประเภทรถ</label>
+                                    <input type="text" name="car">
+                              </div>
+                        </form>
+                  </div>
+            </div>
+
+            <div class="bt-select padding-10">
+                  <div onclick="closeOverlay('next2')" class="bt-con-select">
+                        <p>ถัดไป</p>
+                  </div>
+            </div>
+      </div>
+
+      <div id="form_pass" class="main_regis">
+            <div class="regis">
+                  <p><i class="arrow left"></i>ลงทะเบียน</p>
+            </div>
+            <div class="container-personal_record">
+                  <div class="formbg-inner padding-horizontal--48">
+                        <form id="form_pass">
+                              <div class="field padding-bottom--24">
+                                    <label for="password" class="brtop">ตั้งรหัสผ่าน</label>
+                                    <input type="password" name="password">
+                              </div>
+                              <div class="field padding-bottom--24">
+                                    <label for="password" class="brtop">ยืนยันรหัสผ่าน</label>
+                                    <input type="password" name="password">
+                              </div>
+                        </form>
+                  </div>
+            </div>
+      </div>
+            <!-- <div id="password_form" class="modal">
+            <form class="modal-content" action="=">
+
+            </form>
+      </div> -->
+
+            <!-- main js -->
+            <!-- <script src="global.js"></script>
+      <script src="login.js"></script> -->
+</body>
+
+</html>

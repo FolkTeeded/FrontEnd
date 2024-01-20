@@ -71,42 +71,31 @@
 .login-icon {
     padding-top: 50px;
 }
-.padding-24 {
+/* .padding-24 {
     padding-top: 24px;
 }
 .padding-10 {
     padding-top: 10px;
-}
+} */
 
-.formbg {
-    margin: 0px auto;
-    width: 100%;
-    max-width: 448px;
-    background: white;
-    border-radius: 4px;
-}
-label {
-    margin-bottom: 10px;
-}
 
 .field input {
     font-size: 16px;
-    line-height: 28px;
-    padding: 8px 16px;
+    line-height: 20px;
     width: 100%;
     min-height: 44px;
     border: unset;
     border-radius: 15px;
-    background-color: rgb(255, 255, 255);
     box-shadow:
         rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px;
 }
 
-.padding-bottom--24 {
-    padding-bottom: 24px;
-}
 .padding-horizontal--48 {
     padding: 22px;
+}
+
+.padding-bottom--24 {
+    padding-bottom: 24px;
 }
 
 .reset-pass a {
@@ -120,7 +109,7 @@ a {
 }
 
 .brtop {
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     display:inline-block;
 }
 
@@ -130,7 +119,6 @@ a {
     height: auto;
 }
 
-
 .imgcontainer {
     text-align: center;
     margin: 24px 0 12px 0;
@@ -138,4 +126,5 @@ a {
 
 .container {
     padding: 16px;
-  }
+}
+

@@ -1,0 +1,36 @@
+
+/* ///////////////////// */
+
+.overlay-slide_R_to_L {
+    visibility: hidden;
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    -webkit-transition: -webkit-transform 0.4s ease-in-out, visibility 0s 0.4s;
+    transition: transform 0.4s ease-in-out, visibility 0s 0.4s;
+}
+
+.overlay-slide_R_to_L.open {
+    visibility: visible;
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+    -webkit-transition: -webkit-transform 0.4s ease-in-out;
+    transition: transform 0.4s ease-in-out;
+}
+
+.overlay-slide_D_to_Up {
+    /* visibility: hidden; */
+    background-size: contain;
+    -webkit-transform: translateY(0%);
+    transform: translateY(0%);
+    -webkit-transition: -webkit-transform 0.4s ease-in-out, visibility 0s 0.4s;
+    transition: transform 0.4s ease-in-out, visibility 0s 0.4s;
+}
+
+.overlay-slide_D_to_Up.open {
+    visibility: visible;
+    /* background-size: contain; */
+    -webkit-transform: translateY(0%);
+    transform: translateY(-45%);
+    -webkit-transition: -webkit-transform 0.4s ease-in-out;
+    transition: transform 0.4s ease-in-out;
+}
