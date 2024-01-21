@@ -16,21 +16,3 @@
     -webkit-transition: -webkit-transform 0.4s ease-in-out;
     transition: transform 0.4s ease-in-out;
 }
-
-.overlay-slide_D_to_Up {
-    /* visibility: hidden; */
-    background-size: contain;
-    -webkit-transform: translateY(0%);
-    transform: translateY(0%);
-    -webkit-transition: -webkit-transform 0.4s ease-in-out, visibility 0s 0.4s;
-    transition: transform 0.4s ease-in-out, visibility 0s 0.4s;
-}
-
-.overlay-slide_D_to_Up.open {
-    visibility: visible;
-    /* background-size: contain; */
-    -webkit-transform: translateY(0%);
-    transform: translateY(-45%);
-    -webkit-transition: -webkit-transform 0.4s ease-in-out;
-    transition: transform 0.4s ease-in-out;
-}
