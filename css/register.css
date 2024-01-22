@@ -87,8 +87,16 @@
     padding-left: 15px;
     
 }
+
+
+
 p {
       text-align: center;
       padding-top: 10px;
-      
+
+}
+
+.brtop {
+      margin-bottom: 4px;
+      display: inline-block;
 }
