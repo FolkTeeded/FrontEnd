@@ -128,7 +128,7 @@ a {
     padding: 16px;
 }
 
-.overlay_menu {
+.overlay_menu{
     display: none;
     position: fixed;
     width: 100vw;
@@ -163,7 +163,7 @@ a {
     height: 60dvh;
     width: 100%;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 50% 50%;
     padding: 10px;
 }
 .menu-item {
