@@ -196,3 +196,9 @@ a {
     height: 60px;
     width: 60px;
 }
+.pic-profile-menu {
+    width: 30%;
+    height: 30%;
+    
+    background-color: #0094FF;
+}
