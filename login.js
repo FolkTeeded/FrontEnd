@@ -41,7 +41,7 @@ $(".prev").on("click", function() {
     var direction = "next1"; 
 
     if (direction === "next1") {
-        $("div[class^=overlay]").removeClass('open');
+        $("div[class^=overlay_register]").removeClass('open');
     }
 });
 
@@ -55,7 +55,6 @@ $(".login_pass").on("click", function() {
         $("div[class^=overlay_pass]").addClass('open');
     }
 });
-
 $(".prev1").on("click", function() {
     console.log("Hello");
 
@@ -66,7 +65,7 @@ $(".prev1").on("click", function() {
     }
 });
 
-$(".menu-item").on("click", function() {
+$(".img1").on("click", function() {
     console.log("succ");
 
     var direction = "next1"; 
@@ -75,13 +74,51 @@ $(".menu-item").on("click", function() {
         $("div[class^=overlay_img]").addClass('open');
     }
 });
-$(".prev3").on("click", function() {
+$(".prev_img").on("click", function() {
     console.log("Hello");
 
     var direction = "next1"; 
 
     if (direction === "next1") {
         $("div[class^=overlay_img]").removeClass('open');
+    }
+});
+
+$(".edit1").on("click", function() {
+    console.log("succ");
+
+    var direction = "next1"; 
+
+    if (direction === "next1") {
+        $("div[class^=overlay_edit]").addClass('open');
+    }
+});
+$(".prev_edit").on("click", function() {
+    console.log("Hello");
+
+    var direction = "next1"; 
+
+    if (direction === "next1") {
+        $("div[class^=overlay_edit]").removeClass('open');
+    }
+});
+
+$(".supp1").on("click", function() {
+    console.log("succ");
+
+    var direction = "next1"; 
+
+    if (direction === "next1") {
+        $("div[class^=overlay_supp]").addClass('open');
+    }
+});
+$(".prev_supp").on("click", function() {
+    console.log("Hello");
+
+    var direction = "next1"; 
+
+    if (direction === "next1") {
+        $("div[class^=overlay_supp]").removeClass('open');
     }
 });
 

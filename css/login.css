@@ -130,7 +130,7 @@ a {
     padding: 16px;
 }
 
-.overlay_menu , .overlay_register, .overlay_pass , .overlay_img{
+.overlay_menu , .overlay_register, .overlay_pass , .overlay_img , .overlay_edit ,.overlay_supp{
     display: none;
     position: fixed;
     width: 100vw;
@@ -141,7 +141,7 @@ a {
     background-color:#ffffff
 }
 
-.overlay_menu.open , .overlay_register.open ,.overlay_pass.open, .overlay_img.open{
+.overlay_menu.open , .overlay_register.open ,.overlay_pass.open, .overlay_img.open ,.overlay_edit.open ,.overlay_supp.open{
     display: flex;
     flex-direction: column;    
 }
