@@ -20,7 +20,7 @@ $("#loginpress").on("click", function() {
     var direction = "next1"; 
     
     if (direction === "next1") {
-        $("div[class^=overlay]").addClass('open');
+        $("div[class^=overlay_menu").addClass('open');
 
     }
 });
@@ -55,6 +55,7 @@ $(".login_pass").on("click", function() {
         $("div[class^=overlay_pass]").addClass('open');
     }
 });
+
 $(".prev1").on("click", function() {
     console.log("Hello");
 
@@ -65,5 +66,21 @@ $(".prev1").on("click", function() {
     }
 });
 
+$(".menu-item").on("click", function() {
+    console.log("succ");
 
+    var direction = "next1"; 
 
+    if (direction === "next1") {
+        $("div[class^=overlay_img]").addClass('open');
+    }
+});
+$(".prev3").on("click", function() {
+    console.log("Hello");
+
+    var direction = "next1"; 
+
+    if (direction === "next1") {
+        $("div[class^=overlay_img]").removeClass('open');
+    }
+});
