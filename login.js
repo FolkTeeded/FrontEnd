@@ -3,6 +3,15 @@ btn_login.style.backgroundColor = ''
 const userid_1 = document.getElementById('userid')
 const password_1 = document.getElementById('password')
 
+const editprofile = document.querySelector('#btn_confirm')
+const btn_name = document.querySelector('#edit_name')
+const btn_lastname  = document.querySelector('#edit_last')
+const btn_StudentID = document.querySelector('#edit_Student_ID')
+const btn_phone11 = document.querySelector('#edit_phone')
+const date_ed = document.querySelector('#edit_date')
+var sx_btn = document.querySelector('#sx_edit')
+
+
 function btn_login_2 (){
     console.log(userid_1.value)
 const uid = userid_1.value
@@ -11,6 +20,23 @@ const ps = password_1.value
 }
 
 btn_login.onclick = btn_login_2
+
+function btn_editprofile(){
+    name_edit = btn_name.value
+    console.log(btn_name.value)
+    ed_lastname = btn_lastname.value
+    console.log(btn_lastname.value)
+    dt_Student = btn_StudentID.value
+    console.log(btn_StudentID.value)
+    dt_phone = btn_phone11.value
+    console.log(btn_phone11.value)
+    dt_date = date_ed.value
+    console.log(date_ed.value)
+    sx_ed = sx_btn
+    console.log(sx_ed)
+
+}
+editprofile.onclick = btn_editprofile
 
 
 
