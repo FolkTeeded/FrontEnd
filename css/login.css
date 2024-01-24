@@ -71,6 +71,7 @@
 .login-icon {
     padding-top: 50px;
 }
+
 /* .padding-24 {
     padding-top: 24px;
 }
@@ -93,11 +94,12 @@
 .padding-horizontal--48 {
     padding: 22px;
     overflow-y: scroll;
-    padding: 0 15px 0 15px ;
+    padding: 0 15px 0 15px;
 }
 
 .padding-bottom--24 {
     padding-bottom: 24px;
+    padding-top: 10px;
 }
 
 .reset-pass a {
@@ -106,13 +108,14 @@
     font-weight: 600;
     display: block;
 }
+
 a {
     color: #0094FF;
 }
 
 .brtop {
     margin-bottom: 4px;
-    display:inline-block;
+    display: inline-block;
 }
 
 .login-icon {
@@ -130,7 +133,13 @@ a {
     padding: 16px;
 }
 
-.overlay_menu , .overlay_register, .overlay_pass , .overlay_img , .overlay_edit ,.overlay_supp{
+.overlay_menu,
+.overlay_register,
+.overlay_pass,
+.overlay_img,
+.overlay_edit,
+.overlay_supp,
+.overlay_personal {
     display: none;
     position: fixed;
     width: 100vw;
@@ -138,39 +147,48 @@ a {
     bottom: 0;
     left: 0;
     top: 0;
-    background-color:#ffffff
+    background-color: #ffffff
 }
 
-.overlay_menu.open , .overlay_register.open ,.overlay_pass.open, .overlay_img.open ,.overlay_edit.open ,.overlay_supp.open{
+.overlay_menu.open,
+.overlay_register.open,
+.overlay_pass.open,
+.overlay_img.open,
+.overlay_edit.open,
+.overlay_supp.open,
+.overlay_personal.open {
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
 }
 
 
-.container-profile{
+.container-profile {
     width: 100%;
     height: 20dvh;
-    background: rgb(124,0,168);
+    background: rgb(124, 0, 168);
     background: linear-gradient(180deg, rgba(124, 0, 168, 0.92) 64%, rgba(75, 0, 187, 1) 98%, rgba(39, 2, 186, 1) 100%);
     display: flex;
     justify-content: center;
     border-radius: 0 0 30px 30px;
 }
-.detall-profile{
+
+.detall-profile {
     background-color: #D2AFFF;
     height: 90%;
     width: 90%;
     border-radius: 40px;
     display: flex;
 }
-.container-menu{
-    height: 65dvh;
+
+.container-menu {
+    height: 42dvh;
     width: 90%;
     display: grid;
     grid-template-columns: auto auto;
     padding: 20px;
     justify-content: space-between;
 }
+
 .menu-item {
     background-color: #EDEDED;
     border-radius: 17px;
@@ -183,74 +201,85 @@ a {
     color: #8A2FFF;
     width: 147px;
     height: 127px;
-  }
+}
 
 .menu-all-font {
     font-weight: bold;
     color: rgba(138, 47, 255, 1);
     font-size: 20px;
-    
+
 }
+
 .menu-all-font-2 {
     font-weight: bold;
     color: rgba(138, 47, 255, 1);
     font-size: 18px;
-    
+
 }
+
 .menu-all-font-3 {
     font-weight: bold;
     color: rgba(138, 47, 255, 1);
     font-size: 14px;
-    
+
 }
+
 .menu-pic-size {
     height: 60px;
     width: 60px;
 }
+
 .pic-profile-menu {
-width: 40%;
-height: 100%;
-background-color: #D2AFFF;
-display: flex;
-justify-content: center;
-align-items: center;
-position: relative;
+    width: 40%;
+    height: 100%;
+    background-color: #D2AFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
-.detall-profile-pf{
+
+.detall-profile-pf {
     width: 60%;
     height: 100%;
     padding: 15px 5px;
     overflow: scroll;
 }
-.pic-profile{
-    width: 100px; 
-    height: 100px; 
+
+.pic-profile {
+    width: 100px;
+    height: 100px;
     background-color: aqua;
     border-radius: 50px;
     position: absolute;
     top: 10px;
 
 }
-.container_menu{
+
+.container_menu {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     width: 100%;
     height: 70%;
     background-color: #fafafa;
+    flex-direction: column;
+    align-items: center;
 }
 
 #overlay {
     position: fixed;
     top: 0;
-    left: -100%; /* Start off-screen to the left */
+    left: -100%;
+    /* Start off-screen to the left */
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
-    transition: left 0.3s ease; /* Add transition for smooth animation */
+    transition: left 0.3s ease;
+    /* Add transition for smooth animation */
     z-index: 1;
-  }
-  
-  .overlay-content {
+}
+
+.overlay-content {
     position: absolute;
     top: 50%;
     left: 40%;
@@ -260,41 +289,110 @@ position: relative;
     width: 80%;
     height: 100%;
     border-radius: 0 25px 25px 0;
-  }
-  
-  .con-pic-profile-show{
+}
+
+.con-pic-profile-show {
     width: 30%;
     height: 100%;
     display: flex;
     justify-content: center;
     /* align-items: center; */
     position: relative;
-  }
-  .detall-profile-show{
+}
+
+.detall-profile-show {
     width: 45%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .main-profile-show{
+}
+
+.main-profile-show {
     width: 100%;
     height: 20%;
     background: linear-gradient(180deg, rgba(124, 0, 168, 0.92) 64%, rgba(75, 0, 187, 1) 98%, rgba(39, 2, 186, 1) 100%);
     display: flex;
-  }
-  .pic-profile-show{
+}
+
+.pic-profile-show {
     width: 80px;
     height: 80px;
     background-color: brown;
     position: absolute;
     top: 45px;
     border-radius: 50px;
-  }
-  .detall-profile_IN{
+}
+
+.detall-profile_IN {
     width: 100%;
     height: 35%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.value-list {
+    list-style: none;
+    margin-top: 4rem;
+    box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    max-height: 0;
+    transition: .3s ease-in-out;
+}
+
+.selection-container {
+    margin: 50px;
   }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  select {
+    padding: 8px;
+    font-size: 16px;
+  }
+
+  .container-profile_personal {
+    width: 0 15px 0 15px;
+    height: 30dvh;
+    background: rgb(124, 0, 168);
+    background: linear-gradient(180deg, rgba(124, 0, 168, 0.92) 64%, rgba(75, 0, 187, 1) 98%, rgba(39, 2, 186, 1) 100%);
+    /* display: flex;
+    justify-content: center; */
+    border-radius: 50px;
+    margin: 40px 5px 0px 5px;
+}
+
+.detall-profile-per{
+    padding: 15px;
+    padding-top: 10px;
+}
+
+.detall-profile_personal {
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+    /* padding-top: 30px; */
+    /* border-radius: 40px; */
+    /* display: flex; */
+}
+
+.pic-profile-personal{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.pic-profile1 {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(123, 154, 238);
+    border-radius: 50px;
+    position: absolute;
+}

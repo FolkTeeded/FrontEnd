@@ -15,7 +15,6 @@ btn_login.onclick = btn_login_2
 
 
 $("#loginpress").on("click", function() {
-    console.log("dsfdsf");
     
     var direction = "next1"; 
     
@@ -26,7 +25,6 @@ $("#loginpress").on("click", function() {
 });
 
 $(".login_register").on("click", function() {
-    console.log("Hello");
     
     var direction = "next1"; 
     
@@ -36,7 +34,6 @@ $(".login_register").on("click", function() {
     }
 });
 $(".prev").on("click", function() {
-    console.log("Hello");
 
     var direction = "next1"; 
 
@@ -47,7 +44,6 @@ $(".prev").on("click", function() {
 
 
 $(".login_pass").on("click", function() {
-    console.log("Hello");
 
     var direction = "next1"; 
 
@@ -56,7 +52,6 @@ $(".login_pass").on("click", function() {
     }
 });
 $(".prev1").on("click", function() {
-    console.log("Hello");
 
     var direction = "next1"; 
 
@@ -66,7 +61,6 @@ $(".prev1").on("click", function() {
 });
 
 $(".img1").on("click", function() {
-    console.log("succ");
 
     var direction = "next1"; 
 
@@ -75,7 +69,6 @@ $(".img1").on("click", function() {
     }
 });
 $(".prev_img").on("click", function() {
-    console.log("Hello");
 
     var direction = "next1"; 
 
@@ -85,7 +78,6 @@ $(".prev_img").on("click", function() {
 });
 
 $(".edit1").on("click", function() {
-    console.log("succ");
 
     var direction = "next1"; 
 
@@ -104,7 +96,6 @@ $(".prev_edit").on("click", function() {
 });
 
 $(".supp1").on("click", function() {
-    console.log("succ");
 
     var direction = "next1"; 
 
@@ -113,12 +104,28 @@ $(".supp1").on("click", function() {
     }
 });
 $(".prev_supp").on("click", function() {
-    console.log("Hello");
 
     var direction = "next1"; 
 
     if (direction === "next1") {
         $("div[class^=overlay_supp]").removeClass('open');
+    }
+});
+
+$(".pers1").on("click", function() {
+
+    var direction = "next1"; 
+
+    if (direction === "next1") {
+        $("div[class^=overlay_personal]").addClass('open');
+    }
+});
+$(".prev_personal").on("click", function() {
+
+    var direction = "next1"; 
+
+    if (direction === "next1") {
+        $("div[class^=overlay_personal]").removeClass('open');
     }
 });
 
@@ -142,4 +149,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+
+  
   
