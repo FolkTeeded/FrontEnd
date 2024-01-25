@@ -1,4 +1,5 @@
 const btn_login = document.getElementById('loginpress')
+btn_login.style.backgroundColor = ''
 const userid_1 = document.getElementById('userid')
 const password_1 = document.getElementById('password')
 
@@ -245,8 +246,6 @@ inputFile.addEventListener("change", function (e) {
       pictureImage.appendChild(img);
     });
 
-
-    
     reader.readAsDataURL(file);
   } else {
     pictureImage.innerHTML = pictureImageTxt;
