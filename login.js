@@ -64,6 +64,7 @@ console.log(number_car.value)
 color_cars = color_car.value
 console.log(color_car.value)
 }
+
 loginregisterpass.onclick = btn_registerlogin
 
 function res_confirm(){
