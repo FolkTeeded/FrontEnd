@@ -12,6 +12,19 @@ const date_ed = document.querySelector('#edit_date')
 var sx_btn = document.querySelector('#sx_edit')
 
 
+const loginregisterpass = document.querySelector("#loginregisterpass")
+const name_rigister = document.querySelector('#name_rigister')
+const lastname_res = document.querySelector('#lastname_res')
+const phone_res = document.querySelector('#phone_res')
+const email_res = document.querySelector('#email_res')
+const number_car = document.querySelector('#number_car')
+const color_car = document.querySelector('#color_car')
+
+
+const confirm_res = document.querySelector('#confirm_res')
+const password_res = document.querySelector('#password_res')
+const confirm_pass = document.querySelector('#confirm_pass')
+
 function btn_login_2 (){
     console.log(userid_1.value)
 const uid = userid_1.value
@@ -32,12 +45,43 @@ function btn_editprofile(){
     console.log(btn_phone11.value)
     dt_date = date_ed.value
     console.log(date_ed.value)
-    sx_ed = sx_btn
-    console.log(sx_ed)
+    sx_ed = sx_btn.value
+    console.log(sx_ed.value)
 
 }
 editprofile.onclick = btn_editprofile
 
+function btn_registerlogin(){
+name_res  = name_rigister.value
+console.log(name_rigister.value)
+last_res = lastname_res.value
+console.log(lastname_res.value)
+phones_res = phone_res.value
+console.log(phone_res.value)
+email_ress = email_res.value
+console.log(email_res.value)
+num_car = number_car.value
+console.log(number_car.value)
+color_cars = color_car.value
+console.log(color_car.value)
+}
+loginregisterpass.onclick = btn_registerlogin
+
+function res_confirm(){
+    pass1  = password_res.value
+    console.log(pass1)
+    pass2 = confirm_pass.value
+    console.log(pass2)
+
+    if(pass1 == pass2){
+        alert("ถูกต้อง")
+        closeOverlayAll()
+    }
+    else{
+        alert("ระบุใหม่อีกครั้ง")
+    }
+    }
+    confirm_res.onclick = res_confirm
 
 
 $("#loginpress").on("click", function() {
@@ -175,6 +219,37 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+const inputFile = document.querySelector("#picture__input");
+const pictureImage = document.querySelector(".picture__image");
+const pictureImageTxt = "Select file";
+pictureImage.innerHTML = pictureImageTxt;
+
+inputFile.addEventListener("change", function (e) {
+  const inputTarget = e.target;
+  const file = inputTarget.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+
+    reader.addEventListener("load", function (e) {
+      const readerTarget = e.target;
+
+      const img = document.createElement("img");
+      img.src = readerTarget.result;
+      img.classList.add("picture__img");
+      var sdf = document.querySelector('.img_pic');
+
+      // Use classList.add to add one or more classes
+      sdf.classList.add('img_pic', 'new');
+      pictureImage.innerHTML = "";
+      pictureImage.appendChild(img);
+    });
+
+    reader.readAsDataURL(file);
+  } else {
+    pictureImage.innerHTML = pictureImageTxt;
+  }
+});
 
   
   

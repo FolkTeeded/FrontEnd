@@ -396,3 +396,52 @@ a {
     border-radius: 50px;
     position: absolute;
 }
+#picture__input {
+    display: none;
+  }
+  
+  .picture {
+    /* width: 400px; */
+    aspect-ratio: 16/9;
+    background: #FAFAFA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #9E9E9E;
+    border: 1px solid black;
+    border-radius: 32px;
+    font-family: sans-serif;
+    transition: color 300ms ease-in-out, background 300ms ease-in-out;
+    outline: none;
+    overflow: hidden;
+  }
+  
+  .picture:hover {
+    color: #777;
+    background: #ccc;
+  }
+  
+  .picture:active {
+    border-color: turquoise;
+    color: turquoise;
+    background: #eee;
+  }
+  
+  .picture:focus {
+    color: #777;
+    background: #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .picture__img {
+    max-width: 100%;
+  }
+/* In your CSS file or style block */
+.img_pic {
+    /* Other styles for img_pic */
+}
+
+.new {
+    display: none;
+}
