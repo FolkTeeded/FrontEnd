@@ -245,6 +245,8 @@ inputFile.addEventListener("change", function (e) {
       pictureImage.appendChild(img);
     });
 
+
+    
     reader.readAsDataURL(file);
   } else {
     pictureImage.innerHTML = pictureImageTxt;
