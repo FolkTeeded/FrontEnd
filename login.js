@@ -12,7 +12,7 @@ const date_ed = document.querySelector('#edit_date')
 var sx_btn = document.querySelector('#sx_edit')
 
 
-const loginregisterpass = document.querySelector("#loginregisterpass")
+const loginregis = document.querySelector("#loginregisterpass")
 const name_rigister = document.querySelector('#name_rigister')
 const lastname_res = document.querySelector('#lastname_res')
 const phone_res = document.querySelector('#phone_res')
@@ -65,7 +65,7 @@ console.log(number_car.value)
 color_cars = color_car.value
 console.log(color_car.value)
 }
-loginregisterpass.onclick = btn_registerlogin
+loginregis.onclick = btn_registerlogin
 
 function res_confirm(){
     pass1  = password_res.value
@@ -82,6 +82,36 @@ function res_confirm(){
     }
     }
     confirm_res.onclick = res_confirm
+
+    var obj_data = {
+        user : userid_1,
+        password_1:password_1
+    }
+    send_data()
+        async function send_data(){
+            try{
+                $.ajax({
+                    type:'post',
+                    url:`/resister`,
+                    data:obj_data,
+                    success:function(response){
+                        if(response){
+                            console.log("ผ่าน")
+                        }
+                        else{
+                            console.log("ไม่ผ่าน")
+                        }
+                    },
+                     error:function(err){
+                        if(err){
+                            console.log("ไม่ผ่าน",err)
+                        }
+                     }
+                })
+            }catch(err){
+                console.log(err)
+            }
+        }
 
 
 $("#loginpress").on("click", function() {
