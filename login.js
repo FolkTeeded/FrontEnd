@@ -95,6 +95,36 @@ function res_confirm() {
 }
 confirm_res.onclick = res_confirm
 
+    var obj_data = {
+        user : userid_1,
+        password_1:password_1
+    }
+    send_data()
+        async function send_data(){
+            try{
+                $.ajax({
+                    type:'post',
+                    url:`/resister`,
+                    data:obj_data,
+                    success:function(response){
+                        if(response){
+                            console.log("ผ่าน")
+                        }
+                        else{
+                            console.log("ไม่ผ่าน")
+                        }
+                    },
+                     error:function(err){
+                        if(err){
+                            console.log("ไม่ผ่าน",err)
+                        }
+                     }
+                })
+            }catch(err){
+                console.log(err)
+            }
+        }
+
 
 $("#loginpress").on("click", function () {
 
