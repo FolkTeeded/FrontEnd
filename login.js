@@ -326,3 +326,30 @@ inputFile1.addEventListener("change", function (e) {
         pictureImage1.innerHTML = pictureImageTxt;
     }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Get the input element
+    var phoneInput = document.getElementById('phone_res');
+
+    // Attach input event listener to format phone number
+    phoneInput.addEventListener('input', function () {
+      formatPhoneNumber(this);
+    });
+    function formatPhoneNumber(input) {
+      // Remove non-numeric characters
+      var phoneNumber = input.value.replace(/\D/g, '');
+      // Apply the phone number format
+      if (phoneNumber.length > 0) {
+        if (phoneNumber.length <= 3) {
+          phoneNumber = phoneNumber.replace(/(\d{1,3})/, '$1');
+        } else if (phoneNumber.length <= 6) {
+          phoneNumber = phoneNumber.replace(/(\d{1,3})(\d{1,3})/, '$1 $2');
+        } else {
+          phoneNumber = phoneNumber.replace(/(\d{1,3})(\d{1,3})(\d{1,4})/, '$1 $2 $3');
+        }
+      }
+
+      // Update the input value
+      input.value = phoneNumber;
+    }
+  });

@@ -35,7 +35,7 @@
 .bt-register {
     display: flex;
     justify-content: space-between;
-    padding: 0 15%;
+    padding: 0 12%;
 }
 
 .bt-con-select {
@@ -122,8 +122,8 @@ a {
 }
 
 .login-icon {
-    width: 40%;
-    border-radius: 40%;
+    width: 30%;
+    /* border-radius: 40%; */
     height: auto;
 }
 
@@ -185,7 +185,7 @@ a {
 
 .container-menu {
     height: 42dvh;
-    width: 90%;
+    width: 100%;
     display: grid;
     grid-template-columns: auto auto;
     padding: 20px;
@@ -298,7 +298,7 @@ a {
 }
 
 .con-pic-profile-show {
-    width: 30%;
+    width: 35%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -307,7 +307,7 @@ a {
 }
 
 .detall-profile-show {
-    width: 45%;
+    width: 60%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -327,7 +327,7 @@ a {
     height: 80px;
     background-color: brown;
     position: absolute;
-    top: 45px;
+    top: 22%;
     border-radius: 50px;
 }
 
