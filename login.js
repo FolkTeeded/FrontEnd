@@ -99,7 +99,7 @@ confirm_res.onclick = res_confirm
         user : userid_1,
         password_1:password_1
     }
-    send_data()
+    // send_data()
         async function send_data(){
             try{
                 $.ajax({
