@@ -11,7 +11,17 @@
       5555
       <script>
             // Set a value in local storage
-            localStorage.setItem('token', '444444');
+            // localStorage.setItem('token', '444444');
+            // Get a value from local storage
+            var myValue = localStorage.getItem('token');
+
+            // Check if the value exists before using it
+            if (myValue !== null) {
+                  console.log(myValue);
+            } else {
+                  console.log('Key not found in local storage');
+            }
+
 
       </script>
 </body>
