@@ -35,6 +35,7 @@ function btn_login_2() {
     const uid = userid_1.value
     const ps = password_1.value
     console.log(ps)
+    send_data(uid,ps)
 }
 
 btn_login.onclick = btn_login_2
@@ -95,20 +96,24 @@ function res_confirm() {
 }
 confirm_res.onclick = res_confirm
 
-    var obj_data = {
-        user : userid_1,
-        password_1:password_1
-    }
-    // send_data()
-        async function send_data(){
+    
+
+        async function send_data(a,b){
             try{
+                var user = a 
+                var password_1 = b
+
                 $.ajax({
                     type:'post',
-                    url:`/resister`,
-                    data:obj_data,
+                    url:`http://localhost:3000/api/tontai`,
+                    contentType: "application/json",
+                    data:JSON.stringify({user:user,password_1:password_1}),
                     success:function(response){
                         if(response){
                             console.log("ผ่าน")
+                            c = response.data[0]
+                            console.log(c)
+                            $("div[class^=overlay_menu").addClass('open');
                         }
                         else{
                             console.log("ไม่ผ่าน")
@@ -126,15 +131,15 @@ confirm_res.onclick = res_confirm
         }
 
 
-$("#loginpress").on("click", function () {
+// $("#loginpress").on("click", function () {
 
-    var direction = "next1";
+//     var direction = "next1";
 
-    if (direction === "next1") {
-        $("div[class^=overlay_menu").addClass('open');
+//     if (direction === "next1") {
+//         $("div[class^=overlay_menu").addClass('open');
 
-    }
-});
+//     }
+// });
 
 $(".login_register").on("click", function () {
 
