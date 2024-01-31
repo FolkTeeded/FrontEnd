@@ -173,6 +173,8 @@ async function insert_data(a, b, c, d) {
 }
 
 
+
+
 // $("#loginpress").on("click", function () {
 
 //     var direction = "next1";
