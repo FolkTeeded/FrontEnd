@@ -72,30 +72,37 @@ function btn_registerlogin() {
     console.log(email_res.value)
     num_car = number_car.value
     console.log(number_car.value)
-    car_type = type_res.value
-    console.log(car_type)
-    color_cars = color_car.value
-    console.log(color_car.value)
-    insert_data(name_res, last_res, phones_res, email_ress)
-}
-
-loginregisterpass.onclick = btn_registerlogin
-
-function res_confirm() {
     pass1 = password_res.value
     console.log(pass1)
     pass2 = confirm_pass.value
     console.log(pass2)
-
-    if (pass1 == pass2) {
-        alert("ถูกต้อง")
-        closeOverlayAll()
-    }
-    else {
-        alert("ระบุใหม่อีกครั้ง")
-    }
+    insert_data(name_res, last_res, phones_res,email_ress,pass1)
 }
-confirm_res.onclick = res_confirm
+function btn_carlogin() {
+    car_type = type_res.value
+    console.log(car_type)
+    color_cars = color_car.value
+    console.log(color_car.value)
+    insert_car(car_type, color_car)
+}
+confirm_res.onclick = btn_registerlogin
+// function res_confirm() {
+//     pass1 = password_res.value
+//     console.log(pass1)
+//     pass2 = confirm_pass.value
+//     console.log(pass2)
+
+//     insert_data(pass1)
+    
+//     // if (pass1 == pass2) {
+//     //     alert("ถูกต้อง")
+//     //     // closeOverlayAll()
+//     // }
+//     // else {
+//     //     alert("ระบุใหม่อีกครั้ง")
+//     // }
+// }
+// confirm_res.onclick = res_confirm
 
 
 
@@ -135,18 +142,19 @@ async function send_data(a, b) {
 //    * @author   audy
 //    * @create   2024-01-31
 //    * @update  
-async function insert_data(a, b, c, d) {
+async function insert_data(a, b, c, d ,p) {
     try {
         var na = a
         var lastname = b
         var pho_ne = c
         var emai_l = d
+        var password = p
 
         $.ajax({
             type: 'post',
             url: `http://localhost:3000/api/insertdata`,
             contentType: "application/json",
-            data: JSON.stringify({Name: na,lastname: lastname,phone: pho_ne,email: emai_l
+            data: JSON.stringify({Name: na,lastname: lastname,phone: pho_ne,email: emai_l, password:password
             }),
             success: function (response) {
                 if (response) {
@@ -154,7 +162,8 @@ async function insert_data(a, b, c, d) {
                     console.log(c)
                     console.log("ผ่าน");
                     // Handle success as needed
-                    $("div[class^=overlay_pass").addClass('open');
+                    // $("div[class^=overlay_pass").addClass('open');
+                    closeOverlayAll()
                 } else {
                     console.log("ไม่ผ่าน");
                     // Handle failure as needed
@@ -172,6 +181,41 @@ async function insert_data(a, b, c, d) {
     }
 }
 
+async function insert_car(a, b) {
+    try {
+        var CarType = a
+        var CarColor = b
+
+        $.ajax({
+            type: 'post',
+            url: `http://localhost:3000/api/insertcar`,
+            contentType: "application/json",
+            data: JSON.stringify({CarType: CarType, CarColor: CarColor
+            }),
+            success: function (response) {
+                if (response) {
+                    c = response.data;
+                    console.log(c)
+                    console.log("ผ่าน");
+                    // Handle success as needed
+                    // $("div[class^=overlay_pass").addClass('open');
+                    // closeOverlayAll()
+                } else {
+                    console.log("ไม่ผ่าน");
+                    // Handle failure as needed
+                }
+            },
+            
+            error: function (err) {
+                if (err) {
+                    console.log("ไม่ผ่าน", err)
+                }
+            }
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
 
 
 
@@ -204,14 +248,14 @@ $(".prev").on("click", function () {
 });
 
 
-// $(".login_pass").on("click", function () {
+$(".login_pass").on("click", function () {
 
-//     var direction = "next1";
+    var direction = "next1";
 
-//     if (direction === "next1") {
-//         $("div[class^=overlay_pass]").addClass('open');
-//     }
-// });
+    if (direction === "next1") {
+        $("div[class^=overlay_pass]").addClass('open');
+    }
+});
 $(".prev1").on("click", function () {
 
     var direction = "next1";
