@@ -35,7 +35,7 @@ function btn_login_2() {
     const uid = userid_1.value
     const ps = password_1.value
     console.log(ps)
-    send_data(uid,ps)
+    send_data(uid, ps)
 }
 
 btn_login.onclick = btn_login_2
@@ -76,6 +76,7 @@ function btn_registerlogin() {
     console.log(car_type)
     color_cars = color_car.value
     console.log(color_car.value)
+    insert_data(name_res, last_res, phones_res, email_ress)
 }
 
 loginregisterpass.onclick = btn_registerlogin
@@ -96,39 +97,80 @@ function res_confirm() {
 }
 confirm_res.onclick = res_confirm
 
-    
 
-        async function send_data(a,b){
-            try{
-                var user = a 
-                var password_1 = b
 
-                $.ajax({
-                    type:'post',
-                    url:`http://localhost:3000/api/tontai`,
-                    contentType: "application/json",
-                    data:JSON.stringify({user:user,password_1:password_1}),
-                    success:function(response){
-                        if(response){
-                            console.log("ผ่าน")
-                            c = response.data[0]
-                            console.log(c)
-                            $("div[class^=overlay_menu").addClass('open');
-                        }
-                        else{
-                            console.log("ไม่ผ่าน")
-                        }
-                    },
-                     error:function(err){
-                        if(err){
-                            console.log("ไม่ผ่าน",err)
-                        }
-                     }
-                })
-            }catch(err){
-                console.log(err)
+async function send_data(a, b) {
+    try {
+        var user = a
+        var password_1 = b
+
+        $.ajax({
+            type: 'post',
+            url: `http://localhost:3000/api/tontai`,
+            contentType: "application/json",
+            data: JSON.stringify({ user: user, password_1: password_1 }),
+            success: function (response) {
+                if (response) {
+                    console.log("ผ่าน")
+                    c = response.data[0]
+                    console.log(c)
+                    $("div[class^=overlay_menu").addClass('open');
+                }
+                else {
+                    console.log("ไม่ผ่าน")
+                }
+            },
+            error: function (err) {
+                if (err) {
+                    console.log("ไม่ผ่าน", err)
+                }
             }
-        }
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+//    * function insert api
+//    * @author   audy
+//    * @create   2024-01-31
+//    * @update  
+async function insert_data(a, b, c, d) {
+    try {
+        var na = a
+        var lastname = b
+        var pho_ne = c
+        var emai_l = d
+
+        $.ajax({
+            type: 'post',
+            url: `http://localhost:3000/api/insertdata`,
+            contentType: "application/json",
+            data: JSON.stringify({Name: na,lastname: lastname,phone: pho_ne,email: emai_l
+            }),
+            success: function (response) {
+                if (response) {
+                    c = response.data;
+                    console.log(c)
+                    console.log("ผ่าน");
+                    // Handle success as needed
+                    $("div[class^=overlay_pass").addClass('open');
+                } else {
+                    console.log("ไม่ผ่าน");
+                    // Handle failure as needed
+                }
+            },
+            
+            error: function (err) {
+                if (err) {
+                    console.log("ไม่ผ่าน", err)
+                }
+            }
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
 
 
 // $("#loginpress").on("click", function () {
@@ -160,14 +202,14 @@ $(".prev").on("click", function () {
 });
 
 
-$(".login_pass").on("click", function () {
+// $(".login_pass").on("click", function () {
 
-    var direction = "next1";
+//     var direction = "next1";
 
-    if (direction === "next1") {
-        $("div[class^=overlay_pass]").addClass('open');
-    }
-});
+//     if (direction === "next1") {
+//         $("div[class^=overlay_pass]").addClass('open');
+//     }
+// });
 $(".prev1").on("click", function () {
 
     var direction = "next1";
@@ -338,23 +380,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Attach input event listener to format phone number
     phoneInput.addEventListener('input', function () {
-      formatPhoneNumber(this);
+        formatPhoneNumber(this);
     });
     function formatPhoneNumber(input) {
-      // Remove non-numeric characters
-      var phoneNumber = input.value.replace(/\D/g, '');
-      // Apply the phone number format
-      if (phoneNumber.length > 0) {
-        if (phoneNumber.length <= 3) {
-          phoneNumber = phoneNumber.replace(/(\d{1,3})/, '$1');
-        } else if (phoneNumber.length <= 6) {
-          phoneNumber = phoneNumber.replace(/(\d{1,3})(\d{1,3})/, '$1 $2');
-        } else {
-          phoneNumber = phoneNumber.replace(/(\d{1,3})(\d{1,3})(\d{1,4})/, '$1 $2 $3');
+        // Remove non-numeric characters
+        var phoneNumber = input.value.replace(/\D/g, '');
+        // Apply the phone number format
+        if (phoneNumber.length > 0) {
+            if (phoneNumber.length <= 3) {
+                phoneNumber = phoneNumber.replace(/(\d{1,3})/, '$1');
+            } else if (phoneNumber.length <= 6) {
+                phoneNumber = phoneNumber.replace(/(\d{1,3})(\d{1,3})/, '$1-$2');
+            } else if(phoneNumber.length<= 10) {
+                phoneNumber = phoneNumber.replace(/(\d{1,3})(\d{1,3})(\d{1,4})/, '$1-$2-$3');
+            }
+            else if (phoneNumber.length > 10) {
+                phoneNumber = phoneNumber.slice(0, 10);
+                phoneNumber = phoneNumber.replace(/(\d{1,3})(\d{1,3})(\d{1,4})/, '$1-$2-$3');
+            }
+            
         }
-      }
 
-      // Update the input value
-      input.value = phoneNumber;
+        // Update the input value
+        input.value = phoneNumber;
     }
-  });
+});
