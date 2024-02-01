@@ -226,10 +226,10 @@
                 <div class="container-scan"
                     style="width: 90%; height: 20dvh; display: flex; align-items: center; justify-content: center;">
                     <div class="scanblue" onclick="triggerFileInput()"
-                        style="width: 130px; background-color: #8A2FFF; height: 130px; border: 2px solid #028EBA; border-radius: 76px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                        style="width: 130px; background-color: #8A2FFF; height: 130px; border: 2px solid #028EBA; border-radius: 76px; display: flex; align-items: center; justify-content: center; flex-direction: column; position: relative;">
                         <input class="inputca" type="file" accept="image/png, image/jpeg, image/heif, image/heic" capture="environment" onchange="displaySelectedFile(this)">                        
-                        <img src="img/scanner.png" style="height: 50px; width: 50px;" alt="">
-                        <p style="color: #ffffff;">สแกน</p>
+                        <img src="img/scanner.png" style="height: 50px;width: 50px;position: absolute;top: 18px;" alt="">
+                        <p style="color: #ffffff; position: absolute; top: 76px;">สแกน</p>
 
                     </div>
                 </div>
