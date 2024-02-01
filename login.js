@@ -75,10 +75,7 @@ function btn_editprofile() {
         num_car = number_car.value
         insert_car(car_type,color_carnn)
     }
-    confirm_res.onclick = function() {
-        btn_registerlogin();
-        // btn_carlogin();
-    };
+    confirm_res.onclick = btn_registerlogin
 
 
 
@@ -223,7 +220,6 @@ $(".prev").on("click", function () {
 
 
 $(".login_pass").on("click", function () {
-
     var direction = "next1";
 
     if (direction === "next1") {
