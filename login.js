@@ -463,7 +463,7 @@ function displaySelectedFile(input) {
         alert('Selected file: ' + file.name);
         const fileSize = file.size;
                 // Limit the file size to, for example, 1 MB
-                const maxSize = 50000; // 1 MB in bytes
+                const maxSize = 50 * 1024 * 1024; // 2 MB in bytes
 
                 if (fileSize > maxSize) {
                     alert('File size exceeds the allowed limit.');
