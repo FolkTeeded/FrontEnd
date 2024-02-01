@@ -60,7 +60,24 @@ function btn_editprofile() {
     console.log(picture__input1.value)
 
 }
-// editprofile.onclick = btn_editprofile
+    editprofile.onclick = btn_editprofile
+    function btn_registerlogin() {
+        name_res = name_rigister.value
+        last_res = lastname_res.value
+        phones_res = phone_res.value
+        email_ress = email_res.value
+        pass1 = password_res.value
+        pass2 = confirm_pass.value
+        insert_data(name_res, last_res, phones_res,email_ress,pass1)
+    }
+    function btn_carlogin() {
+        car_type = type_res.value
+        color_carnn = color_car.value
+        num_car = number_car.value
+        insert_car(car_type,color_carnn)
+    }
+    confirm_res.onclick = btn_registerlogin
+
 
 function btn_registerlogin() {
     name_res = name_rigister.value
@@ -235,7 +252,6 @@ $(".prev").on("click", function () {
 
 
 $(".login_pass").on("click", function () {
-
     var direction = "next1";
 
     if (direction === "next1") {
