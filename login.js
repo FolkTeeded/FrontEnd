@@ -18,7 +18,7 @@ const edit_nunmber = document.querySelector('#edit_nunmber')
 const edit_nunmber1 = document.querySelector('#edit_nunmber1')
 const edit_nunmber2 = document.querySelector('#edit_nunmber2')
 const type_res = document.querySelector('#type_res')
-const color_car = document.querySelector('#color_car')
+const colorcar = document.querySelector('#color_car')
 // js form rigister
 const loginregisterpass = document.querySelector("#loginregisterpass")
 const name_rigister = document.querySelector('#name_rigister')
@@ -69,13 +69,13 @@ function btn_registerlogin() {
     email_ress = email_res.value
     pass1 = password_res.value
     pass2 = confirm_pass.value
-    insert_data(name_res, last_res, phones_res, email_ress, pass1)
+    insert_data(name_res, last_res, phones_res, email_ress, pass1,pass2)
 }
 confirm_res.onclick = btn_registerlogin
   
 function btn_carlogin() {
     car_type = type_res.value
-    color_car = color_car.value
+    color_car = colorcar.value
     btn_nunmber = edit_nunmber.value
     btn_nunmber1 = edit_nunmber1.value
     btn_nunmber2 = edit_nunmber2.value
@@ -87,6 +87,7 @@ async function send_data(a, b) {
     try {
         var user = a
         var password_1 = b
+
         $.ajax({
             type: 'post',
             url: `http://localhost:3000/api/login`,
@@ -118,7 +119,7 @@ async function send_data(a, b) {
 //    * @author   audy
 //    * @create   2024-01-31
 //    * @update  
-async function insert_data(a, b, c, d, p) {
+async function insert_data(a, b, c, d, p , passComfim) {
     try {
         var na = a
         var lastname = b
@@ -126,6 +127,11 @@ async function insert_data(a, b, c, d, p) {
         var emai_l = d
         var password = p
 
+        if (password !== passComfim){
+        alert("รหัสไม่ถูกต้อง")
+        return;
+        }
+        alert("ถูกต้อง")
         $.ajax({
             type: 'post',
             url: `http://localhost:3000/api/register`,
@@ -179,6 +185,7 @@ async function insert_car(a, b, c, d, e) {
                     console.log("ผ่าน");
                     // Handle success as needed
                     // $("div[class^=overlay_pass").addClass('open');
+                    $("div[class^=overlay_edit]").removeClass('open');
                 } else {
                     console.log("ไม่ผ่าน");
                     // Handle failure as needed
