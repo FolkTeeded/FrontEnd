@@ -89,7 +89,7 @@ async function send_data(a, b) {
 
         $.ajax({
             type: 'post',
-            url: `http://localhost:3000/api/tontai`,
+            url: `http://localhost:3000/api/login`,
             contentType: "application/json",
             data: JSON.stringify({ user: user, password_1: password_1 }),
             success: function (response) {
@@ -128,7 +128,7 @@ async function insert_data(a, b, c, d ,p) {
 
         $.ajax({
             type: 'post',
-            url: `http://localhost:3000/api/insertdata`,
+            url: `http://localhost:3000/api/register`,
             contentType: "application/json",
             data: JSON.stringify({Name: na,lastname: lastname,phone: pho_ne,email: emai_l, password:password
             }),
