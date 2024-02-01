@@ -12,23 +12,26 @@ const btn_phone11 = document.querySelector('#edit_phone')
 const date_ed = document.querySelector('#edit_date')
 var sx_btn = document.querySelector('#sx_edit')
 const picture__input1 = document.querySelector('#picture__input1')
-const edit_nunmber = document.querySelector('#edit_nunmber')
 
+
+const edit_nunmber = document.querySelector('#edit_nunmber')
+const edit_nunmber1 = document.querySelector('#edit_nunmber1')
+const edit_nunmber2 = document.querySelector('#edit_nunmber2')
+const type_res = document.querySelector('#type_res')
+const color_car = document.querySelector('#color_car')
 // js form rigister
 const loginregisterpass = document.querySelector("#loginregisterpass")
 const name_rigister = document.querySelector('#name_rigister')
 const lastname_res = document.querySelector('#lastname_res')
 const phone_res = document.querySelector('#phone_res')
 const email_res = document.querySelector('#email_res')
-const type_res = document.querySelector('#type_res')
-const number_car = document.querySelector('#number_car')
-const color_car = document.querySelector('#color_car')
+
 
 // js form password
 const confirm_res = document.querySelector('#confirm_res')
 const password_res = document.querySelector('#password_res')
 const confirm_pass = document.querySelector('#confirm_pass')
-
+// const btn_confirm = document.querySelector('#btn_confirm')
 
 function btn_login_2() {
     console.log(userid_1.value)
@@ -55,32 +58,30 @@ function btn_editprofile() {
     console.log(sx_btn.value)
     btn_img1 = picture__input1.value
     console.log(picture__input1.value)
-    btn_nunmber = edit_nunmber.value
-    console.log(edit_nunmber.value)
 
 }
-    editprofile.onclick = btn_editprofile
-    function btn_registerlogin() {
-        name_res = name_rigister.value
-        last_res = lastname_res.value
-        phones_res = phone_res.value
-        email_ress = email_res.value
-        pass1 = password_res.value
-        pass2 = confirm_pass.value
-        insert_data(name_res, last_res, phones_res,email_ress,pass1)
-    }
-    function btn_carlogin() {
-        car_type = type_res.value
-        color_carnn = color_car.value
-        num_car = number_car.value
-        insert_car(car_type,color_carnn)
-    }
-    confirm_res.onclick = function() {
-        btn_registerlogin();
-        // btn_carlogin();
-    };
+// editprofile.onclick = btn_editprofile
 
-
+function btn_registerlogin() {
+    name_res = name_rigister.value
+    last_res = lastname_res.value
+    phones_res = phone_res.value
+    email_ress = email_res.value
+    pass1 = password_res.value
+    pass2 = confirm_pass.value
+    insert_data(name_res, last_res, phones_res, email_ress, pass1)
+}
+confirm_res.onclick = btn_registerlogin
+  
+function btn_carlogin() {
+    car_type = type_res.value
+    color_car = color_car.value
+    btn_nunmber = edit_nunmber.value
+    btn_nunmber1 = edit_nunmber1.value
+    btn_nunmber2 = edit_nunmber2.value
+    insert_car(car_type, color_car, btn_nunmber, btn_nunmber1, btn_nunmber2)
+}
+editprofile.onclick = btn_carlogin
 
 async function send_data(a, b) {
     try {
@@ -88,7 +89,7 @@ async function send_data(a, b) {
         var password_1 = b
         $.ajax({
             type: 'post',
-            url: `http://localhost:3000/api/tontai`,
+            url: `http://localhost:3000/api/login`,
             contentType: "application/json",
             data: JSON.stringify({ user: user, password_1: password_1 }),
             success: function (response) {
@@ -117,7 +118,7 @@ async function send_data(a, b) {
 //    * @author   audy
 //    * @create   2024-01-31
 //    * @update  
-async function insert_data(a, b, c, d ,p) {
+async function insert_data(a, b, c, d, p) {
     try {
         var na = a
         var lastname = b
@@ -127,9 +128,10 @@ async function insert_data(a, b, c, d ,p) {
 
         $.ajax({
             type: 'post',
-            url: `http://localhost:3000/api/insertdata`,
+            url: `http://localhost:3000/api/register`,
             contentType: "application/json",
-            data: JSON.stringify({Name: na,lastname: lastname,phone: pho_ne,email: emai_l, password:password
+            data: JSON.stringify({
+                Name: na, lastname: lastname, phone: pho_ne, email: emai_l, password: password
             }),
             success: function (response) {
                 if (response) {
@@ -156,52 +158,55 @@ async function insert_data(a, b, c, d ,p) {
     }
 }
 
-    //  async function insert_car(a,b){
-    //     try {
-    //         console.log(b,"b")
-    //         var cartype = a
-    //         var colorcar = b
-    //         $.ajax({
-    //             type: 'post',
-    //             url: `http://localhost:3000/api/typecar`,
-    //             contentType: "application/json",
-    //             data: JSON.stringify({cartype: cartype, colorcar: colorcar}),
-    //             success: function (response) {
-    //                 if (response) {
-    //                     c = response.data;
-    //                     console.log(c)
-    //                     console.log("ผ่าน");
-    //                     // Handle success as needed
-    //                     // $("div[class^=overlay_pass").addClass('open');
-    //                     closeOverlayAll()
-    //                 } else {
-    //                     console.log("ไม่ผ่าน");
-    //                     // Handle failure as needed
-    //                 }
-    //             },
+async function insert_car(a, b, c, d, e) {
+    try {
+        console.log(a, b, c, d, e)
+        var cartype = a
+        var colorcar = b
+        var btn_nunmber = c
+        var btn_nunmber1 = d
+        var btn_nunmber2 = e
+        
+        $.ajax({
+            type: 'post',
+            url: `http://localhost:3000/api/typecar`,
+            contentType: "application/json",
+            data: JSON.stringify({ cartype: cartype, colorcar: colorcar, btnnunmber: btn_nunmber, btnnunmber1: btn_nunmber1, btnnunmber2: btn_nunmber2 }),
+            success: function (response) {
+                if (response) {
+                    c = response.data;
+                    console.log(c)
+                    console.log("ผ่าน");
+                    // Handle success as needed
+                    // $("div[class^=overlay_pass").addClass('open');
+                } else {
+                    console.log("ไม่ผ่าน");
+                    // Handle failure as needed
+                }
+            },
 
-    //             error: function (err) {
-    //                 if (err) {
-    //                     console.log("ไม่ผ่าน", err)
-    //                 }
-    //             }
-    //         })
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
-    // }
+            error: function (err) {
+                if (err) {
+                    console.log("ไม่ผ่าน", err)
+                }
+            }
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
 
 
 
-    // $("#loginpress").on("click", function () {
+// $("#loginpress").on("click", function () {
 
-    //     var direction = "next1";
+//     var direction = "next1";
 
-    //     if (direction === "next1") {
-    //         $("div[class^=overlay_menu").addClass('open');
+//     if (direction === "next1") {
+//         $("div[class^=overlay_menu").addClass('open');
 
-    //     }
-    // });
+//     }
+// });
 
 $(".login_register").on("click", function () {
 
@@ -411,14 +416,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 phoneNumber = phoneNumber.replace(/(\d{1,3})/, '$1');
             } else if (phoneNumber.length <= 6) {
                 phoneNumber = phoneNumber.replace(/(\d{1,3})(\d{1,3})/, '$1-$2');
-            } else if(phoneNumber.length<= 10) {
+            } else if (phoneNumber.length <= 10) {
                 phoneNumber = phoneNumber.replace(/(\d{1,3})(\d{1,3})(\d{1,4})/, '$1-$2-$3');
             }
             else if (phoneNumber.length > 10) {
                 phoneNumber = phoneNumber.slice(0, 10);
                 phoneNumber = phoneNumber.replace(/(\d{1,3})(\d{1,3})(\d{1,4})/, '$1-$2-$3');
             }
-            
+
         }
 
         // Update the input value
