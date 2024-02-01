@@ -451,3 +451,15 @@ document.addEventListener('DOMContentLoaded', function () {
         input.value = phoneNumber;
     }
 });
+
+function triggerFileInput() {
+    document.querySelector('.scanblue input').click();
+}
+
+function displaySelectedFile(input) {
+    const file = input.files[0];
+    if (file) {
+        // Do something with the selected file, e.g., display its name
+        alert('Selected file: ' + file.name);
+    }
+}
