@@ -77,7 +77,7 @@ function btn_editprofile() {
     }
     confirm_res.onclick = function() {
         btn_registerlogin();
-        btn_carlogin();
+        // btn_carlogin();
     };
 
 
@@ -86,7 +86,6 @@ async function send_data(a, b) {
     try {
         var user = a
         var password_1 = b
-
         $.ajax({
             type: 'post',
             url: `http://localhost:3000/api/login`,
@@ -157,52 +156,52 @@ async function insert_data(a, b, c, d ,p) {
     }
 }
 
- async function insert_car(a,b){
-    try {
-        console.log(b,"b")
-        var cartype = a
-        var colorcar = b
-        $.ajax({
-            type: 'post',
-            url: `http://localhost:3000/api/typecar`,
-            contentType: "application/json",
-            data: JSON.stringify({cartype: cartype, colorcar: colorcar}),
-            success: function (response) {
-                if (response) {
-                    c = response.data;
-                    console.log(c)
-                    console.log("ผ่าน");
-                    // Handle success as needed
-                    // $("div[class^=overlay_pass").addClass('open');
-                    closeOverlayAll()
-                } else {
-                    console.log("ไม่ผ่าน");
-                    // Handle failure as needed
-                }
-            },
+    //  async function insert_car(a,b){
+    //     try {
+    //         console.log(b,"b")
+    //         var cartype = a
+    //         var colorcar = b
+    //         $.ajax({
+    //             type: 'post',
+    //             url: `http://localhost:3000/api/typecar`,
+    //             contentType: "application/json",
+    //             data: JSON.stringify({cartype: cartype, colorcar: colorcar}),
+    //             success: function (response) {
+    //                 if (response) {
+    //                     c = response.data;
+    //                     console.log(c)
+    //                     console.log("ผ่าน");
+    //                     // Handle success as needed
+    //                     // $("div[class^=overlay_pass").addClass('open');
+    //                     closeOverlayAll()
+    //                 } else {
+    //                     console.log("ไม่ผ่าน");
+    //                     // Handle failure as needed
+    //                 }
+    //             },
 
-            error: function (err) {
-                if (err) {
-                    console.log("ไม่ผ่าน", err)
-                }
-            }
-        })
-    } catch (err) {
-        console.log(err)
-    }
-}
+    //             error: function (err) {
+    //                 if (err) {
+    //                     console.log("ไม่ผ่าน", err)
+    //                 }
+    //             }
+    //         })
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
+    // }
 
 
 
-$("#loginpress").on("click", function () {
+    // $("#loginpress").on("click", function () {
 
-    var direction = "next1";
+    //     var direction = "next1";
 
-    if (direction === "next1") {
-        $("div[class^=overlay_menu").addClass('open');
+    //     if (direction === "next1") {
+    //         $("div[class^=overlay_menu").addClass('open');
 
-    }
-});
+    //     }
+    // });
 
 $(".login_register").on("click", function () {
 

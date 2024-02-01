@@ -45,13 +45,6 @@
             <div class="bt-con-select" id="loginpress" name="loginpress">
                 <p>เข้าสู่ระบบ</p>
             </div>
-            <div class="scanblue" onclick="triggerFileInput()"
-                        style="width: 130px; background-color: #8A2FFF; height: 130px; border: 2px solid #028EBA; border-radius: 76px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-                        <input class="inputca" type="file" accept="image/jpg/JPG/png/heif/heic" capture="environment" onchange="displaySelectedFile(this)">                        
-                        <img src="img/scanner.png" style="height: 50px; width: 50px;" alt="">
-                        <p style="color: #ffffff;">สแกน</p>
-
-                    </div>
             <div class="bt-register" style="margin: 2px;">
                 <p>กรณีคุณยังไม่มีบัญชีเข้าใช้งาน</p>
                 <div style="color: #7C00A8;" href="" target="_blank" class="login_register" name="login_register">
@@ -90,18 +83,6 @@
             <div class="field padding-bottom--24">
                 <label for="email" class="brtop">อีเมล์</label>
                 <input id="email_res" type="email" name="email">
-            </div>
-            <div class="field padding-bottom--24">
-                <label for="car" class="brtop">ประเภทรถ</label>
-                <input id="type_res" type="text" name="type_res">
-            </div>
-            <div class="field padding-bottom--24">
-                <label for="car" class="brtop">เลขป้ายทะเบียน(เช่น 22-กก-กรุงเทพ)</label>
-                <input id="number_car" type="text" name="car">
-            </div>
-            <div class="field padding-bottom--24">
-                <label for="car_color" class="brtop">สีรถ</label>
-                <input id="color_car" type="text" name="car_color">
             </div>
             <div class="bt-select padding-10">
                 <div id="loginregisterpass" class="bt-con-select login_pass" name="login_pass">
@@ -246,7 +227,7 @@
                     style="width: 90%; height: 20dvh; display: flex; align-items: center; justify-content: center;">
                     <div class="scanblue" onclick="triggerFileInput()"
                         style="width: 130px; background-color: #8A2FFF; height: 130px; border: 2px solid #028EBA; border-radius: 76px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-                        <input class="inputca" type="file" accept="image/*" capture="camera" onchange="displaySelectedFile(this)">                        
+                        <input class="inputca" type="file" accept="image/png, image/jpeg, image/heif, image/heic" capture="environment" onchange="displaySelectedFile(this)">                        
                         <img src="img/scanner.png" style="height: 50px; width: 50px;" alt="">
                         <p style="color: #ffffff;">สแกน</p>
 
@@ -388,8 +369,16 @@
                         <input type="file" name="picture__input1" id="picture__input1">
                     </div>
                     <div class="field padding-bottom--24">
-                        <label for="" class="brtop">เลขป้ายทะเบียน(เช่น 22-กก-กรุงเทพ)น</label>
+                        <label for="" class="brtop">เลขป้ายทะเบียน(เช่น 22-กก-กรุงเทพ)</label>
                         <input type="text" id="edit_nunmber">
+                    </div>
+                    <div class="field padding-bottom--24">
+                        <label for="car" class="brtop">ประเภทรถ</label>
+                        <input id="type_res" type="text" name="type_res">
+                    </div>
+                    <div class="field padding-bottom--24">
+                        <label for="car_color" class="brtop">สีรถ</label>
+                        <input id="color_car" type="text" name="car_color">
                     </div>
                     <div class="bt-select padding-10">
                         <div id="btn_confirm" class="bt-con-select" name="edit_car">
