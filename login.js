@@ -461,17 +461,17 @@ function displaySelectedFile(input) {
     if (file) {
         // Do something with the selected file, e.g., display its name
         alert('Selected file: ' + file.name);
-        const fileSize = file.size;
-                // Limit the file size to, for example, 1 MB
-                const maxSize = 500 * 1024 * 1024; // 2 MB in bytes
+    //     const fileSize = file.size;
+    //             // Limit the file size to, for example, 1 MB
+    //             const maxSize = 500 * 1024 * 1024; // 2 MB in bytes
 
-                if (fileSize > maxSize) {
-                    alert('File size exceeds the allowed limit.');
-                    // Optionally clear the selected file
-                    input.value = '';
-                } else {
-                    // Do something with the valid file
-                    alert('Selected file: ' + file.name);
-                }
+    //             if (fileSize > maxSize) {
+    //                 alert('File size exceeds the allowed limit.');
+    //                 // Optionally clear the selected file
+    //                 input.value = '';
+    //             } else {
+    //                 // Do something with the valid file
+    //                 alert('Selected file: ' + file.name);
+    //             }
     }
 }
