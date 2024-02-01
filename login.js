@@ -59,50 +59,26 @@ function btn_editprofile() {
     console.log(edit_nunmber.value)
 
 }
-editprofile.onclick = btn_editprofile
-
-function btn_registerlogin() {
-    name_res = name_rigister.value
-    console.log(name_rigister.value)
-    last_res = lastname_res.value
-    console.log(lastname_res.value)
-    phones_res = phone_res.value
-    console.log(phone_res.value)
-    email_ress = email_res.value
-    console.log(email_res.value)
-    num_car = number_car.value
-    console.log(number_car.value)
-    pass1 = password_res.value
-    console.log(pass1)
-    pass2 = confirm_pass.value
-    console.log(pass2)
-    insert_data(name_res, last_res, phones_res,email_ress,pass1)
-}
-function btn_carlogin() {
-    car_type = type_res.value
-    console.log(car_type)
-    color_cars = color_car.value
-    console.log(color_car.value)
-    insert_car(car_type, color_car)
-}
-confirm_res.onclick = btn_registerlogin
-// function res_confirm() {
-//     pass1 = password_res.value
-//     console.log(pass1)
-//     pass2 = confirm_pass.value
-//     console.log(pass2)
-
-//     insert_data(pass1)
-    
-//     // if (pass1 == pass2) {
-//     //     alert("ถูกต้อง")
-//     //     // closeOverlayAll()
-//     // }
-//     // else {
-//     //     alert("ระบุใหม่อีกครั้ง")
-//     // }
-// }
-// confirm_res.onclick = res_confirm
+    editprofile.onclick = btn_editprofile
+    function btn_registerlogin() {
+        name_res = name_rigister.value
+        last_res = lastname_res.value
+        phones_res = phone_res.value
+        email_ress = email_res.value
+        pass1 = password_res.value
+        pass2 = confirm_pass.value
+        insert_data(name_res, last_res, phones_res,email_ress,pass1)
+    }
+    function btn_carlogin() {
+        car_type = type_res.value
+        color_carnn = color_car.value
+        num_car = number_car.value
+        insert_car(car_type,color_carnn)
+    }
+    confirm_res.onclick = function() {
+        btn_registerlogin();
+        btn_carlogin();
+    };
 
 
 
@@ -169,7 +145,7 @@ async function insert_data(a, b, c, d ,p) {
                     // Handle failure as needed
                 }
             },
-            
+
             error: function (err) {
                 if (err) {
                     console.log("ไม่ผ่าน", err)
@@ -181,17 +157,16 @@ async function insert_data(a, b, c, d ,p) {
     }
 }
 
-async function insert_car(a, b) {
+ async function insert_car(a,b){
     try {
-        var CarType = a
-        var CarColor = b
-
+        console.log(b,"b")
+        var cartype = a
+        var colorcar = b
         $.ajax({
             type: 'post',
-            url: `http://localhost:3000/api/insertcar`,
+            url: `http://localhost:3000/api/typecar`,
             contentType: "application/json",
-            data: JSON.stringify({CarType: CarType, CarColor: CarColor
-            }),
+            data: JSON.stringify({cartype: cartype, colorcar: colorcar}),
             success: function (response) {
                 if (response) {
                     c = response.data;
@@ -199,13 +174,13 @@ async function insert_car(a, b) {
                     console.log("ผ่าน");
                     // Handle success as needed
                     // $("div[class^=overlay_pass").addClass('open');
-                    // closeOverlayAll()
+                    closeOverlayAll()
                 } else {
                     console.log("ไม่ผ่าน");
                     // Handle failure as needed
                 }
             },
-            
+
             error: function (err) {
                 if (err) {
                     console.log("ไม่ผ่าน", err)
@@ -219,15 +194,15 @@ async function insert_car(a, b) {
 
 
 
-// $("#loginpress").on("click", function () {
+$("#loginpress").on("click", function () {
 
-//     var direction = "next1";
+    var direction = "next1";
 
-//     if (direction === "next1") {
-//         $("div[class^=overlay_menu").addClass('open');
+    if (direction === "next1") {
+        $("div[class^=overlay_menu").addClass('open');
 
-//     }
-// });
+    }
+});
 
 $(".login_register").on("click", function () {
 
