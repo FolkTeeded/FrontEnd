@@ -476,3 +476,7 @@ select {
     align-items: center;
 
 }
+
+.inputca {
+    opacity: 0%;
+}

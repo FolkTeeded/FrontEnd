@@ -426,3 +426,32 @@ document.addEventListener('DOMContentLoaded', function () {
         input.value = phoneNumber;
     }
 });
+
+function triggerFileInput() {
+    document.querySelector('.scanblue input').click();
+}
+
+function displaySelectedFile(input) {
+    const file = input.files[0];
+    if (file) {
+        // Check file size (in bytes)
+        const fileSize = file.size;
+        // Limit the file size to, for example, 1 MB
+        const maxSize = 5 * 1024 * 1024; // 1 MB in bytes
+
+        if (fileSize > maxSize) {
+            alert('File size exceeds the allowed limit.');
+            // Optionally clear the selected file
+            input.value = '';
+        } else {
+            // Convert file to base64
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                const base64String = reader.result;
+                // Do something with the base64 string (e.g., send it to the server)
+                alert('Base64 representation: ' + base64String);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+}
