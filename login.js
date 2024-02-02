@@ -1,3 +1,4 @@
+
 const btn_login = document.getElementById('loginpress')
 btn_login.style.backgroundColor = ''
 const userid_1 = document.getElementById('userid')
@@ -109,12 +110,14 @@ async function send_data(a, b) {
             type: 'post',
             url: `http://localhost:3000/api/login`,
             contentType: "application/json",
+            headers: {"Authorization": localStorage.getItem('token')},
             data: JSON.stringify({ user: user, password_1: password_1 }),
         });
 
-        if (response && response.user_id) {
-            const token = response.token;
-            const refresh = response.token_re;
+        // Assuming the response structure is like { "data": { "token": "...", "token_re": "...", "user_id": "..." }, "status": "success" }
+        if (response && response.data && response.data.user_id) {
+            const token = response.data;
+            const refresh = response.data;
 
             $("div[class^=overlay_menu").addClass('open');
 
@@ -132,6 +135,7 @@ async function send_data(a, b) {
         // Handle AJAX request errors
     }
 }
+
 
 
 
