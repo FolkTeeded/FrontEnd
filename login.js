@@ -120,9 +120,10 @@ async function send_data(a, b) {
             const refresh = response.data;
 
             $("div[class^=overlay_menu").addClass('open');
-
             localStorage.setItem('token', JSON.stringify(token));
             localStorage.setItem('refresh', JSON.stringify(refresh));
+
+            
 
             console.log('Token:', token);
             console.log('Refresh:', refresh);
@@ -162,17 +163,18 @@ async function insert_data(a, b, c, d, p, passComfim) {
             type: 'post',
             url: `http://localhost:3000/api/register`,
             contentType: "application/json",
+            headers: {"Authorization": localStorage.getItem('token')},
             data: JSON.stringify({
                 Name: na, lastname: lastname, phone: pho_ne, email: emai_l, password: password
             }),
             success: function (response) {
                 if (response && response.data) {
-                    const token = response.data.token; // Adjust this based on your response structure
-                    const refresh = response.tokenre; // Adjust this based on your response structure
+                    const token = response.data; // Adjust this based on your response structure
+                    const refresh = response.data; // Adjust this based on your response structure
 
                     console.log("ผ่าน");
+                    
                     closeOverlayAll();
-
                     // Storing token and refresh in localStorage
                     localStorage.setItem('token', JSON.stringify(token));
                     localStorage.setItem('refresh', JSON.stringify(refresh));
