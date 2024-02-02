@@ -102,49 +102,58 @@ editprofile.onclick = btn_carlogin
 
 async function send_data(a, b) {
     try {
-        var user = a
-        var password_1 = b
+        var user = a;
+        var password_1 = b;
 
-        $.ajax({
+        const response = await $.ajax({
             type: 'post',
             url: `http://localhost:3000/api/login`,
             contentType: "application/json",
             data: JSON.stringify({ user: user, password_1: password_1 }),
-            success: function (response) {
-                if (response) {
-                    console.log("ผ่าน")
-                    c = response.data[0]
-                    console.log(c)
-                    $("div[class^=overlay_menu").addClass('open');
-                }
-                else {
-                    console.log("ไม่ผ่าน")
-                }
-            },
-            error: function (err) {
-                if (err) {
-                    console.log("ไม่ผ่าน", err)
-                }
-            }
-        })
+        });
+
+        if (response && response.user_id) {
+            const token = response.token;
+            const refresh = response.token_re;
+
+            $("div[class^=overlay_menu").addClass('open');
+
+            localStorage.setItem('token', JSON.stringify(token));
+            localStorage.setItem('refresh', JSON.stringify(refresh));
+
+            console.log('Token:', token);
+            console.log('Refresh:', refresh);
+        } else {
+            console.log("Login failed");
+            // Handle failure as needed
+        }
     } catch (err) {
-        console.log(err)
+        console.log("Unexpected error:", err);
+        // Handle AJAX request errors
     }
 }
-    
-async function insert_data(a, b, c, d, p , passComfim) {
-    try {
-        var na = a
-        var lastname = b
-        var pho_ne = c
-        var emai_l = d
-        var password = p
 
-        if (password !== passComfim){
-        alert("รหัสไม่ถูกต้อง")
-        return;
+
+
+//    * function insert api
+//    * @author   audy
+//    * @create   2024-01-31
+//    * @update  
+async function insert_data(a, b, c, d, p, passComfim) {
+    try {
+        var na = a;
+        var lastname = b;
+        var pho_ne = c;
+        var emai_l = d;
+        var password = p;
+
+        if (password !== passComfim) {
+            alert("รหัสไม่ถูกต้อง");
+            return;
         }
-        alert("ถูกต้อง")
+
+        alert("ถูกต้อง");
+
         $.ajax({
             type: 'post',
             url: `http://localhost:3000/api/register`,
@@ -153,29 +162,35 @@ async function insert_data(a, b, c, d, p , passComfim) {
                 Name: na, lastname: lastname, phone: pho_ne, email: emai_l, password: password
             }),
             success: function (response) {
-                if (response) {
-                    c = response.data;
-                    console.log(c)
+                if (response && response.data) {
+                    const token = response.data.token; // Adjust this based on your response structure
+                    const refresh = response.tokenre; // Adjust this based on your response structure
+
                     console.log("ผ่าน");
-                    // Handle success as needed
-                    // $("div[class^=overlay_pass").addClass('open');
-                    closeOverlayAll()
+                    closeOverlayAll();
+
+                    // Storing token and refresh in localStorage
+                    localStorage.setItem('token', JSON.stringify(token));
+                    localStorage.setItem('refresh', JSON.stringify(refresh));
+
+                    console.log('Token:', token);
+                    console.log('Refresh:', refresh);
                 } else {
                     console.log("ไม่ผ่าน");
                     // Handle failure as needed
                 }
             },
-
             error: function (err) {
                 if (err) {
-                    console.log("ไม่ผ่าน", err)
+                    console.log("ไม่ผ่าน", err);
                 }
             }
-        })
+        });
     } catch (err) {
-        console.log(err)
+        console.log(err);
     }
 }
+
 
 async function insert_car(a, b, c, d, e) {
     try {
