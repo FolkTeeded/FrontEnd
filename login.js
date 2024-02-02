@@ -477,6 +477,7 @@ function displaySelectedFile(input) {
                 const base64String = reader.result;
                 // Do something with the base64 string (e.g., send it to the server)
                 alert('Base64 representation: ' + base64String);
+                console.log(base64String)
             };
             reader.readAsDataURL(file);
         }

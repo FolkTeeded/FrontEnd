@@ -204,6 +204,7 @@ a {
     color: #8A2FFF;
     width: 147px;
     height: 127px;
+    position: relative;
 }
 
 .menu-all-font {
@@ -480,4 +481,22 @@ select {
 .inputca {
     opacity: 0%;
 
+}
+
+.driverLic {
+    position: absolute;
+    left: 36px;
+    top: 96px;
+}
+
+.profileText {
+    position: absolute;
+    left: 15px;
+    top: 95px;
+}
+
+.callcenter {
+    position: absolute;
+    top: 95px;
+    left: 25px;
 }
