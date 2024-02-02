@@ -131,11 +131,7 @@ async function send_data(a, b) {
         console.log(err)
     }
 }
-
-//    * function insert api
-//    * @author   audy
-//    * @create   2024-01-31
-//    * @update  
+    
 async function insert_data(a, b, c, d, p , passComfim) {
     try {
         var na = a
