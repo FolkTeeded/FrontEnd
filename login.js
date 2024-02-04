@@ -6,10 +6,12 @@ const password_1 = document.getElementById('password')
 
 // js form edit 
 const editprofile = document.querySelector('#btn_confirm')
+
 const btn_name = document.querySelector('#edit_name')
 const btn_lastname = document.querySelector('#edit_last')
 const btn_StudentID = document.querySelector('#edit_Student_ID')
 const btn_phone11 = document.querySelector('#edit_phone')
+
 const date_ed = document.querySelector('#edit_date')
 var sx_btn = document.querySelector('#sx_edit')
 const picture__input1 = document.querySelector('#picture__input1')
@@ -26,7 +28,6 @@ const name_rigister = document.querySelector('#name_rigister')
 const lastname_res = document.querySelector('#lastname_res')
 const phone_res = document.querySelector('#phone_res')
 const email_res = document.querySelector('#email_res')
-
 
 // js form password
 const confirm_res = document.querySelector('#confirm_res')
@@ -45,39 +46,42 @@ function btn_login_2() {
 btn_login.onclick = btn_login_2
 
 function btn_editprofile() {
-    name_edit = btn_name.value
+    newName = btn_name.value
     console.log(btn_name.value)
-    ed_lastname = btn_lastname.value
+    newLastName = btn_lastname.value
     console.log(btn_lastname.value)
-    dt_Student = btn_StudentID.value
+    newStudentID = btn_StudentID.value
     console.log(btn_StudentID.value)
-    dt_phone = btn_phone11.value
+    newPhone = btn_phone11.value
     console.log(btn_phone11.value)
+
     dt_date = date_ed.value
     console.log(date_ed.value)
     sx_ed = sx_btn.value
     console.log(sx_btn.value)
     btn_img1 = picture__input1.value
     console.log(picture__input1.value)
+    updateUser(userIdToUpdate, newName, newLastName, newStudentID, newPhone);
 
 }
-    editprofile.onclick = btn_editprofile
-    function btn_registerlogin() {
-        name_res = name_rigister.value
-        last_res = lastname_res.value
-        phones_res = phone_res.value
-        email_ress = email_res.value
-        pass1 = password_res.value
-        pass2 = confirm_pass.value
-        insert_data(name_res, last_res, phones_res,email_ress,pass1)
-    }
-    function btn_carlogin() {
-        car_type = type_res.value
-        color_carnn = color_car.value
-        num_car = number_car.value
-        insert_car(car_type,color_carnn)
-    }
-    confirm_res.onclick = btn_registerlogin
+editprofile.onclick = btn_editprofile
+
+function btn_registerlogin() {
+    name_res = name_rigister.value
+    last_res = lastname_res.value
+    phones_res = phone_res.value
+    email_ress = email_res.value
+    pass1 = password_res.value
+    pass2 = confirm_pass.value
+    insert_data(name_res, last_res, phones_res, email_ress, pass1)
+}
+function btn_carlogin() {
+    car_type = type_res.value
+    color_carnn = color_car.value
+    num_car = number_car.value
+    insert_car(car_type, color_carnn)
+}
+confirm_res.onclick = btn_registerlogin
 
 
 function btn_registerlogin() {
@@ -87,10 +91,10 @@ function btn_registerlogin() {
     email_ress = email_res.value
     pass1 = password_res.value
     pass2 = confirm_pass.value
-    insert_data(name_res, last_res, phones_res, email_ress, pass1,pass2)
+    insert_data(name_res, last_res, phones_res, email_ress, pass1, pass2)
 }
 confirm_res.onclick = btn_registerlogin
-  
+
 function btn_carlogin() {
     car_type = type_res.value
     color_car = colorcar.value
@@ -110,7 +114,7 @@ async function send_data(a, b) {
             type: 'post',
             url: `http://localhost:3000/api/login`,
             contentType: "application/json",
-            headers: {"Authorization": localStorage.getItem('token')},
+            headers: { "Authorization": localStorage.getItem('token') },
             data: JSON.stringify({ user: user, password_1: password_1 }),
         });
 
@@ -123,7 +127,7 @@ async function send_data(a, b) {
             localStorage.setItem('token', JSON.stringify(token));
             localStorage.setItem('refresh', JSON.stringify(refresh));
 
-            
+
 
             console.log('Token:', token);
             console.log('Refresh:', refresh);
@@ -136,9 +140,6 @@ async function send_data(a, b) {
         // Handle AJAX request errors
     }
 }
-
-
-
 
 //    * function insert api
 //    * @author   audy
@@ -163,7 +164,7 @@ async function insert_data(a, b, c, d, p, passComfim) {
             type: 'post',
             url: `http://localhost:3000/api/register`,
             contentType: "application/json",
-            headers: {"Authorization": localStorage.getItem('token')},
+            headers: { "Authorization": localStorage.getItem('token') },
             data: JSON.stringify({
                 Name: na, lastname: lastname, phone: pho_ne, email: emai_l, password: password
             }),
@@ -173,8 +174,8 @@ async function insert_data(a, b, c, d, p, passComfim) {
                     const refresh = response.data; // Adjust this based on your response structure
 
                     console.log("ผ่าน");
-                    
                     closeOverlayAll();
+
                     // Storing token and refresh in localStorage
                     localStorage.setItem('token', JSON.stringify(token));
                     localStorage.setItem('refresh', JSON.stringify(refresh));
@@ -206,7 +207,7 @@ async function insert_car(a, b, c, d, e) {
         var btn_nunmber = c
         var btn_nunmber1 = d
         var btn_nunmber2 = e
-        
+
         $.ajax({
             type: 'post',
             url: `http://localhost:3000/api/typecar`,
@@ -237,6 +238,62 @@ async function insert_car(a, b, c, d, e) {
     }
 }
 
+async function insert_profile() {
+    try {
+
+        $.ajax({
+            type: 'post',
+            url: `http://localhost:3000/api/insertprofile`,
+            contentType: "application/json",
+            data: JSON.stringify({}),
+            success: function (response) {
+                if (response) {
+                    console.log("ผ่าน");
+                } else {
+                    console.log("ไม่ผ่าน");
+                    // Handle failure as needed
+                }
+            },
+
+            error: function (err) {
+                if (err) {
+                    console.log("ไม่ผ่าน", err)
+                }
+            }
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+const updateUser = async (user_id, updatedName, updatedLastName, newStudentID,  updatedPhone) => {
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                url: `http://localhost:3000/api/updateUser`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user_id: user_id,
+                updatedName: updatedName,
+                updatedLastName: updatedLastName,
+                newStudentID: newStudentID,
+                updatedPhone: updatedPhone,
+            }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            console.log(data.msg); // Successful update
+        } else {
+            console.error(data.msg); // Failed update
+        }
+    } catch (error) {
+        console.error('Error updating user:', error);
+    }
+};
 
 
 // $("#loginpress").on("click", function () {
