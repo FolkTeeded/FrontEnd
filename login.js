@@ -61,23 +61,23 @@ function btn_editprofile() {
     console.log(picture__input1.value)
 
 }
-    editprofile.onclick = btn_editprofile
-    function btn_registerlogin() {
-        name_res = name_rigister.value
-        last_res = lastname_res.value
-        phones_res = phone_res.value
-        email_ress = email_res.value
-        pass1 = password_res.value
-        pass2 = confirm_pass.value
-        insert_data(name_res, last_res, phones_res,email_ress,pass1)
-    }
-    function btn_carlogin() {
-        car_type = type_res.value
-        color_carnn = color_car.value
-        num_car = number_car.value
-        insert_car(car_type,color_carnn)
-    }
-    confirm_res.onclick = btn_registerlogin
+editprofile.onclick = btn_editprofile
+function btn_registerlogin() {
+    name_res = name_rigister.value
+    last_res = lastname_res.value
+    phones_res = phone_res.value
+    email_ress = email_res.value
+    pass1 = password_res.value
+    pass2 = confirm_pass.value
+    insert_data(name_res, last_res, phones_res, email_ress, pass1)
+}
+function btn_carlogin() {
+    car_type = type_res.value
+    color_carnn = color_car.value
+    num_car = number_car.value
+    insert_car(car_type, color_carnn)
+}
+confirm_res.onclick = btn_registerlogin
 
 
 function btn_registerlogin() {
@@ -87,10 +87,10 @@ function btn_registerlogin() {
     email_ress = email_res.value
     pass1 = password_res.value
     pass2 = confirm_pass.value
-    insert_data(name_res, last_res, phones_res, email_ress, pass1,pass2)
+    insert_data(name_res, last_res, phones_res, email_ress, pass1, pass2)
 }
 confirm_res.onclick = btn_registerlogin
-  
+
 function btn_carlogin() {
     car_type = type_res.value
     color_car = colorcar.value
@@ -110,7 +110,7 @@ async function send_data(a, b) {
             type: 'post',
             url: `http://localhost:3000/api/login`,
             contentType: "application/json",
-            headers: {"Authorization": localStorage.getItem('token')},
+            headers: { "Authorization": localStorage.getItem('token') },
             data: JSON.stringify({ user: user, password_1: password_1 }),
         });
 
@@ -123,10 +123,10 @@ async function send_data(a, b) {
             localStorage.setItem('token', JSON.stringify(token));
             localStorage.setItem('refresh', JSON.stringify(refresh));
 
-            
-
             console.log('Token:', token);
             console.log('Refresh:', refresh);
+
+
         } else {
             console.log("Login failed");
             // Handle failure as needed
@@ -163,7 +163,7 @@ async function insert_data(a, b, c, d, p, passComfim) {
             type: 'post',
             url: `http://localhost:3000/api/register`,
             contentType: "application/json",
-            headers: {"Authorization": localStorage.getItem('token')},
+            headers: { "Authorization": localStorage.getItem('token') },
             data: JSON.stringify({
                 Name: na, lastname: lastname, phone: pho_ne, email: emai_l, password: password
             }),
@@ -173,7 +173,7 @@ async function insert_data(a, b, c, d, p, passComfim) {
                     const refresh = response.data; // Adjust this based on your response structure
 
                     console.log("ผ่าน");
-                    
+
                     closeOverlayAll();
                     // Storing token and refresh in localStorage
                     localStorage.setItem('token', JSON.stringify(token));
@@ -206,7 +206,7 @@ async function insert_car(a, b, c, d, e) {
         var btn_nunmber = c
         var btn_nunmber1 = d
         var btn_nunmber2 = e
-        
+
         $.ajax({
             type: 'post',
             url: `http://localhost:3000/api/typecar`,
