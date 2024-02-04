@@ -184,7 +184,7 @@ a {
 }
 
 .container-menu {
-    height: 42dvh;
+    height: 55dvh;
     width: 100%;
     display: grid;
     grid-template-columns: auto auto;
@@ -193,7 +193,7 @@ a {
 }
 
 .menu-item {
-    background-color: #EDEDED;
+    background-color: #EDEDFC;
     border-radius: 17px;
     font-size: 16px;
     text-align: center;
@@ -496,6 +496,12 @@ select {
 }
 
 .callcenter {
+    position: absolute;
+    top: 95px;
+    left: 25px;
+}
+
+.profile2 {
     position: absolute;
     top: 95px;
     left: 25px;
