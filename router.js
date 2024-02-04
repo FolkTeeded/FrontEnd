@@ -5,27 +5,36 @@ async function token() {
 
         $.ajax({
             type: 'post',
-            url: `http://localhost:3000/api/register`,
+            url: `http://localhost:3000/api/token`,
             contentType: "application/json",
-            headers: { "Authorization":  token_json },
-            success: function(response) {
-                // Handle success response
-                if (token_json) {
-                    // Do something if token is present
-                    console.log("Token passed",token_json);
-                } else {
-                    console.log("Token not found");
-                    // Handle failure as needed
-                }
+            headers: { "Authorization": token_json },
+            success: function (data) {
+                // ทำสิ่งที่ต้องการกับข้อมูลที่ได้รับ (สถานะสำเร็จ)
+                console.log('มีสมาชิก:');
+                var currentPath = window.location.pathname;
+
+                // หรือใช้ document.location
+                // var currentPath = document.location.pathname;
+
+                console.log('Current Path:', currentPath);
+                if (currentPath == "/login.html") {
+                    console.log("ไปหน้าHome")
+                    window.location.href = '/index.html';
+                } 
+
             },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log("AJAX request failed:", textStatus, errorThrown);
-                // Handle AJAX request errors
+            error: function (xhr, textStatus, errorThrown) {
+                // ทำสิ่งที่ต้องการเมื่อเกิดข้อผิดพลาด (สถานะผิดพลาด)
+                console.error('ไม่มีสมาชิก');
+                window.location.href = '/login.html';
+                localStorage.removeItem('token');
+                localStorage.removeItem('refresh');
+
+
             }
         });
     } catch (err) {
         console.log(err);
     }
 }
-
 token();
