@@ -82,10 +82,10 @@
                                           <div class="pic-profile"></div>
                                     </div>
                                     <div class="detall-profile-pf">
-                                          <div style="width: 95%;height: 100%;background-color:#D2AFFF;overflow-y: scroll;">
-                                                <p>ชื่อ :</p>
-                                                <p>นามสกุล :</p>
-                                                <p>รหัสนักศึกษา :</p>
+                                          <div id="myColumn" style="width: 95%;height: 100%;background-color:#D2AFFF;overflow-y: scroll;">
+                                                <p id="name">ชื่อ :</p>
+                                                <p id="lastname">นามสกุล :</p>
+                                                <p id="studentId">>รหัสนักศึกษา :</p>
                                                 <p></p>
                                           </div>
                                     </div>
@@ -669,7 +669,7 @@
                   });
 
                   function triggerFileInput() {
-                        document.querySelector('.scanblue input').click();
+                        document.querySelector('#camaraPic').click();
                   }
 
                   function displaySelectedFile(input) {
