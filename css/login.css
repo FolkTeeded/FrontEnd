@@ -28,7 +28,7 @@
 
 .container-personal_record {
     width: 100%;
-    height: 56dvh;
+    height: 62dvh;
     background-color: rgb(255, 255, 255);
 }
 
@@ -68,9 +68,9 @@
 }
 
 
-.login-icon {
+/* .login-icon {
     padding-top: 50px;
-}
+} */
 
 /* .padding-24 {
     padding-top: 24px;
@@ -122,9 +122,10 @@ a {
 }
 
 .login-icon {
-    width: 30%;
+    width: 25%;
     /* border-radius: 40%; */
     height: auto;
+    padding-top: 10px;
 }
 
 .imgcontainer {
@@ -365,26 +366,28 @@ select {
 
 .container-profile_personal {
     width: 0 15px 0 15px;
-    height: 30dvh;
+    height: 40dvh;
     background: rgb(124, 0, 168);
     background: linear-gradient(180deg, rgba(124, 0, 168, 0.92) 64%, rgba(75, 0, 187, 1) 98%, rgba(39, 2, 186, 1) 100%);
     /* display: flex;
     justify-content: center; */
     border-radius: 50px;
-    margin: 60px 5px 0px 5px;
+    margin: 60px 5px 10px 5px;
     border: 3px solid #C7C7C7;
 
 }
 
 .detall-profile-per {
     padding: 15px;
-    padding-top: 80px;
+    
+    /* padding-top: 32px; */
 }
 
 .detall-profile_personal {
     height: 100%;
     width: 100%;
-    overflow: scroll;
+    overflow: auto;
+    
     /* padding-top: 30px; */
     /* border-radius: 40px; */
     /* display: flex; */
