@@ -16,7 +16,7 @@ const date_ed = document.querySelector('#edit_date')
 var sx_btn = document.querySelector('#sx_edit')
 const picture__input1 = document.querySelector('#picture__input1')
 
-
+const caPic = document.getElementById('')
 // const edit_nunmber = document.querySelector('#edit_nunmber')
 // const edit_nunmber1 = document.querySelector('#edit_nunmber1')
 // const edit_nunmber2 = document.querySelector('#edit_nunmber2')
