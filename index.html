@@ -354,6 +354,8 @@
             <script src="global.js"></script>
             <!-- <script src="login.js"></script> -->
             <script>
+                  const apiupdateprofile = 'https://5101-113-53-150-169.ngrok-free.app/api/updateprofile'
+                  const apitypecar = 'https://5101-113-53-150-169.ngrok-free.app/api/typecar'
                   
                   function img_select(callback) {
     return new Promise((resolve, reject) => {
@@ -483,7 +485,7 @@ img_select(function (base64StringResult) {
 
                                     $.ajax({
                                           type: 'post',
-                                          url: `http://localhost:3000/api/updateprofile`,
+                                          url: apiupdateprofile,
                                           contentType: "application/json",
                                           data: JSON.stringify({ newName: newName, newLastName: newLastName, newStudentID: newStudentID, newPhone: newPhone, dt_date: dt_date, gander_e: gander_e, btn_img1:btn_img1  }),
                                           success: function (response) {
@@ -522,7 +524,7 @@ img_select(function (base64StringResult) {
 
                               $.ajax({
                                     type: 'post',
-                                    url: `http://localhost:3000/api/typecar`,
+                                    url: apitypecar,
                                     contentType: "application/json",
                                     data: JSON.stringify({ cartype: cartype, colorcar: colorcar, btnnunmber: btn_nunmber, btnnunmber1: btn_nunmber1, btnnunmber2: btn_nunmber2 }),
                                     success: function (response) {

@@ -1,4 +1,6 @@
-const apilogin = 'http://localhost:3000/api/login'
+const apilogin = 'https://5101-113-53-150-169.ngrok-free.app/api/login'
+const apiregister = 'https://5101-113-53-150-169.ngrok-free.app/api/register'
+
 
 const btn_login = document.getElementById('loginpress')
 // btn_login.style.backgroundColor = ''
@@ -164,7 +166,7 @@ async function insert_data(a, b, c, d, p, passComfim) {
 
         $.ajax({
             type: 'post',
-            url: `http://localhost:3000/api/register`,
+            url: apiregister,
             contentType: "application/json",
             headers: { "Authorization": localStorage.getItem('token') },
             data: JSON.stringify({
