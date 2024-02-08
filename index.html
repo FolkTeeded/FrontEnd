@@ -82,11 +82,11 @@
                                           <div class="pic-profile"></div>
                                     </div>
                                     <div class="detall-profile-pf">
-                                          <div id="myColumn" style="width: 95%;height: 100%;background-color:#D2AFFF;overflow-y: scroll;">
-                                                <p id="name">ชื่อ :</p>
-                                                <p id="lastname">นามสกุล :</p>
-                                                <p id="studentId">>รหัสนักศึกษา :</p>
-                                                <p></p>
+                                          <div id="myColumn"
+                                                style="width: 95%;height: 100%;background-color:#D2AFFF;overflow-y: scroll;">
+                                                <div id="name">ชื่อ :</div>
+                                                <div id="lastname">นามสกุล :</div>
+                                                <div id="studentId">รหัสนักศึกษา :</div>
                                           </div>
                                     </div>
                               </div>
@@ -486,34 +486,6 @@
                         }
                   }
 
-                  const updateUser = async (user_id, updatedName, updatedLastName, newStudentID, updatedPhone) => {
-                        try {
-                              const response = await fetch(apiUrl, {
-                                    method: 'POST',
-                                    headers: {
-                                          url: `http://localhost:3000/api/updateUser`,
-                                          'Content-Type': 'application/json',
-                                    },
-                                    body: JSON.stringify({
-                                          user_id: user_id,
-                                          updatedName: updatedName,
-                                          updatedLastName: updatedLastName,
-                                          newStudentID: newStudentID,
-                                          updatedPhone: updatedPhone,
-                                    }),
-                              });
-
-                              const data = await response.json();
-
-                              if (response.ok) {
-                                    console.log(data.msg); // Successful update
-                              } else {
-                                    console.error(data.msg); // Failed update
-                              }
-                        } catch (error) {
-                              console.error('Error updating user:', error);
-                        }
-                  };
 
                   $(".img1").on("click", function () {
 
@@ -541,6 +513,7 @@
                               $("div[class^=overlay_edit]").addClass('open');
                         }
                   });
+
                   $(".prev_edit").on("click", function () {
                         console.log("Hello");
 
@@ -550,6 +523,7 @@
                               $("div[class^=overlay_edit]").removeClass('open');
                         }
                   });
+                  
                   $(".supp1").on("click", function () {
 
                         var direction = "next1";
@@ -558,6 +532,7 @@
                               $("div[class^=overlay_supp]").addClass('open');
                         }
                   });
+                  
                   $(".prev_supp").on("click", function () {
 
                         var direction = "next1";
@@ -575,6 +550,7 @@
                               $("div[class^=overlay_personal]").addClass('open');
                         }
                   });
+                 
                   $(".prev_personal").on("click", function () {
 
                         var direction = "next1";
@@ -702,8 +678,18 @@
                         window.location.href = '/login.html';
                         localStorage.removeItem('token');
                         localStorage.removeItem('refresh');
-                  } 
+                  }
+
+                  // <p id="name">ชื่อ :</p>
+                  // <p id="lastname">นามสกุล :</p>
+                  // <p id="studentId">>รหัสนักศึกษา :</p>
+                  
+                  // fetch('http://localhost:3000/api/showprofile')
+                  //       .then(response => response.json())
+                  //       .then(data => console.log(data));
+
             </script>
+
 </body>
 
 </html>
