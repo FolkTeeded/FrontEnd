@@ -14,13 +14,13 @@ async function token() {
                 headers: { "Authorization": token_json },
                 success: function (data) {
                 // ทำสิ่งที่ต้องการกับข้อมูลที่ได้รับ (สถานะสำเร็จ)
-                console.log('มีสมาชิก:');
+                // console.log('มีสมาชิก:');
                 var currentPath = window.location.pathname;
 
                 // หรือใช้ document.location
                 // var currentPath = document.location.pathname;
 
-                console.log('Current Path:', currentPath);
+                // console.log('Current Path:', currentPath);
                 if (currentPath == "/login.html") {
                     console.log("ไปหน้าHome")
                     window.location.href = '/index.html';
@@ -34,10 +34,10 @@ async function token() {
                 }
             });
         } else {
-            console.error('Token is null. Unable to make the request.');
+            // console.error('Token is null. Unable to make the request.');
         }
     } catch (err) {
-        console.error(err);
+        // console.error(err);
     }
 }
 
