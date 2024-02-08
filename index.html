@@ -354,78 +354,66 @@
             <script src="global.js"></script>
             <!-- <script src="login.js"></script> -->
             <script>
+                  
+                  function img_select(callback) {
+    return new Promise((resolve, reject) => {
+        const inputFile1 = document.querySelector("#picture__input1");
+        const pictureImage1 = document.querySelector(".picture__image1");
+        const pictureImageTxt1 = "Select file";
+        pictureImage1.innerHTML = pictureImageTxt1;
 
-                        function img_select() {
-                              const inputFile1 = document.querySelector("#picture__input1");
-                              const pictureImage1 = document.querySelector(".picture__image1");
-                              const pictureImageTxt1 = "Select file";
-                              pictureImage1.innerHTML = pictureImageTxt1;
+        inputFile1.addEventListener("change", function (e) {
+            const inputTarget = e.target;
+            const file = inputTarget.files[0];
 
-                              inputFile1.addEventListener("change", function (e) {
-                                    const inputTarget = e.target;
-                                    const file = inputTarget.files[0];
+            if (file) {
+                const reader = new FileReader();
 
-                                    if (file) {
-                                          const reader = new FileReader();
+                reader.addEventListener("load", function (e) {
+                    const readerTarget = e.target;
 
-                                          reader.addEventListener("load", function (e) {
-                                                const readerTarget = e.target;
+                    const img = document.createElement("img");
+                    img.src = readerTarget.result;
+                    img.classList.add("picture__img");
+                    var sdf = document.querySelector('.img_pic1');
 
-                                                const img = document.createElement("img");
-                                                img.src = readerTarget.result;
-                                                img.classList.add("picture__img");
-                                                var sdf = document.querySelector('.img_pic1');
+                    sdf.classList.add('img_pic1', 'new');
+                    pictureImage1.innerHTML = "";
+                    pictureImage1.appendChild(img);
 
-                                                // Use classList.add to add one or more classes
-                                                sdf.classList.add('img_pic1', 'new');
-                                                pictureImage1.innerHTML = "";
-                                                pictureImage1.appendChild(img);
+                    base64String = readerTarget.result.split(',')[1];
+                    console.log('Base64 String:', base64String);
 
-                                                // ดึงข้อมูล Base64 string
-                                                const base64String = readerTarget.result.split(',')[1];
-                                                console.log('Base64 String:', base64String);
+                    if (typeof callback === 'function') {
+                        callback(base64String);
+                        resolve(inputFile1);
+                    }
+                });
 
-                                                // ส่ง Base64 string ไปยัง callback function
-                                                if (typeof img_select.callback === 'function') {
-                                                      img_select.callback(base64String);
-                                                }
-                                          });
+                reader.readAsDataURL(file);
+            } else {
+                pictureImage1.innerHTML = pictureImageTxt1;
+            }
+        });
+    });
+}
 
-                                          reader.readAsDataURL(file);
-                                    } else {
-                                          pictureImage1.innerHTML = pictureImageTxt1;
-                                    }
-                              });
+// Usage
+let base64String ; 
 
-                              // Return DOM element ของ input file
-                              return inputFile1;
-                        }
-
-                        // เรียกใช้ฟังก์ชัน img_select
-                        img_select();
+img_select(function (base64StringResult) {
+    // Now base64String is available
+    base64String = base64StringResult;
+})
 
 
-                        // Set a value in local storage
-                        // localStorage.setItem('token', '444444');
-                        // Get a value from local storage
-                        // var myValue = localStorage.getItem('token');
-
-                  // // Check if the value exists before using it
-                  // if (myValue !== null) {
-                  //       // window.location = "/index.html";
-                  //       console.log(myValue);// Redirect the browser to the "/login" page
-
-                        // } else {
-                        //       window.location = "/login.html";
-                        //       console.log('Key not found in local storage');
-                        // }
                         const editname = document.querySelector('#edit_name')
                         const edit_last1 = document.querySelector('#edit_last')
                         const edit_std = document.querySelector('#edit_Student_ID')
                         const edit_num = document.querySelector('#edit_phone')
                         const edit_date1 = document.querySelector('#edit_date')
                         const gander_edit = document.querySelector('#gander_edit')
-                        const edit_img = document.querySelector('#picture__input1')
+                        // const edit_img = img_select();
 
                         const btn_confirm = document.querySelector('#btn_confirm')
                         const edit_nunmber = document.querySelector('#edit_nunmber')
@@ -439,24 +427,33 @@
                         const lastname_res = document.querySelector('#lastname_res')
                         const phone_res = document.querySelector('#phone_res')
                         const email_res = document.querySelector('#email_res')
-                        function btn_editprofile() {
-                              newName = editname.value
-                              console.log(newName)
-                              newLastName = edit_last1.value
-                              console.log(newLastName)
-                              newStudentID = edit_std.value
-                              console.log(newStudentID)
-                              newPhone = edit_num.value
-                              console.log(newPhone)
-                              dt_date = edit_date1.value
-                              console.log(dt_date)
-                              gander_e = gander_edit.value
-                              console.log(gander_e)
-                              btn_img1 = edit_img.value
-                              console.log(btn_img1)
-                              updateprofile(newName, newLastName, newStudentID, newPhone, dt_date, gander_e, btn_img1)
+                                                      function btn_editprofile() {
+                              // Capture values from form elements
+                              newName = editname.value;
+                              newLastName = edit_last1.value;
+                              newStudentID = edit_std.value;
+                              newPhone = edit_num.value;
+                              dt_date = edit_date1.value;
+                              gander_e = gander_edit.value;
 
-                        }
+                              // Log the captured values to the console
+                              console.log(newName);
+                              console.log(newLastName);
+                              console.log(newStudentID);
+                              console.log(newPhone);
+                              console.log(dt_date);
+                              console.log(gander_e);
+
+                              // Capture the Base64 string from the img_select function
+                              btn_img1 = base64String
+                              console.log(btn_img1);
+
+                              // Call the updateprofile function with captured values
+                              updateprofile(newName, newLastName, newStudentID, newPhone, dt_date, gander_e, btn_img1);
+                              }
+                              // Call img_select with a callback function
+
+
                         function btn_carlogin() {
                               car_type = type_res.value
                               color_car = colorcar.value
@@ -488,7 +485,7 @@
                                           type: 'post',
                                           url: `http://localhost:3000/api/updateprofile`,
                                           contentType: "application/json",
-                                          data: JSON.stringify({ newName: newName, newLastName: newLastName, newStudentID: newStudentID, newPhone: newPhone, dt_date: dt_date, gander_e: gander_e, btn_img1: btn_img1 }),
+                                          data: JSON.stringify({ newName: newName, newLastName: newLastName, newStudentID: newStudentID, newPhone: newPhone, dt_date: dt_date, gander_e: gander_e, btn_img1:btn_img1  }),
                                           success: function (response) {
                                                 if (response) {
                                                       c = response.data;
@@ -498,8 +495,7 @@
                                                       // $("div[class^=overlay_pass").addClass('open');
                                                       $("div[class^=overlay_edit]").removeClass('open');
                                                 } else {
-                                                      console.log("ไม่ผ่าน");
-                                                      // Handle failure as needed
+                                                      console.log("ไม่ผ่าน", response.status, response.statusText);
                                                 }
                                           },
 
