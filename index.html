@@ -125,7 +125,7 @@
                                     style="width: 130px; background-color: #8A2FFF; height: 130px; border: 2px solid #028EBA; border-radius: 76px; display: flex; align-items: center; justify-content: center; flex-direction: column; position: relative;">
                                     <input class="inputca" type="file"
                                           accept="image/png, image/jpeg, image/heif, image/heic" capture="environment"
-                                          onchange="displaySelectedFile(this)">
+                                          onchange="displaySelectedFile(this)" id="camaraPic">
                                     <img src="img/scanner.png"
                                           style="height: 50px;width: 50px;position: absolute;top: 18px;" alt="">
                                     <p style="color: #ffffff; position: absolute; top: 76px;">สแกน</p>
@@ -722,41 +722,6 @@
                                     // Optionally clear the selected file
                                     input.value = '';
                               } else {
-<<<<<<< HEAD
-                                    pictureImage.innerHTML = pictureImageTxt;
-                              }
-                        });
-
-
-
-                        function triggerFileInput() {
-                              document.querySelector('.scanblue input').click();
-                        }
-
-                        function displaySelectedFile(input) {
-                              const file = input.files[0];
-                              if (file) {
-                                    // Check file size (in bytes)
-                                    const fileSize = file.size;
-                                    // Limit the file size to, for example, 1 MB
-                                    const maxSize = 5 * 1024 * 1024; // 1 MB in bytes
-
-                                    if (fileSize > maxSize) {
-                                          alert('File size exceeds the allowed limit.');
-                                          // Optionally clear the selected file
-                                          input.value = '';
-                                    } else {
-                                          // Convert file to base64
-                                          const reader = new FileReader();
-                                          reader.onloadend = function () {
-                                                const base64String = reader.result;
-                                                // Do something with the base64 string (e.g., send it to the server)
-                                                alert('Base64 representation: ' + base64String);
-                                                console.log(base64String)
-                                          };
-                                          reader.readAsDataURL(file);
-                                    }
-=======
                                     // Convert file to base64
                                     const reader = new FileReader();
                                     reader.onloadend = function () {
@@ -766,7 +731,6 @@
                                           console.log(base64String)
                                     };
                                     reader.readAsDataURL(file);
->>>>>>> c55c7d7598ca4d1f5929ed4b01386ddf89ae68bc
                               }
                         }
                   }
