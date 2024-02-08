@@ -25,15 +25,17 @@ const caPic = document.getElementById('')
 // const colorcar = document.querySelector('#color_car')
 // // js form rigister
 // const loginregisterpass = document.querySelector("#loginregisterpass")
-// const name_rigister = document.querySelector('#name_rigister')
-// const lastname_res = document.querySelector('#lastname_res')
-// const phone_res = document.querySelector('#phone_res')
-// const email_res = document.querySelector('#email_res')
+// Selecting HTML elements by their IDs
+const name_rigister = document.querySelector('#name_rigister');
+const lastname_res = document.querySelector('#lastname_res');
+const phone_res = document.querySelector('#phone_res');
+const email_res = document.querySelector('#email_res');
 
-// js form password
-const confirm_res = document.querySelector('#confirm_res')
-const password_res = document.querySelector('#password_res')
-const confirm_pass = document.querySelector('#confirm_pass')
+// Selecting form password elements by their IDs
+const confirm_res = document.querySelector('#confirm_res');
+const password_res = document.querySelector('#password_res');
+const confirm_pass = document.querySelector('#confirm_pass');
+
 
 
 function btn_login_2() {
@@ -66,6 +68,24 @@ btn_login.onclick = btn_login_2
 
 // }
 // editprofile.onclick = btn_editprofile
+function btn_registerlogin() {
+    // Declare variables and retrieve values from form elements
+    let name_res = name_rigister.value;
+    let last_res = lastname_res.value;
+    let phonessrester = phone_res.value;
+    let emailregister = email_res.value;
+    let pass1 = password_res.value;
+    let pass2 = confirm_pass.value;
+
+    // Call the insert_data function with the retrieved values
+    insert_data(name_res, last_res, phonessrester, emailregister, pass1, pass2);
+}
+
+// Attach btn_registerlogin function to the click event of confirm_res element
+confirm_res.onclick = btn_registerlogin;
+
+
+
 // function btn_registerlogin() {
 //     name_res = name_rigister.value
 //     last_res = lastname_res.value
@@ -73,27 +93,9 @@ btn_login.onclick = btn_login_2
 //     email_ress = email_res.value
 //     pass1 = password_res.value
 //     pass2 = confirm_pass.value
-//     insert_data(name_res, last_res, phones_res, email_ress, pass1)
-// }
-// function btn_carlogin() {
-//     car_type = type_res.value
-//     color_carnn = color_car.value
-//     num_car = number_car.value
-//     insert_car(car_type, color_carnn)
+//     insert_data(name_res, last_res, phones_res, email_ress, pass1, pass2)
 // }
 // confirm_res.onclick = btn_registerlogin
-
-
-function btn_registerlogin() {
-    name_res = name_rigister.value
-    last_res = lastname_res.value
-    phones_res = phone_res.value
-    email_ress = email_res.value
-    pass1 = password_res.value
-    pass2 = confirm_pass.value
-    insert_data(name_res, last_res, phones_res, email_ress, pass1, pass2)
-}
-confirm_res.onclick = btn_registerlogin
 
 // function btn_carlogin() {
 //     car_type = type_res.value
