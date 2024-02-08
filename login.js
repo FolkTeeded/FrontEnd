@@ -1,6 +1,5 @@
 const apilogin = 'https://5101-113-53-150-169.ngrok-free.app/api/login'
 const apiregister = 'https://5101-113-53-150-169.ngrok-free.app/api/register'
-const
 
 
 const btn_login = document.getElementById('loginpress')
