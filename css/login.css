@@ -256,11 +256,18 @@ a {
 .pic-profile {
     width: 80px;
     height: 80px;
-    background-color: aqua;
+    background-color: white;
     border-radius: 50px;
     position: absolute;
     top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+}
+.pic-profile img{
+    width: 100%;
+    height: 100%;
 }
 
 .container_menu {

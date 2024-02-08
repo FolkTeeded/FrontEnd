@@ -33,7 +33,7 @@ const picture__input1 = document.querySelector('#picture__input1')
 const confirm_res = document.querySelector('#confirm_res')
 const password_res = document.querySelector('#password_res')
 const confirm_pass = document.querySelector('#confirm_pass')
-// const btn_confirm = document.querySelector('#btn_confirm')
+
 
 function btn_login_2() {
     console.log(userid_1.value)

@@ -79,7 +79,9 @@
                         <div class="container-profile" style="position: relative;">
                               <div class="detall-profile">
                                     <div class="pic-profile-menu">
-                                          <div class="pic-profile"></div>
+                                          <div class="pic-profile">
+                                                <img src="/img/logo1.png" alt="">
+                                          </div>
                                     </div>
                                     <div class="detall-profile-pf">
                                           <div
@@ -256,7 +258,7 @@
                                     <div
                                           style="width: 100%; border: 1px solid;border-radius: 17px;display: flex;align-items: center;">
                                           <select style="border: unset;width:95%;height: 50%;padding-left: 10px;"
-                                                id="sx_edit">
+                                                id="gander_edit">
                                                 <option value="ชาย">ชาย</option>
                                                 <option value="หญิง">หญิง</option>
                                                 <option value="ไม่ระบุ">ไม่ระบุ</option>
@@ -265,7 +267,7 @@
                               </div>
                               <div class="field padding-bottom--24">
                                     <label for="" class="brtop">ใปรดใส่รูปโปรไฟล์</label>
-                                    <label class="picture1" for="picture__input1" tabIndex="0">
+                                    <label class="picture1" id="picture1" for="picture__input1" tabIndex="0">
                                           <img class="img_pic1" width="23.33px" height="23.33px"
                                                 src="./img/Subtract.png" alt="">
                                           <span class="picture__image1"></span>
@@ -353,6 +355,56 @@
                   <!-- <script src="login.js"></script> -->
                   <script>
 
+                        function img_select() {
+                              const inputFile1 = document.querySelector("#picture__input1");
+                              const pictureImage1 = document.querySelector(".picture__image1");
+                              const pictureImageTxt1 = "Select file";
+                              pictureImage1.innerHTML = pictureImageTxt1;
+
+                              inputFile1.addEventListener("change", function (e) {
+                                    const inputTarget = e.target;
+                                    const file = inputTarget.files[0];
+
+                                    if (file) {
+                                          const reader = new FileReader();
+
+                                          reader.addEventListener("load", function (e) {
+                                                const readerTarget = e.target;
+
+                                                const img = document.createElement("img");
+                                                img.src = readerTarget.result;
+                                                img.classList.add("picture__img");
+                                                var sdf = document.querySelector('.img_pic1');
+
+                                                // Use classList.add to add one or more classes
+                                                sdf.classList.add('img_pic1', 'new');
+                                                pictureImage1.innerHTML = "";
+                                                pictureImage1.appendChild(img);
+
+                                                // ดึงข้อมูล Base64 string
+                                                const base64String = readerTarget.result.split(',')[1];
+                                                console.log('Base64 String:', base64String);
+
+                                                // ส่ง Base64 string ไปยัง callback function
+                                                if (typeof img_select.callback === 'function') {
+                                                      img_select.callback(base64String);
+                                                }
+                                          });
+
+                                          reader.readAsDataURL(file);
+                                    } else {
+                                          pictureImage1.innerHTML = pictureImageTxt1;
+                                    }
+                              });
+
+                              // Return DOM element ของ input file
+                              return inputFile1;
+                        }
+
+                        // เรียกใช้ฟังก์ชัน img_select
+                        img_select();
+
+
                         // Set a value in local storage
                         // localStorage.setItem('token', '444444');
                         // Get a value from local storage
@@ -367,6 +419,15 @@
                         //       window.location = "/login.html";
                         //       console.log('Key not found in local storage');
                         // }
+                        const editname = document.querySelector('#edit_name')
+                        const edit_last1 = document.querySelector('#edit_last')
+                        const edit_std = document.querySelector('#edit_Student_ID')
+                        const edit_num = document.querySelector('#edit_phone')
+                        const edit_date1 = document.querySelector('#edit_date')
+                        const gander_edit = document.querySelector('#gander_edit')
+                        const edit_img = document.querySelector('#picture__input1')
+
+                        const btn_confirm = document.querySelector('#btn_confirm')
                         const edit_nunmber = document.querySelector('#edit_nunmber')
                         const edit_nunmber1 = document.querySelector('#edit_nunmber1')
                         const edit_nunmber2 = document.querySelector('#edit_nunmber2')
@@ -378,37 +439,24 @@
                         const lastname_res = document.querySelector('#lastname_res')
                         const phone_res = document.querySelector('#phone_res')
                         const email_res = document.querySelector('#email_res')
-
                         function btn_editprofile() {
-                              newName = btn_name.value
-                              console.log(btn_name.value)
-                              newLastName = btn_lastname.value
-                              console.log(btn_lastname.value)
-                              newStudentID = btn_StudentID.value
-                              console.log(btn_StudentID.value)
-                              newPhone = btn_phone11.value
-                              console.log(btn_phone11.value)
-
-                              dt_date = date_ed.value
-                              console.log(date_ed.value)
-                              sx_ed = sx_btn.value
-                              console.log(sx_btn.value)
-                              btn_img1 = picture__input1.value
-                              console.log(picture__input1.value)
-                              updateUser(userIdToUpdate, newName, newLastName, newStudentID, newPhone);
+                              newName = editname.value
+                              console.log(newName)
+                              newLastName = edit_last1.value
+                              console.log(newLastName)
+                              newStudentID = edit_std.value
+                              console.log(newStudentID)
+                              newPhone = edit_num.value
+                              console.log(newPhone)
+                              dt_date = edit_date1.value
+                              console.log(dt_date)
+                              gander_e = gander_edit.value
+                              console.log(gander_e)
+                              btn_img1 = edit_img.value
+                              console.log(btn_img1)
+                              updateprofile(newName, newLastName, newStudentID, newPhone, dt_date, gander_e, btn_img1)
 
                         }
-                        // editprofile.onclick = btn_editprofile
-
-
-                        function btn_carlogin() {
-                              car_type = type_res.value
-                              color_carnn = color_car.value
-                              num_car = number_car.value
-                              insert_car(car_type, color_carnn)
-                        }
-                        // confirm_res.onclick = btn_registerlogin
-
                         function btn_carlogin() {
                               car_type = type_res.value
                               color_car = colorcar.value
@@ -417,7 +465,55 @@
                               btn_nunmber2 = edit_nunmber2.value
                               insert_car(car_type, color_car, btn_nunmber, btn_nunmber1, btn_nunmber2)
                         }
-                        // editprofile.onclick = btn_carlogin
+                        // function btn_confirm_edit(){
+
+                        //       btn_confirm.onclick = btn_carlogin() = btn_editprofile()
+                        // }
+                        btn_confirm.onclick = function () {
+                              btn_carlogin();
+                              btn_editprofile();
+                        };
+                        async function updateprofile(a, b, c, d, e, f, g) {
+                              try {
+                                    console.log(a, b, c, d, e)
+                                    var newName = a
+                                    var newLastName = b
+                                    var newStudentID = c
+                                    var newPhone = d
+                                    var dt_date = e
+                                    var gander_e = f
+                                    var btn_img1 = g
+
+                                    $.ajax({
+                                          type: 'post',
+                                          url: `http://localhost:3000/api/updateprofile`,
+                                          contentType: "application/json",
+                                          data: JSON.stringify({ newName: newName, newLastName: newLastName, newStudentID: newStudentID, newPhone: newPhone, dt_date: dt_date, gander_e: gander_e, btn_img1: btn_img1 }),
+                                          success: function (response) {
+                                                if (response) {
+                                                      c = response.data;
+                                                      console.log(c)
+                                                      console.log("ผ่าน");
+                                                      // Handle success as needed
+                                                      // $("div[class^=overlay_pass").addClass('open');
+                                                      $("div[class^=overlay_edit]").removeClass('open');
+                                                } else {
+                                                      console.log("ไม่ผ่าน");
+                                                      // Handle failure as needed
+                                                }
+                                          },
+
+                                          error: function (err) {
+                                                if (err) {
+                                                      console.log("ไม่ผ่าน", err)
+                                                }
+                                          }
+                                    })
+                              } catch (err) {
+                                    console.log(err)
+                              }
+                        }
+
 
                         async function insert_car(a, b, c, d, e) {
                               try {
@@ -457,64 +553,7 @@
                                     console.log(err)
                               }
                         }
-
-                        async function insert_profile() {
-                              try {
-
-                                    $.ajax({
-                                          type: 'post',
-                                          url: `http://localhost:3000/api/insertprofile`,
-                                          contentType: "application/json",
-                                          data: JSON.stringify({}),
-                                          success: function (response) {
-                                                if (response) {
-                                                      console.log("ผ่าน");
-                                                } else {
-                                                      console.log("ไม่ผ่าน");
-                                                      // Handle failure as needed
-                                                }
-                                          },
-
-                                          error: function (err) {
-                                                if (err) {
-                                                      console.log("ไม่ผ่าน", err)
-                                                }
-                                          }
-                                    })
-                              } catch (err) {
-                                    console.log(err)
-                              }
-                        }
-
-                        const updateUser = async (user_id, updatedName, updatedLastName, newStudentID, updatedPhone) => {
-                              try {
-                                    const response = await fetch(apiUrl, {
-                                          method: 'POST',
-                                          headers: {
-                                                url: `http://localhost:3000/api/updateUser`,
-                                                'Content-Type': 'application/json',
-                                          },
-                                          body: JSON.stringify({
-                                                user_id: user_id,
-                                                updatedName: updatedName,
-                                                updatedLastName: updatedLastName,
-                                                newStudentID: newStudentID,
-                                                updatedPhone: updatedPhone,
-                                          }),
-                                    });
-
-                                    const data = await response.json();
-
-                                    if (response.ok) {
-                                          console.log(data.msg); // Successful update
-                                    } else {
-                                          console.error(data.msg); // Failed update
-                                    }
-                              } catch (error) {
-                                    console.error('Error updating user:', error);
-                              }
-                        };
-
+                        
                         $(".img1").on("click", function () {
 
                               var direction = "next1";
@@ -636,37 +675,7 @@
                               }
                         });
 
-                        const inputFile1 = document.querySelector("#picture__input1");
-                        const pictureImage1 = document.querySelector(".picture__image1");
-                        const pictureImageTxt1 = "Select file";
-                        pictureImage1.innerHTML = pictureImageTxt1;
 
-                        inputFile1.addEventListener("change", function (e) {
-                              const inputTarget = e.target;
-                              const file = inputTarget.files[0];
-
-                              if (file) {
-                                    const reader = new FileReader();
-
-                                    reader.addEventListener("load", function (e) {
-                                          const readerTarget = e.target;
-
-                                          const img = document.createElement("img");
-                                          img.src = readerTarget.result;
-                                          img.classList.add("picture__img");
-                                          var sdf = document.querySelector('.img_pic1');
-
-                                          // Use classList.add to add one or more classes
-                                          sdf.classList.add('img_pic1', 'new');
-                                          pictureImage1.innerHTML = "";
-                                          pictureImage1.appendChild(img);
-                                    });
-
-                                    reader.readAsDataURL(file);
-                              } else {
-                                    pictureImage1.innerHTML = pictureImageTxt;
-                              }
-                        });
 
                         function triggerFileInput() {
                               document.querySelector('.scanblue input').click();
@@ -698,11 +707,12 @@
                               }
                         }
 
-                        function logout () {
+                        function logout() {
                               window.location.href = '/login.html';
                               localStorage.removeItem('token');
                               localStorage.removeItem('refresh');
-                        } 
+                        }
+
                   </script>
 </body>
 
