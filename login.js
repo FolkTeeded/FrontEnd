@@ -1,3 +1,4 @@
+const apilogin = 'http://localhost:3000/api/login'
 
 const btn_login = document.getElementById('loginpress')
 // btn_login.style.backgroundColor = ''
@@ -111,7 +112,7 @@ async function send_data(a, b) {
 
         const response = await $.ajax({
             type: 'post',
-            url: `http://localhost:3000/api/login`,
+            url: apilogin,
             contentType: "application/json",
             headers: { "Authorization": localStorage.getItem('token') },
             data: JSON.stringify({ user: user, password_1: password_1 }),
