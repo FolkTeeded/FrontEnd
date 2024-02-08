@@ -1,7 +1,5 @@
-const apilogin = 'https://5101-113-53-150-169.ngrok-free.app/api/login'
-const apiregister = 'https://5101-113-53-150-169.ngrok-free.app/api/register'
-const
-
+const apilogin = 'https://3ad0-113-53-150-169.ngrok-free.app/api/login'
+const apiregister = 'https://3ad0-113-53-150-169.ngrok-free.app/api/register'
 
 const btn_login = document.getElementById('loginpress')
 // btn_login.style.backgroundColor = ''

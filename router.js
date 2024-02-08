@@ -1,3 +1,4 @@
+const apitoken = 'https://3ad0-113-53-150-169.ngrok-free.app/api/token'
 
 async function token() {
     try {
@@ -9,7 +10,7 @@ async function token() {
 
             $.ajax({
                 type: 'post',
-                url: `http://localhost:3000/api/token`,
+                url: apitoken,
                 contentType: "application/json",
                 headers: { "Authorization": token_json },
                 success: function (data) {
