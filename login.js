@@ -19,13 +19,9 @@ var sx_btn = document.querySelector('#sx_edit')
 const picture__input1 = document.querySelector('#picture__input1')
 
 const caPic = document.getElementById('')
-// const edit_nunmber = document.querySelector('#edit_nunmber')
-// const edit_nunmber1 = document.querySelector('#edit_nunmber1')
-// const edit_nunmber2 = document.querySelector('#edit_nunmber2')
-// const type_res = document.querySelector('#type_res')
-// const colorcar = document.querySelector('#color_car')
 // // js form rigister
 // const loginregisterpass = document.querySelector("#loginregisterpass")
+
 // Selecting HTML elements by their IDs
 const name_rigister = document.querySelector('#name_rigister');
 const lastname_res = document.querySelector('#lastname_res');
