@@ -354,7 +354,6 @@ inputFile1.addEventListener("change", function (e) {
 function triggerFileInput() {
       document.querySelector('#camaraPic').click();
 }
-
 function displaySelectedFile(input) {
       const file = input.files[0];
       if (file) {
