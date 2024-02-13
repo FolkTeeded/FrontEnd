@@ -32,6 +32,10 @@ const name_rigister = document.querySelector('#name_rigister');
 const lastname_res = document.querySelector('#lastname_res');
 const phone_res = document.querySelector('#phone_res');
 const email_res = document.querySelector('#email_res');
+const insert_std = document.getElementById('stude_id');
+const insert_nunmber = document.querySelector('#car_nunmber');
+const insert_nunmber1 = document.querySelector('#car_nunmber1');
+const insert_nunmber2 = document.querySelector('#car_nunmber2');
 
 // Selecting form password elements by their IDs
 const confirm_res = document.querySelector('#confirm_res');
@@ -50,17 +54,23 @@ function btn_login_2() {
 
 btn_login.onclick = btn_login_2
 
+
+
 function btn_registerlogin() {
     // Declare variables and retrieve values from form elements
     let name_res = name_rigister.value;
     let last_res = lastname_res.value;
     let phonessrester = phone_res.value;
     let emailregister = email_res.value;
+    let insert_student = insert_std.value;
+    let insert_num = insert_nunmber.value;
+    let insert_num1 = insert_nunmber1.value;
+    let insert_num2 = insert_nunmber2.value;
     let pass1 = password_res.value;
     let pass2 = confirm_pass.value;
 
     // Call the insert_data function with the retrieved values
-    insert_data(name_res, last_res, phonessrester, emailregister, pass1, pass2);
+    insert_data(name_res, last_res, phonessrester, emailregister,insert_student,insert_num,insert_num1,insert_num2, pass1, pass2);
 }
 
 // Attach btn_registerlogin function to the click event of confirm_res element
@@ -109,12 +119,16 @@ async function send_data(a, b) {
 //    * @author   audy
 //    * @create   2024-01-31
 //    * @update  
-async function insert_data(a, b, c, d, p, passComfim) {
+async function insert_data(a, b, c, d, s, y, z, u, p, passComfim) {
     try {
         var na = a;
         var lastname = b;
         var pho_ne = c;
         var emai_l = d;
+        var st_id = s;
+        var carnum1 = y;
+        var carnum2 = z;
+        var carnum3 = u;
         var password = p;
 
         if (password !== passComfim) {
@@ -130,7 +144,15 @@ async function insert_data(a, b, c, d, p, passComfim) {
             contentType: "application/json",
             headers: { "Authorization": localStorage.getItem('token') },
             data: JSON.stringify({
-                Name: na, lastname: lastname, phone: pho_ne, email: emai_l, password: password
+                Name: na, 
+                lastname: lastname, 
+                phone: pho_ne, 
+                email: emai_l,
+                studentID: st_id, 
+                carint: carnum1, 
+                cartext: carnum2, 
+                carcouty: carnum3, 
+                password: password
             }),
             success: function (response) {
                 if (response && response.data) {
@@ -143,9 +165,6 @@ async function insert_data(a, b, c, d, p, passComfim) {
                     // Storing token and refresh in localStorage
                     localStorage.setItem('token', JSON.stringify(token));
                     localStorage.setItem('refresh', JSON.stringify(refresh));
-
-                    console.log('Token:', token);
-                    console.log('Refresh:', refresh);
                 } else {
                     console.log("ไม่ผ่าน");
                     // Handle failure as needed

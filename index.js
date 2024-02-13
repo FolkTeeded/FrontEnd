@@ -58,7 +58,6 @@ img_select(function (base64StringResult) {
 
 const editname = document.querySelector('#edit_name')
 const edit_last1 = document.querySelector('#edit_last')
-const edit_std = document.querySelector('#edit_Student_ID')
 const edit_num = document.querySelector('#edit_phone')
 const edit_date1 = document.querySelector('#edit_date')
 const gander_edit = document.querySelector('#gander_edit')
@@ -81,62 +80,74 @@ function btn_editprofile() {
       // Capture values from form elements
       newName = editname.value;
       newLastName = edit_last1.value;
-      newStudentID = edit_std.value;
+
       newPhone = edit_num.value;
       dt_date = edit_date1.value;
       gander_e = gander_edit.value;
 
       // Log the captured values to the console
-      console.log(newName);
-      console.log(newLastName);
-      console.log(newStudentID);
-      console.log(newPhone);
-      console.log(dt_date);
-      console.log(gander_e);
+      // console.log(newName);
+      // console.log(newLastName);
+      // console.log(newStudentID);
+      // console.log(newPhone);
+      // console.log(dt_date);
+      // console.log(gander_e);
 
       // Capture the Base64 string from the img_select function
       btn_img1 = base64String
       console.log(btn_img1);
 
-      // Call the updateprofile function with captured values
-      updateprofile(newName, newLastName, newStudentID, newPhone, dt_date, gander_e, btn_img1);
-}
-// Call img_select with a callback function
-
-
-function btn_carlogin() {
-      car_type = type_res.value
-      color_car = colorcar.value
       btn_nunmber = edit_nunmber.value
       btn_nunmber1 = edit_nunmber1.value
       btn_nunmber2 = edit_nunmber2.value
-      insert_car(car_type, color_car, btn_nunmber, btn_nunmber1, btn_nunmber2)
+      car_type = type_res.value
+      color_car = colorcar.value
+
+      // Call the updateprofile function with captured values
+      updateprofile(newName, newLastName, newPhone, dt_date, gander_e, btn_img1,btn_nunmber, btn_nunmber1, btn_nunmber2,car_type, color_car);
 }
+btn_confirm.onclick = btn_editprofile;
+
+
+// Call img_select with a callback function
+
+
+// function btn_carlogin() {
+//       car_type = type_res.value
+//       color_car = colorcar.value
+//       btn_nunmber = edit_nunmber.value
+//       btn_nunmber1 = edit_nunmber1.value
+//       btn_nunmber2 = edit_nunmber2.value
+//       insert_car(car_type, color_car, btn_nunmber, btn_nunmber1, btn_nunmber2)
+// }
 // function btn_confirm_edit(){
 
 //       btn_confirm.onclick = btn_carlogin() = btn_editprofile()
 // }
-btn_confirm.onclick = function () {
-      btn_carlogin();
-      btn_editprofile();
-};
-async function updateprofile(a, b, c, d, e, f, g) {
+// btn_confirm.onclick = function () {
+//       btn_carlogin();
+//       btn_editprofile();
+// };
+async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
       try {
-            console.log(a, b, c, d, e)
             var newName = a
             var newLastName = b
-            var newStudentID = c
             var newPhone = d
             var dt_date = e
             var gander_e = f
             var btn_img1 = g
+            var btn_nunmber1 = h
+            var btn_nunmber2 = i
+            var btn_nunmber3 = j
+            var cartype = k
+            var colorcar = l
 
-            if (newStudentID.length !== 14) {
-                  alert("โปรใส่เลขนักศึกษาให้ถูกต้อง");
-                  // Swal.fire("โปรใส่เลขนักศึกษาให้ถูกต้อง");
-                  document.getElementById('edit_Student_ID').classList.add('invalid');
-                  return ; 
-              }
+            // if (newStudentID.length !== 14) {
+            //       alert("โปรใส่เลขนักศึกษาให้ถูกต้อง");
+            //       // Swal.fire("โปรใส่เลขนักศึกษาให้ถูกต้อง");
+            //       document.getElementById('edit_Student_ID').classList.add('invalid');
+            //       return ; 
+            //   }
             //   alert("ถูกต้อง");
 
             $.ajax({
@@ -144,7 +155,19 @@ async function updateprofile(a, b, c, d, e, f, g) {
                   url: apiupdateprofile,
                   contentType: "application/json",
                   headers: { "Authorization": localStorage.getItem('token') },
-                  data: JSON.stringify({ newName: newName, newLastName: newLastName, newStudentID: newStudentID, newPhone: newPhone, dt_date: dt_date, gander_e: gander_e, btn_img1: btn_img1 }),
+                  data: JSON.stringify
+                  ({    newName: newName, 
+                        newLastName: newLastName,
+                        newPhone: newPhone, 
+                        dt_date: dt_date, 
+                        gander_e: gander_e, 
+                        btn_img1: btn_img1,
+                        carint: btn_nunmber1 ,
+                        cartext: btn_nunmber2 ,
+                        carcounty: btn_nunmber3 ,
+                        cartype: cartype ,
+                        carcolor: colorcar 
+                  }),
                   success: function (response) {
                         if (response) {
                               c = response.data;
@@ -169,38 +192,38 @@ async function updateprofile(a, b, c, d, e, f, g) {
 }
 
 
-async function insert_car(a, b, c, d, e) {
-      try {
-            console.log(a, b, c, d, e)
-            var cartype = a
-            var colorcar = b
-            var btn_nunmber = c
-            var btn_nunmber1 = d
-            var btn_nunmber2 = e
+// async function insert_car(a, b, c, d, e) {
+//       try {
+//             console.log(a, b, c, d, e)
+//             var cartype = a
+//             var colorcar = b
+//             var btn_nunmber = c
+//             var btn_nunmber1 = d
+//             var btn_nunmber2 = e
 
-            $.ajax({
-                  type: 'post',
-                  url: apitypecar,
-                  contentType: "application/json",
-                  data: JSON.stringify({ cartype: cartype, colorcar: colorcar, btnnunmber: btn_nunmber, btnnunmber1: btn_nunmber1, btnnunmber2: btn_nunmber2 }),
-                  success: function (response) {
-                        if (response) {
-                              c = response.data;
-                              console.log(c)
-                              console.log("ผ่าน");
-                              // Handle success as needed
-                              // $("div[class^=overlay_pass").addClass('open');
-                              $("div[class^=overlay_edit]").removeClass('open');
-                        } else {
-                              console.log("ไม่ผ่าน");
-                              // Handle failure as needed
-                        }
-                  }
-            })
-      } catch (err) {
-            console.log(err)
-      }
-}
+//             $.ajax({
+//                   type: 'post',
+//                   url: apitypecar,
+//                   contentType: "application/json",
+//                   data: JSON.stringify({ cartype: cartype, colorcar: colorcar, btnnunmber: btn_nunmber, btnnunmber1: btn_nunmber1, btnnunmber2: btn_nunmber2 }),
+//                   success: function (response) {
+//                         if (response) {
+//                               c = response.data;
+//                               console.log(c)
+//                               console.log("ผ่าน");
+//                               // Handle success as needed
+//                               // $("div[class^=overlay_pass").addClass('open');
+//                               $("div[class^=overlay_edit]").removeClass('open');
+//                         } else {
+//                               console.log("ไม่ผ่าน");
+//                               // Handle failure as needed
+//                         }
+//                   }
+//             })
+//       } catch (err) {
+//             console.log(err)
+//       }
+// }
 
 
 $(".img1").on("click", function () {
@@ -446,35 +469,35 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-      // Get the input element
-      var phoneInput1 = document.getElementById('edit_Student_ID');
+// document.addEventListener('DOMContentLoaded', function () {
+//       // Get the input element
+//       var phoneInput1 = document.getElementById('edit_Student_ID');
 
-      // Attach input event listener to format phone number
-      phoneInput1.addEventListener('input', function () {
-            formatPhoneNumber(this);
-      });
+//       // Attach input event listener to format phone number
+//       phoneInput1.addEventListener('input', function () {
+//             formatPhoneNumber(this);
+//       });
 
-      function formatPhoneNumber(input) {
-            // Remove non-numeric characters
-            var phoneNumber1 = input.value.replace(/\D/g, '');
+//       function formatPhoneNumber(input) {
+//             // Remove non-numeric characters
+//             var phoneNumber1 = input.value.replace(/\D/g, '');
 
-            // Apply the phone number format
-            if (phoneNumber1.length > 0) {
-                  if (phoneNumber1.length <= 12) {
-                        phoneNumber1 = phoneNumber1.replace(/(\d{1,3})/, '$1');
-                  } else if (phoneNumber1.length <= 13) {
-                        phoneNumber1 = phoneNumber1.replace(/(\d{1,3})(\d{1,3})(\d{1,6})(\d{1,1})/, '$1$2$3-$4');
-                  } else if (phoneNumber1.length > 13) {
-                        phoneNumber1 = phoneNumber1.slice(0, 13);
-                        phoneNumber1 = phoneNumber1.replace(/(\d{1,3})(\d{1,3})(\d{1,6})(\d{1,1})/, '$1$2$3-$4');
-                  }
-            }
+//             // Apply the phone number format
+//             if (phoneNumber1.length > 0) {
+//                   if (phoneNumber1.length <= 12) {
+//                         phoneNumber1 = phoneNumber1.replace(/(\d{1,3})/, '$1');
+//                   } else if (phoneNumber1.length <= 13) {
+//                         phoneNumber1 = phoneNumber1.replace(/(\d{1,3})(\d{1,3})(\d{1,6})(\d{1,1})/, '$1$2$3-$4');
+//                   } else if (phoneNumber1.length > 13) {
+//                         phoneNumber1 = phoneNumber1.slice(0, 13);
+//                         phoneNumber1 = phoneNumber1.replace(/(\d{1,3})(\d{1,3})(\d{1,6})(\d{1,1})/, '$1$2$3-$4');
+//                   }
+//             }
 
-            // Update the input value
-            input.value = phoneNumber1;
-      }
-});
+//             // Update the input value
+//             input.value = phoneNumber1;
+//       }
+// });
 
 
 function logout() {
@@ -506,7 +529,7 @@ $.ajax({
               <div class="detall-profile-pf">
                 <div id="name">ชื่อ : ${profileData.firstname}</div>
                 <div id="lastname">นามสกุล : ${profileData.lastname}</div>
-                <div id="studentId">รหัสนักศึกษา : ${profileData.email}</div>
+                <div id="studentId">รหัสนักศึกษา : ${profileData.student_id}</div>
               </div>
             </div>
           `;
