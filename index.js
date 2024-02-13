@@ -362,8 +362,8 @@ inputFile1.addEventListener("change", function (e) {
 
 function triggerFileInput() {
       document.querySelector('#camaraPic').click();
+      
 }
-
 function displaySelectedFile(input) {
       const file = input.files[0];
       if (file) {
@@ -384,11 +384,35 @@ function displaySelectedFile(input) {
                         // Do something with the base64 string (e.g., send it to the server)
                         alert('Base64 representation: ' + base64String);
                         console.log(base64String)
+                        cameraSend(base64String) 
                   };
                   reader.readAsDataURL(file);
             }
       }
 }
+function cameraSend(base64String){
+      $.ajax({
+                  type: 'post',
+                  url: `http://localhost:3000/api/camerasend`,
+                  contentType: "application/json",
+                  headers: { "Authorization": localStorage.getItem('token') },
+                  data: JSON.stringify({base64String}),
+                  success: function (response) {
+                        if (response) {
+                              console.log("ผ่าน");
+                        } else {
+                              console.log("ไม่ผ่าน");
+                              // Handle failure as needed
+                        }
+                  },
+
+                  error: function (err) {
+                        if (err) {
+                              console.log("ไม่ผ่าน", err)
+                        }
+                  }
+            });
+      }
 
 document.addEventListener('DOMContentLoaded', function () {
       // Get the input element
