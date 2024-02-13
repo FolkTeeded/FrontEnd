@@ -1,5 +1,9 @@
+// const apilogin = 'https://0b01-113-53-150-169.ngrok-free.app/api/login'
+// const apiregister = 'https://0b01-113-53-150-169.ngrok-free.app/api/register'
+
 const apilogin = 'http://localhost:3000/api/login'
 const apiregister = 'http://localhost:3000/api/register'
+
 
 
 const btn_login = document.getElementById('loginpress')
@@ -20,7 +24,10 @@ var sx_btn = document.querySelector('#sx_edit')
 const picture__input1 = document.querySelector('#picture__input1')
 
 const caPic = document.getElementById('')
+// // js form rigister
+// const loginregisterpass = document.querySelector("#loginregisterpass")
 
+// Selecting HTML elements by their IDs
 const name_rigister = document.querySelector('#name_rigister');
 const lastname_res = document.querySelector('#lastname_res');
 const phone_res = document.querySelector('#phone_res');
