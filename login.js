@@ -50,7 +50,6 @@ function btn_login_2() {
 
 btn_login.onclick = btn_login_2
 
-// editprofile.onclick = btn_editprofile
 function btn_registerlogin() {
     // Declare variables and retrieve values from form elements
     let name_res = name_rigister.value;
@@ -73,7 +72,9 @@ async function send_data(a, b) {
         var user = a;
         var password_1 = b;
 
-        const response = await $.ajax({
+        const response = await $.ajax(
+            
+            {
             type: 'post',
             url: apilogin,
             contentType: "application/json",
@@ -162,6 +163,113 @@ async function insert_data(a, b, c, d, p, passComfim) {
 }
 
 
+// async function insert_car(a, b, c, d, e) {
+//     try {
+//         console.log(a, b, c, d, e)
+//         var cartype = a
+//         var colorcar = b
+//         var btn_nunmber = c
+//         var btn_nunmber1 = d
+//         var btn_nunmber2 = e
+
+//         $.ajax({
+//             type: 'post',
+//             url: `http://localhost:3000/api/typecar`,
+//             contentType: "application/json",
+//             data: JSON.stringify({ cartype: cartype, colorcar: colorcar, btnnunmber: btn_nunmber, btnnunmber1: btn_nunmber1, btnnunmber2: btn_nunmber2 }),
+//             success: function (response) {
+//                 if (response) {
+//                     c = response.data;
+//                     console.log(c)
+//                     console.log("ผ่าน");
+//                     // Handle success as needed
+//                     // $("div[class^=overlay_pass").addClass('open');
+//                     $("div[class^=overlay_edit]").removeClass('open');
+//                 } else {
+//                     console.log("ไม่ผ่าน");
+//                     // Handle failure as needed
+//                 }
+//             },
+
+//             error: function (err) {
+//                 if (err) {
+//                     console.log("ไม่ผ่าน", err)
+//                 }
+//             }
+//         })
+//     } catch (err) {
+//         console.log(err)
+//     }
+// }
+
+// async function insert_profile() {
+//     try {
+
+//         $.ajax({
+//             type: 'post',
+//             url: `http://localhost:3000/api/insertprofile`,
+//             contentType: "application/json",
+//             data: JSON.stringify({}),
+//             success: function (response) {
+//                 if (response) {
+//                     console.log("ผ่าน");
+//                 } else {
+//                     console.log("ไม่ผ่าน");
+//                     // Handle failure as needed
+//                 }
+//             },
+
+//             error: function (err) {
+//                 if (err) {
+//                     console.log("ไม่ผ่าน", err)
+//                 }
+//             }
+//         })
+//     } catch (err) {
+//         console.log(err)
+//     }
+// }
+
+// const updateUser = async (user_id, updatedName, updatedLastName, newStudentID,  updatedPhone) => {
+//     try {
+//         const response = await fetch(apiUrl, {
+//             method: 'POST',
+//             headers: {
+//                 url: `http://localhost:3000/api/updateUser`,
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify({
+//                 user_id: user_id,
+//                 updatedName: updatedName,
+//                 updatedLastName: updatedLastName,
+//                 newStudentID: newStudentID,
+//                 updatedPhone: updatedPhone,
+//             }),
+//         });
+
+//         const data = await response.json();
+
+//         if (response.ok) {
+//             console.log(data.msg); // Successful update
+//         } else {
+//             console.error(data.msg); // Failed update
+//         }
+//     } catch (error) {
+//         console.error('Error updating user:', error);
+//     }
+// };
+
+
+// $("#loginpress").on("click", function () {
+
+//     var direction = "next1";
+
+//     if (direction === "next1") {
+//         $("div[class^=overlay_menu").addClass('open');
+
+//     }
+// });
+
 $(".login_register").on("click", function () {
 
     var direction = "next1";
@@ -229,3 +337,32 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// function triggerFileInput() {
+//     document.querySelector('.scanblue input').click();
+// }
+
+// function displaySelectedFile(input) {
+//     const file = input.files[0];
+//     if (file) {
+//         // Check file size (in bytes)
+//         const fileSize = file.size;
+//         // Limit the file size to, for example, 1 MB
+//         const maxSize = 5 * 1024 * 1024; // 1 MB in bytes
+
+//         if (fileSize > maxSize) {
+//             alert('File size exceeds the allowed limit.');
+//             // Optionally clear the selected file
+//             input.value = '';
+//         } else {
+//             // Convert file to base64
+//             const reader = new FileReader();
+//             reader.onloadend = function () {
+//                 const base64String = reader.result;
+//                 // Do something with the base64 string (e.g., send it to the server)
+//                 alert('Base64 representation: ' + base64String);
+//                 console.log(base64String)
+//             };
+//             reader.readAsDataURL(file);
+//         }
+//     }
+// }

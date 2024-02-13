@@ -134,11 +134,11 @@ async function updateprofile(a, b, c, d, e, f, g) {
                   type: 'post',
                   url: apiupdateprofile,
                   contentType: "application/json",
+                  headers: { "Authorization": localStorage.getItem('token') },
                   data: JSON.stringify({ newName: newName, newLastName: newLastName, newStudentID: newStudentID, newPhone: newPhone, dt_date: dt_date, gander_e: gander_e, btn_img1: btn_img1 }),
                   success: function (response) {
                         if (response) {
                               c = response.data;
-                              console.log(c)
                               console.log("ผ่าน");
                               // Handle success as needed
                               // $("div[class^=overlay_pass").addClass('open');
