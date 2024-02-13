@@ -104,7 +104,7 @@ function btn_editprofile() {
       color_car = colorcar.value
 
       // Call the updateprofile function with captured values
-      updateprofile(newName, newLastName, newPhone, dt_date, gander_e, btn_img1,btn_nunmber, btn_nunmber1, btn_nunmber2,car_type, color_car);
+      updateprofile(newName, newLastName, newPhone, dt_date, gander_e, btn_img1, btn_nunmber, btn_nunmber1, btn_nunmber2, car_type, color_car);
 }
 btn_confirm.onclick = btn_editprofile;
 
@@ -156,18 +156,19 @@ async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
                   contentType: "application/json",
                   headers: { "Authorization": localStorage.getItem('token') },
                   data: JSON.stringify
-                  ({    newName: newName, 
-                        newLastName: newLastName,
-                        newPhone: newPhone, 
-                        dt_date: dt_date, 
-                        gander_e: gander_e, 
-                        btn_img1: btn_img1,
-                        carint: btn_nunmber1 ,
-                        cartext: btn_nunmber2 ,
-                        carcounty: btn_nunmber3 ,
-                        cartype: cartype ,
-                        carcolor: colorcar 
-                  }),
+                        ({
+                              newName: newName,
+                              newLastName: newLastName,
+                              newPhone: newPhone,
+                              dt_date: dt_date,
+                              gander_e: gander_e,
+                              btn_img1: btn_img1,
+                              carint: btn_nunmber1,
+                              cartext: btn_nunmber2,
+                              carcounty: btn_nunmber3,
+                              cartype: cartype,
+                              carcolor: colorcar
+                        }),
                   success: function (response) {
                         if (response) {
                               c = response.data;
@@ -385,7 +386,7 @@ inputFile1.addEventListener("change", function (e) {
 
 function triggerFileInput() {
       document.querySelector('#camaraPic').click();
-      
+
 }
 function displaySelectedFile(input) {
       const file = input.files[0];
@@ -407,35 +408,35 @@ function displaySelectedFile(input) {
                         // Do something with the base64 string (e.g., send it to the server)
                         alert('Base64 representation: ' + base64String);
                         console.log(base64String)
-                        cameraSend(base64String) 
+                        cameraSend(base64String)
                   };
                   reader.readAsDataURL(file);
             }
       }
 }
-function cameraSend(base64String){
+function cameraSend(base64String) {
       $.ajax({
-                  type: 'post',
-                  url: `http://localhost:3000/api/camerasend`,
-                  contentType: "application/json",
-                  headers: { "Authorization": localStorage.getItem('token') },
-                  data: JSON.stringify({base64String}),
-                  success: function (response) {
-                        if (response) {
-                              console.log("ผ่าน");
-                        } else {
-                              console.log("ไม่ผ่าน");
-                              // Handle failure as needed
-                        }
-                  },
-
-                  error: function (err) {
-                        if (err) {
-                              console.log("ไม่ผ่าน", err)
-                        }
+            type: 'post',
+            url: `http://localhost:3000/api/camerasend`,
+            contentType: "application/json",
+            headers: { "Authorization": localStorage.getItem('token') },
+            data: JSON.stringify({ base64String }),
+            success: function (response) {
+                  if (response) {
+                        console.log("ผ่าน");
+                  } else {
+                        console.log("ไม่ผ่าน");
+                        // Handle failure as needed
                   }
-            });
-      }
+            },
+
+            error: function (err) {
+                  if (err) {
+                        console.log("ไม่ผ่าน", err)
+                  }
+            }
+      });
+}
 
 document.addEventListener('DOMContentLoaded', function () {
       // Get the input element
@@ -512,34 +513,101 @@ $.ajax({
       dataType: 'json',
       contentType: "application/json",
       headers: { "Authorization": localStorage.getItem('token') },
-      success: function(data) {
-        console.log(data);
-    
-        // Assuming data.ms is 'good' and there is valid user data
-        if (data) {
-            const profileData = data.data[0];    
-          const containerProfile = document.getElementById('container-profile');
-          containerProfile.innerHTML += `
-            <div class="detall-profile">
-              <div class="pic-profile-menu">
-                <div class="pic-profile">
-                  <img src="/img/logo1.png" alt="">
-                </div>
-              </div>
-              <div class="detall-profile-pf">
-                <div id="name">ชื่อ : ${profileData.firstname}</div>
-                <div id="lastname">นามสกุล : ${profileData.lastname}</div>
-                <div id="studentId">รหัสนักศึกษา : ${profileData.student_id}</div>
-              </div>
-            </div>
-          `;
-        } else {
-          console.log('Invalid data or user not found');
-        }
+      success: function (data) {
+
+            if (data && data.data && data.data.length > 0) {
+                  const profileData = data.data[0];
+
+                  const containerProfile = document.getElementById('container-profile');
+                  containerProfile.innerHTML += `
+                              <div class="detall-profile">
+                                          <div class="pic-profile-menu">
+                                                <div class="pic-profile" >
+                                                      <div id="imageContainer" style ="width: 100%;
+                                                      height: 100%;">
+                                                      </div>
+                                                </div>
+                                          </div>
+                                          <div class="detall-profile-pf">
+                                          <div id="name">ชื่อ : ${profileData.firstname}</div>
+                                          <div id="lastname">นามสกุล : ${profileData.lastname}</div>
+                                          <div id="studentId">รหัสนักศึกษา : ${profileData.student_id}</div>
+                                    </div>
+                              </div>`;
+
+                  const imageContainer = document.getElementById('imageContainer');
+                  imageContainer.innerHTML = '';
+
+                  function convertBase64ToImage(base64Data) {
+                        var image = document.createElement('img');
+
+                        image.src = "data:image/jpeg;base64," + base64Data;
+
+                        return image;
+                  }
+
+                  if (profileData.img_pro) {
+                        var imageElement = convertBase64ToImage(profileData.img_pro);
+                        imageContainer.appendChild(imageElement);
+                  } else {
+                        console.log('Profile image not available');
+                  }
+
+                  
+            }
       },
-      error: function(err) {
-        console.log(err);
+      error: function (err) {
+            console.log(err);
       }
-    });
-    
-    
+});
+$.ajax({
+      url: 'http://localhost:3000/api/Get-Profile',
+      type: 'POST',
+      dataType: 'json',
+      contentType: "application/json",
+      headers: { "Authorization": localStorage.getItem('token') },
+      success: function (data) {
+
+            if (data && data.data && data.data.length > 0) {
+                  const profileData = data.data[0];
+
+                  const Profileimg = document.querySelector('.main-profile-show');
+                  Profileimg.innerHTML += `
+                              <div class="con-pic-profile-show">
+                              <div class="pic-profile-show">
+                                    <div id ="image-Con" style ="width: 100%;height: 100%;">
+                              </div>
+                              </div>
+                        </div>
+                        <div class="detall-profile-show">
+                              <div class="detall-profile_IN">
+                                    <p style="color: #ffffff;">ระบบตรวจสอบเจ้าของ
+                                          ยานจากป้ายทะเบียน</p>
+                              </div>
+                        </div>`;
+
+                  const imageContainer = document.getElementById('image-Con');
+                  imageContainer.innerHTML = '';
+
+                  function convertBase64ToImage(base64Data) {
+                        var image = document.createElement('img');
+
+                        image.src = "data:image/jpeg;base64," + base64Data;
+
+                        return image;
+                  }
+
+                  if (profileData.img_pro) {
+                        var imageElement = convertBase64ToImage(profileData.img_pro);
+                        imageContainer.appendChild(imageElement);
+                  } else {
+                        console.log('Profile image not available');
+                  }
+
+                  
+            }
+      },
+      error: function (err) {
+            console.log(err);
+      }
+});
