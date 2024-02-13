@@ -70,6 +70,7 @@ const edit_nunmber1 = document.querySelector('#edit_nunmber1')
 const edit_nunmber2 = document.querySelector('#edit_nunmber2')
 const type_res = document.querySelector('#type_res')
 const colorcar = document.querySelector('#color_car')
+const StudentID_Error = document.querySelector('#studentid-error')
 // js form rigister
 const loginregisterpass = document.querySelector("#loginregisterpass")
 const name_rigister = document.querySelector('#name_rigister')
@@ -129,6 +130,14 @@ async function updateprofile(a, b, c, d, e, f, g) {
             var dt_date = e
             var gander_e = f
             var btn_img1 = g
+
+            if (newStudentID.length !== 14) {
+                  alert("โปรใส่เลขนักศึกษาให้ถูกต้อง");
+                  // Swal.fire("โปรใส่เลขนักศึกษาให้ถูกต้อง");
+                  document.getElementById('edit_Student_ID').classList.add('invalid');
+                  return ; 
+              }
+            //   alert("ถูกต้อง");
 
             $.ajax({
                   type: 'post',

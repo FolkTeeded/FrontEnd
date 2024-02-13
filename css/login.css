@@ -518,3 +518,15 @@ select {
     top: 95px;
     left: 25px;
 }
+
+.error {
+    display: flex;
+    color: #d93025;
+    align-items: center;
+    margin-bottom: 6px;
+    display: none;
+}
+
+.invalid .error{
+    display: flex;
+}
