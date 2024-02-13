@@ -447,3 +447,41 @@ function logout() {
       localStorage.removeItem('token');
       localStorage.removeItem('refresh');
 }
+
+$.ajax({
+      url: 'http://localhost:3000/api/Get-Profile',
+      type: 'POST',
+      dataType: 'json',
+      contentType: "application/json",
+      headers: { "Authorization": localStorage.getItem('token') },
+      success: function(data) {
+        console.log(data);
+    
+        // Assuming data.ms is 'good' and there is valid user data
+        if (data) {
+            const profileData = data.data[0];    
+          const containerProfile = document.getElementById('container-profile');
+          containerProfile.innerHTML += `
+            <div class="detall-profile">
+              <div class="pic-profile-menu">
+                <div class="pic-profile">
+                  <img src="/img/logo1.png" alt="">
+                </div>
+              </div>
+              <div class="detall-profile-pf">
+                <div id="name">ชื่อ : ${profileData.firstname}</div>
+                <div id="lastname">นามสกุล : ${profileData.lastname}</div>
+                <div id="studentId">รหัสนักศึกษา : ${profileData.email}</div>
+              </div>
+            </div>
+          `;
+        } else {
+          console.log('Invalid data or user not found');
+        }
+      },
+      error: function(err) {
+        console.log(err);
+      }
+    });
+    
+    
