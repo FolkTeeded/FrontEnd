@@ -135,29 +135,6 @@
 
                   </div>
 
-                  <!-- <div class="overlay_img">
-                    <div class="head-title"
-                        style="width: 100%; height: 10vh; background-color: #7C00A8; display: flex;align-items: center;">
-                        <div class="fa fa-angle-left" style="color: #ffffff;">
-                        </div>
-                        <div style="width: 40%;padding-left: 10px;">
-                            <p style="color: #ffffff;">เพิ่มใบขับขี่</p>
-                        </div>
-                    </div>
-                    <div class="formbg-inner padding-horizontal--48">
-                        <form id="form_img_car">
-                            <div class="field padding-bottom--24">
-                                <label for="" class="brtop">ใปรดใส่ไฟล์ภาพใบขับขี่</label>
-                                <input type="" name="">
-                            </div>
-                            <div class="bt-select padding-10">
-                                <div class="bt-con-select" name="img_car">
-                                    <p>ตกลง</p>
-                                </div>
-                            </div>
-                    </div>
-                </div> -->
-
                   <div class="container_menu">
                         <div class="container-menu">
                               <div class="menu-item img1">
@@ -234,23 +211,26 @@
                               <!-- <form id="form_edit"> -->
                               <div class="field padding-bottom--24">
                                     <label for="" class="brtop">ขื่อ</label>
-                                    <input id="edit_name" type="text" name="">
+                                    <input id="edit_name" type="text" name="" placeholder="ชื่อ">
                               </div>
                               <div class="field padding-bottom--24">
                                     <label for="" class="brtop">นามสกุล</label>
-                                    <input id="edit_last" type="text" name="">
+                                    <input id="edit_last" type="text" name="" placeholder="นามสกุล">
                               </div>
-                              <div class="field padding-bottom--24">
+                              <div class="field padding-bottom--24 studentid1">
                                     <label for="" class="brtop">รหัสนักศึกษา</label>
-                                    <input id="edit_Student_ID" type="number" name="">
+                                    <input id="edit_Student_ID" type="" name="" placeholder="000000000000-0">
                               </div>
+                              <span class="error ">
+                                    <p class="error-text">โปรใส่เลขนักศึกษาให้ถูกต้อง</p>
+                              </span>
                               <div class="field padding-bottom--24">
                                     <label for="" class="brtop">เบอร์โทรศัพท์</label>
                                     <input id="edit_phone" type="" name="" placeholder="000-000-0000">
                               </div>
                               <div class="field padding-bottom--24">
                                     <label for="" class="brtop">วัน/เดือน/ปีเกิด</label>
-                                    <input id="edit_date" type="date" name="">
+                                    <input id="edit_date" type="date" name="" placeholder="วัน/เดือน/ปีเกิด">
                               </div>
                               <div class="field padding-bottom--24">
                                     <label for="" class="brtop">เพศ</label>
@@ -275,23 +255,23 @@
                               </div>
                               <div class="field padding-bottom--24">
                                     <label for="" class="brtop">เลขป้ายทะเบียน(เช่น 22)</label>
-                                    <input type="text" id="edit_nunmber">
+                                    <input type="text" id="edit_nunmber" placeholder="เลขป้ายทะเบียน(เช่น 22)">
                               </div>
                               <div class="field padding-bottom--24">
-                                    <label for="" class="brtop">เลขป้ายทะเบียน(เช่น กก)</label>
-                                    <input type="text" id="edit_nunmber1">
+                                    <label for="" class="brtop">เลขป้ายทะเบียน(เช่น กกกก)</label>
+                                    <input type="text" id="edit_nunmber1" placeholder="เลขป้ายทะเบียน(เช่น กกกก)">
                               </div>
                               <div class="field padding-bottom--24 ">
                                     <label for="" class="brtop">เลขป้ายทะเบียน(เช่น กรุงเทพ)</label>
-                                    <input type="text" id="edit_nunmber2">
+                                    <input type="text" id="edit_nunmber2" placeholder="เลขป้ายทะเบียน(เช่น กรุงเทพ)" >
                               </div>
                               <div class="field padding-bottom--24">
                                     <label for="car" class="brtop">ประเภทรถ</label>
-                                    <input id="type_res" type="text" name="type_res">
+                                    <input id="type_res" type="text" name="type_res" placeholder="ประเภทรถ">
                               </div>
                               <div class="field padding-bottom--24">
                                     <label for="car_color" class="brtop">สีรถ</label>
-                                    <input id="color_car" type="text" name="car_color">
+                                    <input id="color_car" type="text" name="car_color" placeholder="สีรถ">
                               </div>
                               <div class="bt-select padding-10">
                                     <div id="btn_confirm" class="bt-con-select" name="edit_car">
@@ -353,7 +333,11 @@
             <script src="router.js"></script>
             <script src="global.js"></script>
             <script src="index.js"></script>
-            <!-- <script src="login.js"></script> -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+            <script>
+
+            </script>
 
 </body>
 

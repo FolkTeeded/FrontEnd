@@ -373,7 +373,7 @@ select {
 
 .container-profile_personal {
     width: 0 15px 0 15px;
-    height: 40dvh;
+    height: 35dvh;
     background: rgb(124, 0, 168);
     background: linear-gradient(180deg, rgba(124, 0, 168, 0.92) 64%, rgba(75, 0, 187, 1) 98%, rgba(39, 2, 186, 1) 100%);
     /* display: flex;
@@ -517,4 +517,16 @@ select {
     position: absolute;
     top: 95px;
     left: 25px;
+}
+
+.error {
+    display: flex;
+    color: #d93025;
+    align-items: center;
+    margin-bottom: 6px;
+    display: none;
+}
+
+.invalid .error{
+    display: flex;
 }

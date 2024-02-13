@@ -70,6 +70,7 @@ const edit_nunmber1 = document.querySelector('#edit_nunmber1')
 const edit_nunmber2 = document.querySelector('#edit_nunmber2')
 const type_res = document.querySelector('#type_res')
 const colorcar = document.querySelector('#color_car')
+const StudentID_Error = document.querySelector('#studentid-error')
 // js form rigister
 const loginregisterpass = document.querySelector("#loginregisterpass")
 const name_rigister = document.querySelector('#name_rigister')
@@ -129,6 +130,14 @@ async function updateprofile(a, b, c, d, e, f, g) {
             var dt_date = e
             var gander_e = f
             var btn_img1 = g
+
+            if (newStudentID.length !== 14) {
+                  alert("โปรใส่เลขนักศึกษาให้ถูกต้อง");
+                  // Swal.fire("โปรใส่เลขนักศึกษาให้ถูกต้อง");
+                  document.getElementById('edit_Student_ID').classList.add('invalid');
+                  return ; 
+              }
+            //   alert("ถูกต้อง");
 
             $.ajax({
                   type: 'post',
@@ -353,6 +362,7 @@ inputFile1.addEventListener("change", function (e) {
 
 function triggerFileInput() {
       document.querySelector('#camaraPic').click();
+      
 }
 function displaySelectedFile(input) {
       const file = input.files[0];
@@ -374,73 +384,98 @@ function displaySelectedFile(input) {
                         // Do something with the base64 string (e.g., send it to the server)
                         alert('Base64 representation: ' + base64String);
                         console.log(base64String)
+                        cameraSend(base64String) 
                   };
                   reader.readAsDataURL(file);
             }
       }
 }
+function cameraSend(base64String){
+      $.ajax({
+                  type: 'post',
+                  url: `http://localhost:3000/api/camerasend`,
+                  contentType: "application/json",
+                  headers: { "Authorization": localStorage.getItem('token') },
+                  data: JSON.stringify({base64String}),
+                  success: function (response) {
+                        if (response) {
+                              console.log("ผ่าน");
+                        } else {
+                              console.log("ไม่ผ่าน");
+                              // Handle failure as needed
+                        }
+                  },
+
+                  error: function (err) {
+                        if (err) {
+                              console.log("ไม่ผ่าน", err)
+                        }
+                  }
+            });
+      }
 
 document.addEventListener('DOMContentLoaded', function () {
       // Get the input element
       var phoneInput = document.getElementById('edit_phone');
-  
-      // Attach input event listener to format phone number
-      phoneInput.addEventListener('input', function () {
-          formatPhoneNumber(this);
-      });
-      function formatPhoneNumber(input) {
-          // Remove non-numeric characters
-          var phoneNumber = input.value.replace(/\D/g, '');
-          // Apply the phone number format
-          if (phoneNumber.length > 0) {
-              if (phoneNumber.length <= 3) {
-                  phoneNumber = phoneNumber.replace(/(\d{1,3})/, '$1');
-              } else if (phoneNumber.length <= 6) {
-                  phoneNumber = phoneNumber.replace(/(\d{1,3})(\d{1,3})/, '$1-$2');
-              } else if (phoneNumber.length <= 10) {
-                  phoneNumber = phoneNumber.replace(/(\d{1,3})(\d{1,3})(\d{1,4})/, '$1-$2-$3');
-              }
-              else if (phoneNumber.length > 10) {
-                  phoneNumber = phoneNumber.slice(0, 10);
-                  phoneNumber = phoneNumber.replace(/(\d{1,3})(\d{1,3})(\d{1,4})/, '$1-$2-$3');
-              }
-  
-          }
-  
-          // Update the input value
-          input.value = phoneNumber;
-      }
-  });
 
-  document.addEventListener('DOMContentLoaded', function () {
-      // Get the input element
-      var phoneInput = document.getElementById('edit_Student_ID');
-  
       // Attach input event listener to format phone number
       phoneInput.addEventListener('input', function () {
-          formatPhoneNumber(this);
+            formatPhoneNumber(this);
       });
       function formatPhoneNumber(input) {
-          // Remove non-numeric characters
-          var phoneNumber = input.value.replace(/\D/g, '');
-          // Apply the phone number format
-          if (phoneNumber.length > 0) {
-              if (phoneNumber.length <= 12) {
-                  phoneNumber = phoneNumber.replace(/(\d{1,12})/, '$1');
-              } else if (phoneNumber.length <= 13) {
-                  phoneNumber = phoneNumber.replace(/(\d{1,12})(\d{1,12})/, '$1-$2');
-            //   } else if 
-            //   (phoneNumber.length > 13) {
-            //       phoneNumber = phoneNumber.slice(0, 13);
-            //       phoneNumber = phoneNumber.replace(/(\d{1,3})(\d{1,3})(\d{1,4})/, '$1-$2-$3');
-              }
-  
-          }
-  
-          // Update the input value
-          input.value = phoneNumber;
+            // Remove non-numeric characters
+            var phoneNumber = input.value.replace(/\D/g, '');
+            // Apply the phone number format
+            if (phoneNumber.length > 0) {
+                  if (phoneNumber.length <= 3) {
+                        phoneNumber = phoneNumber.replace(/(\d{1,3})/, '$1');
+                  } else if (phoneNumber.length <= 6) {
+                        phoneNumber = phoneNumber.replace(/(\d{1,3})(\d{1,3})/, '$1-$2');
+                  } else if (phoneNumber.length <= 10) {
+                        phoneNumber = phoneNumber.replace(/(\d{1,3})(\d{1,3})(\d{1,4})/, '$1-$2-$3');
+                  }
+                  else if (phoneNumber.length > 10) {
+                        phoneNumber = phoneNumber.slice(0, 10);
+                        phoneNumber = phoneNumber.replace(/(\d{1,3})(\d{1,3})(\d{1,4})/, '$1-$2-$3');
+                  }
+
+            }
+
+            // Update the input value
+            input.value = phoneNumber;
       }
-  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+      // Get the input element
+      var phoneInput1 = document.getElementById('edit_Student_ID');
+
+      // Attach input event listener to format phone number
+      phoneInput1.addEventListener('input', function () {
+            formatPhoneNumber(this);
+      });
+
+      function formatPhoneNumber(input) {
+            // Remove non-numeric characters
+            var phoneNumber1 = input.value.replace(/\D/g, '');
+
+            // Apply the phone number format
+            if (phoneNumber1.length > 0) {
+                  if (phoneNumber1.length <= 12) {
+                        phoneNumber1 = phoneNumber1.replace(/(\d{1,3})/, '$1');
+                  } else if (phoneNumber1.length <= 13) {
+                        phoneNumber1 = phoneNumber1.replace(/(\d{1,3})(\d{1,3})(\d{1,6})(\d{1,1})/, '$1$2$3-$4');
+                  } else if (phoneNumber1.length > 13) {
+                        phoneNumber1 = phoneNumber1.slice(0, 13);
+                        phoneNumber1 = phoneNumber1.replace(/(\d{1,3})(\d{1,3})(\d{1,6})(\d{1,1})/, '$1$2$3-$4');
+                  }
+            }
+
+            // Update the input value
+            input.value = phoneNumber1;
+      }
+});
+
 
 function logout() {
       window.location.href = '/login.html';
