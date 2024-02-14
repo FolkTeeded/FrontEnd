@@ -3,8 +3,8 @@
 
 const apilogin = 'http://localhost:3000/api/login'
 const apiregister = 'http://localhost:3000/api/register'
-
-
+const check_email = 'http://localhost:3000/api/check_email'
+const updatepass = 'http://localhost:3000/api/updatepass'
 
 const btn_login = document.getElementById('loginpress')
 // btn_login.style.backgroundColor = ''
@@ -42,7 +42,12 @@ const confirm_res = document.querySelector('#confirm_res');
 const password_res = document.querySelector('#password_res');
 const confirm_pass = document.querySelector('#confirm_pass');
 
+const pass_email = document.querySelector('#pass_email');
+const confirm_email = document.querySelector('#confirm_email');
 
+const password_editpass = document.querySelector('#password_editpass')
+const confirm_editpass = document.querySelector('#confirm_editpass')
+const confirm_password = document.querySelector('#confirm_password')
 
 function btn_login_2() {
     console.log(userid_1.value)
@@ -51,10 +56,20 @@ function btn_login_2() {
     console.log(ps)
     send_data(uid, ps)
 }
-
 btn_login.onclick = btn_login_2
 
+function btn_email_pass() {
+    const pa_email = pass_email.value
+    send_email(pa_email)
+}
+confirm_email.onclick = btn_email_pass
 
+// function btn_confirm_pass() {
+//     const passw_edit = password_editpass.value
+//     const passw_edit1= confirm_editpass.value
+//     send_password(passw_edit, passw_edit1)
+// }
+// confirm_password.onclick = btn_confirm_pass
 
 function btn_registerlogin() {
     // Declare variables and retrieve values from form elements
@@ -70,7 +85,7 @@ function btn_registerlogin() {
     let pass2 = confirm_pass.value;
 
     // Call the insert_data function with the retrieved values
-    insert_data(name_res, last_res, phonessrester, emailregister,insert_student,insert_num,insert_num1,insert_num2, pass1, pass2);
+    insert_data(name_res, last_res, phonessrester, emailregister, insert_student, insert_num, insert_num1, insert_num2, pass1, pass2);
 }
 
 // Attach btn_registerlogin function to the click event of confirm_res element
@@ -83,14 +98,14 @@ async function send_data(a, b) {
         var password_1 = b;
 
         const response = await $.ajax(
-            
+
             {
-            type: 'post',
-            url: apilogin,
-            contentType: "application/json",
-            headers: { "Authorization": localStorage.getItem('token') },
-            data: JSON.stringify({ user: user, password_1: password_1 }),
-        });
+                type: 'post',
+                url: apilogin,
+                contentType: "application/json",
+                headers: { "Authorization": localStorage.getItem('token') },
+                data: JSON.stringify({ user: user, password_1: password_1 }),
+            });
 
         // Assuming the response structure is like { "data": { "token": "...", "token_re": "...", "user_id": "..." }, "status": "success" }
         if (response && response.data && response.data.user_id) {
@@ -112,6 +127,113 @@ async function send_data(a, b) {
     } catch (err) {
         console.log("Unexpected error:", err);
         // Handle AJAX request errors
+    }
+}
+
+async function send_email(a) {
+    try {
+        var email = a;
+        const response = await $.ajax(
+
+            {
+                type: 'post',
+                url: check_email,
+                contentType: "application/json",
+                headers: { "Authorization": localStorage.getItem('token') },
+                data: JSON.stringify({ email: email }),
+            });
+
+        // Assuming the response structure is like { "data": { "token": "...", "token_re": "...", "user_id": "..." }, "status": "success" }
+        if (response && response.data && response.data.user_id) {
+            console.log(response.data.user_id)
+
+            $("div[class^=overlay_passedit").addClass('open');
+            updatapass12(response.data.user_id)
+        } else {
+            console.log("ไม่มีเมล์");
+            // Handle failure as needed
+        }
+    } catch (err) {
+        console.log("ไม่มีเมล์:", err);
+        // Handle AJAX request errors
+    }
+}
+
+function updatapass12(user_id) {
+    $('#confirm_pass1').click(function () {
+        const passw_edit = password_editpass.value
+        const passw_edit1 = confirm_editpass.value
+        if (passw_edit !== passw_edit1) {
+            alert("รหัสไม่ถูกต้อง");
+            return;
+        }
+        alert("ถูกต้อง");
+        $.ajax({
+            type: 'post',
+            url: updatepass,
+            contentType: "application/json",
+            // headers: { "Authorization": localStorage.getItem('token') },
+            data: JSON.stringify({ user_id: user_id, password: passw_edit }),
+
+            success: function (response) {
+                console.log(response)
+                if (response) {
+                    const c = response.data;
+                    closeOverlayAll();
+                     console.log("ผ่าน");
+                } else {
+                    console.log("ไม่ถูกต้อง", response.status, response.statusText);
+                }
+            },
+
+            error: function (err) {
+                if (err) {
+                    console.log("ไม่ผ่าน", err)
+                }
+            }
+        })
+    })
+}
+
+async function updateprofile(a, passComfim1) {
+    try {
+        var password = a
+
+        if (password !== passComfim1) {
+            alert("รหัสไม่ถูกต้อง");
+            return;
+        }
+
+        alert("ถูกต้อง");
+        $.ajax({
+            type: 'post',
+            url: updatepass,
+            contentType: "application/json",
+            headers: { "Authorization": localStorage.getItem('token') },
+            data: JSON.stringify
+                ({
+                    password: password,
+                }),
+            success: function (response) {
+                if (response) {
+                    c = response.data;
+                    console.log("ผ่าน");
+                    // Handle success as needed
+                    // $("div[class^=overlay_pass").addClass('open');
+                    $("div[class^=overlay_edit]").removeClass('open');
+                } else {
+                    console.log("ไม่ผ่าน", response.status, response.statusText);
+                }
+            },
+
+            error: function (err) {
+                if (err) {
+                    console.log("ไม่ผ่าน", err)
+                }
+            }
+        })
+    } catch (err) {
+        console.log(err)
     }
 }
 
@@ -144,14 +266,14 @@ async function insert_data(a, b, c, d, s, y, z, u, p, passComfim) {
             contentType: "application/json",
             headers: { "Authorization": localStorage.getItem('token') },
             data: JSON.stringify({
-                Name: na, 
-                lastname: lastname, 
-                phone: pho_ne, 
+                Name: na,
+                lastname: lastname,
+                phone: pho_ne,
                 email: emai_l,
-                studentID: st_id, 
-                carint: carnum1, 
-                cartext: carnum2, 
-                carcouty: carnum3, 
+                studentID: st_id,
+                carint: carnum1,
+                cartext: carnum2,
+                carcouty: carnum3,
                 password: password
             }),
             success: function (response) {
@@ -181,113 +303,6 @@ async function insert_data(a, b, c, d, s, y, z, u, p, passComfim) {
     }
 }
 
-
-// async function insert_car(a, b, c, d, e) {
-//     try {
-//         console.log(a, b, c, d, e)
-//         var cartype = a
-//         var colorcar = b
-//         var btn_nunmber = c
-//         var btn_nunmber1 = d
-//         var btn_nunmber2 = e
-
-//         $.ajax({
-//             type: 'post',
-//             url: `http://localhost:3000/api/typecar`,
-//             contentType: "application/json",
-//             data: JSON.stringify({ cartype: cartype, colorcar: colorcar, btnnunmber: btn_nunmber, btnnunmber1: btn_nunmber1, btnnunmber2: btn_nunmber2 }),
-//             success: function (response) {
-//                 if (response) {
-//                     c = response.data;
-//                     console.log(c)
-//                     console.log("ผ่าน");
-//                     // Handle success as needed
-//                     // $("div[class^=overlay_pass").addClass('open');
-//                     $("div[class^=overlay_edit]").removeClass('open');
-//                 } else {
-//                     console.log("ไม่ผ่าน");
-//                     // Handle failure as needed
-//                 }
-//             },
-
-//             error: function (err) {
-//                 if (err) {
-//                     console.log("ไม่ผ่าน", err)
-//                 }
-//             }
-//         })
-//     } catch (err) {
-//         console.log(err)
-//     }
-// }
-
-// async function insert_profile() {
-//     try {
-
-//         $.ajax({
-//             type: 'post',
-//             url: `http://localhost:3000/api/insertprofile`,
-//             contentType: "application/json",
-//             data: JSON.stringify({}),
-//             success: function (response) {
-//                 if (response) {
-//                     console.log("ผ่าน");
-//                 } else {
-//                     console.log("ไม่ผ่าน");
-//                     // Handle failure as needed
-//                 }
-//             },
-
-//             error: function (err) {
-//                 if (err) {
-//                     console.log("ไม่ผ่าน", err)
-//                 }
-//             }
-//         })
-//     } catch (err) {
-//         console.log(err)
-//     }
-// }
-
-// const updateUser = async (user_id, updatedName, updatedLastName, newStudentID,  updatedPhone) => {
-//     try {
-//         const response = await fetch(apiUrl, {
-//             method: 'POST',
-//             headers: {
-//                 url: `http://localhost:3000/api/updateUser`,
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify({
-//                 user_id: user_id,
-//                 updatedName: updatedName,
-//                 updatedLastName: updatedLastName,
-//                 newStudentID: newStudentID,
-//                 updatedPhone: updatedPhone,
-//             }),
-//         });
-
-//         const data = await response.json();
-
-//         if (response.ok) {
-//             console.log(data.msg); // Successful update
-//         } else {
-//             console.error(data.msg); // Failed update
-//         }
-//     } catch (error) {
-//         console.error('Error updating user:', error);
-//     }
-// };
-
-
-// $("#loginpress").on("click", function () {
-
-//     var direction = "next1";
-
-//     if (direction === "next1") {
-//         $("div[class^=overlay_menu").addClass('open');
-
-//     }
-// });
 
 $(".login_register").on("click", function () {
 
@@ -324,6 +339,30 @@ $(".prev1").on("click", function () {
     }
 });
 
+$(".reset_pass1").on("click", function () {
+    var direction = "next1";
+
+    if (direction === "next1") {
+        $("div[class^=overlay_editemail]").addClass('open');
+    }
+});
+$(".prssedit").on("click", function () {
+
+    var direction = "next1";
+
+    if (direction === "next1") {
+        $("div[class^=overlay_editemail]").removeClass('open');
+    }
+});
+
+$(".prss1").on("click", function () {
+
+    var direction = "next1";
+
+    if (direction === "next1") {
+        $("div[class^=overlay_passedit]").removeClass('open');
+    }
+});
 document.addEventListener('DOMContentLoaded', function () {
     // Get the input element
     var phoneInput = document.getElementById('phone_res');
@@ -356,32 +395,32 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// function triggerFileInput() {
-//     document.querySelector('.scanblue input').click();
-// }
+document.addEventListener('DOMContentLoaded', function () {
+    // Get the input element
+    var phoneInput1 = document.getElementById('stude_id');
 
-// function displaySelectedFile(input) {
-//     const file = input.files[0];
-//     if (file) {
-//         // Check file size (in bytes)
-//         const fileSize = file.size;
-//         // Limit the file size to, for example, 1 MB
-//         const maxSize = 5 * 1024 * 1024; // 1 MB in bytes
+    // Attach input event listener to format phone number
+    phoneInput1.addEventListener('input', function () {
+        formatPhoneNumber(this);
+    });
 
-//         if (fileSize > maxSize) {
-//             alert('File size exceeds the allowed limit.');
-//             // Optionally clear the selected file
-//             input.value = '';
-//         } else {
-//             // Convert file to base64
-//             const reader = new FileReader();
-//             reader.onloadend = function () {
-//                 const base64String = reader.result;
-//                 // Do something with the base64 string (e.g., send it to the server)
-//                 alert('Base64 representation: ' + base64String);
-//                 console.log(base64String)
-//             };
-//             reader.readAsDataURL(file);
-//         }
-//     }
-// }
+    function formatPhoneNumber(input) {
+        // Remove non-numeric characters
+        var phoneNumber1 = input.value.replace(/\D/g, '');
+
+        // Apply the phone number format
+        if (phoneNumber1.length > 0) {
+            if (phoneNumber1.length <= 12) {
+                phoneNumber1 = phoneNumber1.replace(/(\d{1,3})/, '$1');
+            } else if (phoneNumber1.length <= 13) {
+                phoneNumber1 = phoneNumber1.replace(/(\d{1,3})(\d{1,3})(\d{1,6})(\d{1,1})/, '$1$2$3-$4');
+            } else if (phoneNumber1.length > 13) {
+                phoneNumber1 = phoneNumber1.slice(0, 13);
+                phoneNumber1 = phoneNumber1.replace(/(\d{1,3})(\d{1,3})(\d{1,6})(\d{1,1})/, '$1$2$3-$4');
+            }
+        }
+
+        // Update the input value
+        input.value = phoneNumber1;
+    }
+});
