@@ -553,7 +553,7 @@ $.ajax({
                         console.log('Profile image not available');
                   }
 
-                  
+
             }
       },
       error: function (err) {
@@ -604,7 +604,82 @@ $.ajax({
                         console.log('Profile image not available');
                   }
 
-                  
+
+            }
+      },
+      error: function (err) {
+            console.log(err);
+      }
+});
+
+$.ajax({
+      url: 'http://localhost:3000/api/Get-Profile',
+      type: 'POST',
+      dataType: 'json',
+      contentType: "application/json",
+      headers: { "Authorization": localStorage.getItem('token') },
+      success: function (data) {
+            if (data && data.data) {
+                  const profileData = data.data[0];
+                  const carData = data.data[1];
+                  console.log(carData) // Assuming car data is in the second element
+
+                  const Profileimg = document.querySelector('.container-profile_personal');
+                  Profileimg.innerHTML += `<div class="pic-profile-personal">
+                  <div class="pic-profile1">
+                  <div id ="image-Contai" style="
+                  width: 100%;
+                  height: 100%;
+              "></div>
+                  </div>
+              </div>
+              <div style="margin-top: 58px;">
+                  <div class="detall-profile_personal">
+                      <div class="detall-profile-per">
+                          <div style="color: #ffffff;">
+                              <p>ชื่อ :${profileData.firstname}</p>
+                              <p>นามสกุล :${profileData.lastname}</p>
+                              <p>รหัสนักศึกษา :${profileData.student_id}</p>
+                              <p>อีเมล์ :${profileData.email}</p>
+                              <p>เบอร์โทรศัพท์ :${profileData.phone}</p>
+                              <p id="birthdayParagraph">วัน/เดือน/ปีเกิด :${profileData.birthday}</p>
+                              <p>เพศ :${profileData.gander}</p>
+                              <p>เลขป้ายทะเบียน :${carData.car_text}/${carData.car_number}/${carData.car_country}</p>
+                              <p>ประเภทรถ :${carData.cartype}</p>
+                              <p>สีรถ :${carData.carcolor}</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>`;
+
+                  const imageContainer = document.getElementById('image-Contai');
+                  imageContainer.innerHTML = '';
+
+                  function convertBase64ToImage(base64Data) {
+                        var image = document.createElement('img');
+                        image.src = "data:image/jpeg;base64," + base64Data;
+                        return image;
+                  }
+
+                  if (profileData.img_pro) {
+                        var imageElement = convertBase64ToImage(profileData.img_pro);
+                        imageContainer.appendChild(imageElement);
+                  } else {
+                        console.log('Profile image not available');
+                  }
+                  const timestamp = new Date(profileData.birthday);
+
+                  // Extracting date components of the timestamp
+                  const day = timestamp.getUTCDate();
+                  const month = timestamp.getUTCMonth() + 1; // Note: Months are zero-based, so we add 1
+                  const year = timestamp.getUTCFullYear();
+                  const formattedDate = `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`;
+
+                  // Displaying the formatted date in your HTML
+                  const birthdayParagraph = document.getElementById('birthdayParagraph'); // Replace 'birthdayParagraph' with the actual ID or class of your HTML element
+                  if (birthdayParagraph) {
+                        birthdayParagraph.innerHTML = `วัน/เดือน/ปีเกิด: ${formattedDate}`;
+                  }
             }
       },
       error: function (err) {
