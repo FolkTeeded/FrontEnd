@@ -182,7 +182,7 @@
                               <form id="form_img_car">
                                     <div class="field padding-bottom--24">
                                           <label for="" class="brtop">ใปรดใส่ไฟล์ภาพใบขับขี่</label>
-                                          <label class="picture" for="picture__input" tabIndex="0">
+                                          <label id="picture_driving_license" class="picture" for="picture__input" tabIndex="0">
                                                 <img class="img_pic" width="23.33px" height="23.33px"
                                                       src="./img/Subtract.png" alt="">
                                                 <span class="picture__image"></span>
@@ -190,7 +190,7 @@
                                           <input type="file" name="picture__input" id="picture__input">
                                     </div>
                                     <div class="bt-select padding-10">
-                                          <div class="bt-con-select" name="img_car">
+                                          <div id="select_driving_license" class="bt-con-select" name="img_car">
                                                 <p>ตกลง</p>
                                           </div>
                                     </div>
@@ -206,7 +206,7 @@
                               </svg>
                               <p style="color: #ffffff;">แก้ไขข้อมูลส่วนตัว</p>
                         </div>
-                        <div class="formbg-inner padding-horizontal--48">
+                        <div class="formbg-inner padding-horizontal--49">
                               <!-- <form id="form_edit"> -->
                               <div class="field padding-bottom--24">
                                     <label for="" class="brtop">ขื่อ</label>
@@ -237,14 +237,13 @@
                                     </div>
                               </div>
                               <div class="field padding-bottom--24">
-                                    <label for="" class="brtop">ใปรดใส่รูปโปรไฟล์</label>
-                                    <label class="picture1" id="picture1" for="picture__input1" tabIndex="0">
-                                          <img class="img_pic1" width="23.33px" height="23.33px"
-                                                src="./img/Subtract.png" alt="">
-                                          <span class="picture__image1"></span>
+                                    <label for="custom_picture__input1" class="brtop">รูปโปรไฟล์</label>
+                                    <label class="custom_picture1" id="custom_picture1" for="custom_picture__input1" tabIndex="0">
+                                        <img class="custom_img_pic1" width="23.33px" height="23.33px" src="./img/Subtract.png" alt="">
+                                        <span class="custom_picture__image1"></span>
                                     </label>
-                                    <input type="file" name="picture__input1" id="picture__input1">
-                              </div>
+                                    <input type="file" name="custom_picture__input1" id="custom_picture__input1" style="display: none;">
+                                </div>
                               <div class="field padding-bottom--24">
                                     <label for="" class="brtop">เลขป้ายทะเบียน(เช่น 22)</label>
                                     <input type="text" id="edit_nunmber" placeholder="เลขป้ายทะเบียน(เช่น 22)">
@@ -305,10 +304,10 @@
                               <!-- <div class="pic-profile-personal">
                                     <div class="pic-profile1"></div>
                               </div>
-                              <div style="height: 165px; margin-top: 58px;">
+                              <div style=" margin-top: 58px;">
                                     <div class="detall-profile_personal">
                                           <div class="detall-profile-per">
-                                                <div style="color: #ffffff;">
+                                                <div id="img_dr" class="img_dr" style="color: #ffffff;">
                                                       <p>ชื่อ :</p>
                                                       <p>นามสกุล :</p>
                                                       <p>รหัสนักศึกษา :</p>
@@ -318,9 +317,16 @@
                                                       <p>เพศ :</p>
                                                       <p>เลขป้ายทะเบียน :</p>
                                                       <p>ประเภทรถ :</p>
-                                                      <p>สีรถ :</p>
+                                                      <p style="padding-bottom: 30px;">สีรถ :</p>
+                                                      <div style="width: 100%;
+                                                      height: 25dvh;
+                                                      background-color: aqua;
+                                                      border-radius: 40px">
+                                                      </div>
                                                 </div>
+
                                           </div>
+
                                     </div>
                               </div> -->
                         </div>
