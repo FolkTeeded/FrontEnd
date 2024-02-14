@@ -32,11 +32,14 @@
                         </div>
                         <div class="field padding-bottom--24">
                             <label for="password" class="brtop">รหัสผ่าน</label>
-                            <input type="password" name="password" id="password" value=""  placeholder="รหัสผ่าน">
+                            <input type="password" name="password" id="password" value="" placeholder="รหัสผ่าน">
                         </div>
-                        <div class="reset-pass">
-                            <a href="">ลืมรหัสผ่าน</a>
-                        </div>
+
+                        <!-- <div class="reset-pass"> -->
+                        <div href="" class="reset_pass1" id="reset_pass1">
+                            ลืมรหัสผ่าน</div>
+                        <!-- </div> -->
+
                     </form>
                 </div>
             </div>
@@ -55,6 +58,63 @@
         </div>
     </div>
 
+    <div class="overlay_editemail">
+        <div class="head-title">
+            <svg class="prssedit arrow_left" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none">
+                <path
+                    d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
+                    fill="#ffff" />
+            </svg>
+            <p style="color: #ffffff;">แก้ไขรหัสผ่าน</p>
+        </div>
+        <div class="formbg-inner padding-horizontal--48" style="height: 22dvh; padding-top: 20px;">
+            <form id="form_editemail">
+                <div class="field padding-bottom--24">
+                    <label for="password" class="brtop">โปรดใส่อีเมล์นักศึกษา</label>
+                    <input id="pass_email" type="password" name="pass_email" placeholder="โปรดใส่อีเมล์นักศึกษา">
+                </div>
+
+              
+            </form>
+        </div>
+        <div class="bt-select padding-10" >
+            <div id="confirm_email" class="bt-con-select">
+                <p>ตกลง</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay_passedit">
+        <div class="head-title">
+            <svg class="prss1 arrow_left" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none">
+                <path
+                    d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
+                    fill="#ffff" />
+            </svg>
+            <p style="color: #ffffff;">แก้ไขรหัสผ่าน</p>
+        </div>
+        <div class="formbg-inner padding-horizontal--48">
+            <form id="form_editpass">
+                <div class="field padding-bottom--24">
+                    <label for="password_editpass" class="brtop">ตั้งรหัสผ่าน</label>
+                    <input id="password_editpass" type="password" name="password" placeholder="ตั้งรหัสผ่าน">
+                </div>
+                <div class="field padding-bottom--24">
+                    <label for="password_editpass1" class="brtop">ยืนยันรหัสผ่าน</label>
+                    <input id="confirm_editpass" type="password" placeholder="ยืนยันรหัสผ่าน">
+                </div>
+                <div class="bt-select padding-10">
+                    <div id="confirm_pass1" class="bt-con-select">
+                        <p>ตกลง</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
     <div class="overlay_register">
         <div class="head-title">
             <svg class="prev arrow_left" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -70,11 +130,11 @@
             <!-- <form id="form_resister"> -->
             <div class="field padding-bottom--24">
                 <label for="name" class="brtop">ชื่อ</label>
-                <input id="name_rigister" type="text" name="name" placeholder="">
+                <input id="name_rigister" type="text" name="name" placeholder="ชื่อ">
             </div>
             <div class="field padding-bottom--24">
                 <label for="lastname" class="brtop">นามสกุล</label>
-                <input id="lastname_res" type="text" name="lastname" placeholder="">
+                <input id="lastname_res" type="text" name="lastname" placeholder="นามสกุล">
             </div>
             <div class="field padding-bottom--24">
                 <label for="phone" class="brtop">เบอร์โทรศัพท์</label>
@@ -82,24 +142,24 @@
             </div>
             <div class="field padding-bottom--24">
                 <label for="email" class="brtop">อีเมล์นักศึกษา</label>
-                <input id="email_res" type="email" name="email" placeholder="">
+                <input id="email_res" type="email" name="email" placeholder="e-mail @rmutp.ac.th">
             </div>
             <div class="field padding-bottom--24">
                 <label for="" class="brtop">รหัสนักศึกษา (โปรดระบุให้ครบ13ตัว)</label>
-                <input id="stude_id" type="tel" placeholder="">
+                <input id="stude_id" type="tel" placeholder="055560401111-0">
             </div>
             <div class="field padding-bottom--24">
                 <label for="" class="brtop">เลขป้ายทะเบียน(เช่น 22)</label>
-                <input type="text" id="car_nunmber" placeholder="">
-          </div>
-          <div class="field padding-bottom--24">
+                <input type="text" id="car_nunmber" placeholder="เช่น 22">
+            </div>
+            <div class="field padding-bottom--24">
                 <label for="" class="brtop">เลขป้ายทะเบียน(เช่น กกกก)</label>
-                <input type="text" id="car_nunmber1" placeholder="">
-          </div>
-          <div class="field padding-bottom--24 ">
+                <input type="text" id="car_nunmber1" placeholder="เช่น กกกก">
+            </div>
+            <div class="field padding-bottom--24 ">
                 <label for="" class="brtop">เลขป้ายทะเบียน(เช่น กรุงเทพ)</label>
-                <input type="text" id="car_nunmber2" placeholder="" >
-          </div>
+                <input type="text" id="car_nunmber2" placeholder="เช่น กรุงเทพ">
+            </div>
             <div class="bt-select padding-10">
                 <div id="loginregisterpass" class="bt-con-select login_pass" name="login_pass">
                     <p>ถัดไป</p>
@@ -110,8 +170,8 @@
 
         <div class="overlay_pass">
             <div class="head-title">
-                <svg class="prev1 arrow_left" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none">
+                <svg class="prev1 arrow_left" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none">
                     <path
                         d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
                         fill="#ffff" />
@@ -138,11 +198,11 @@
             </form>
         </div>
     </div>
-            <!-- main js -->
-            <script src="router.js"></script>
-            <script src="global.js"></script>
-            <script src="login.js" type="module"></script>
-            <!-- <script src="global.js"></script> -->
+    <!-- main js -->
+    <script src="router.js"></script>
+    <script src="global.js"></script>
+    <script src="login.js" type="module"></script>
+    <!-- <script src="global.js"></script> -->
 </body>
 
 </html>

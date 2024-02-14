@@ -105,16 +105,14 @@
     padding-top: 10px;
 }
 
-.reset-pass a {
+.reset_pass1 {
     padding-top: 5px;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     display: block;
-}
-
-a {
     color: #0094FF;
 }
+
 
 .brtop {
     margin-bottom: 4px;
@@ -143,7 +141,9 @@ a {
 .overlay_img,
 .overlay_edit,
 .overlay_supp,
-.overlay_personal {
+.overlay_personal,
+.overlay_editemail,
+.overlay_passedit {
     display: none;
     position: fixed;
     width: 100vw;
@@ -160,10 +160,13 @@ a {
 .overlay_img.open,
 .overlay_edit.open,
 .overlay_supp.open,
-.overlay_personal.open {
+.overlay_personal.open,
+.overlay_editemail.open,
+.overlay_passedit.open {
     display: flex;
     flex-direction: column;
 }
+
 
 
 .container-profile {

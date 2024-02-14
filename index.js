@@ -142,13 +142,7 @@ async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
             var cartype = k
             var colorcar = l
 
-            // if (newStudentID.length !== 14) {
-            //       alert("โปรใส่เลขนักศึกษาให้ถูกต้อง");
-            //       // Swal.fire("โปรใส่เลขนักศึกษาให้ถูกต้อง");
-            //       document.getElementById('edit_Student_ID').classList.add('invalid');
-            //       return ; 
-            //   }
-            //   alert("ถูกต้อง");
+
 
             $.ajax({
                   type: 'post',
