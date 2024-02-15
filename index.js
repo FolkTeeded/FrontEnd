@@ -109,6 +109,7 @@ function btn_editprofile() {
       btn_nunmber2 = edit_nunmber2.value
       car_type = type_res.value
       color_car = colorcar.value
+      $(".overlay_edit .load-icon").show();
 
       // Call the updateprofile function with captured values
       updateprofile(newName, newLastName, newPhone, dt_date, gander_e, btn_img1, btn_nunmber, btn_nunmber1, btn_nunmber2, car_type, color_car);
@@ -126,17 +127,17 @@ confirm_updatapass.onclick = btn_editpassword;
 function loading_edit() {
       // Attach a click event handler to the element with ID "btn_confirm"
       $("#btn_confirm").click(function () {
-          // Show loading overlay when button is clicked
-          // Set a timeout to hide the loading overlay after 2000 milliseconds (2 seconds)
-          setTimeout(function () {
-              document.getElementById('loadingOverlay1').style.display = 'none';
-          }, 2000);
-  
-          // Display the loading overlay initially by setting its display property to 'flex'
-          document.getElementById('loadingOverlay1').style.display = 'flex';
+            // Show loading overlay when button is clicked
+            // Set a timeout to hide the loading overlay after 2000 milliseconds (2 seconds)
+            setTimeout(function () {
+                  document.getElementById('loadingOverlay1').style.display = 'none';
+            }, 2000);
+
+            // Display the loading overlay initially by setting its display property to 'flex'
+            document.getElementById('loadingOverlay1').style.display = 'flex';
       });
-  }
-  
+}
+
 async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
       try {
             var newName = a;
@@ -151,7 +152,12 @@ async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
             var cartype = k;
             var colorcar = l;
 
-            $.ajax({
+            // Show the loading icon
+            $(".overlay_edit .load-icon").addClass('show');
+
+            $("body").addClass('blur-background');
+
+            await $.ajax({
                   type: 'post',
                   url: apiupdateprofile,
                   contentType: "application/json",
@@ -171,17 +177,23 @@ async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
                   }),
                   success: function (response) {
                         if (response) {
-                              loading_edit()
                               c = response.data;
-                              console.log("ผ่าน");
-                              // Handle success as needed
-                              // $("div[class^=overlay_edit]").removeClass('open');
-                              // location.reload();
+
+                              // Delay the removal of the overlay by approximately 3 seconds
+                              setTimeout(function () {
+                                    // Remove the loading icon
+                                    $("body").removeClass('blur-background');
+
+                                    // Remove the loading icon
+                                    $(".overlay_edit .load-icon").removeClass('show');
+
+                                    // Remove the 'open' class from the overlay to hide it
+                                    $("div[class^=overlay_edit]").removeClass('open');
+                              }, 3000);
                         } else {
                               console.log("ไม่ผ่าน", response.status, response.statusText);
                         }
                   },
-
                   error: function (err) {
                         if (err) {
                               console.log("ไม่ผ่าน", err);
@@ -192,6 +204,8 @@ async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
             console.log(err);
       }
 }
+
+
 function formatDate(date) {
       if (!date || !(date instanceof Date)) {
             return null;
@@ -205,11 +219,11 @@ function formatDate(date) {
       // Add leading zeros if needed
       month = month < 10 ? '0' + month : month;
       day = day < 10 ? '0' + day : day;
-  
-      return month + '/' + day + '/' + year;
-  }
 
-  async function editpassword(a) {
+      return month + '/' + day + '/' + year;
+}
+
+async function editpassword(a) {
       try {
             const password = a
             // const password1 = password_editpass1.value
