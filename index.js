@@ -102,16 +102,6 @@ function btn_editprofile() {
       newPhone = edit_num.value;
       dt_date = edit_date1.value;
       gander_e = gander_edit.value;
-
-      // Log the captured values to the console
-      // console.log(newName);
-      // console.log(newLastName);
-      // console.log(newStudentID);
-      // console.log(newPhone);
-      // console.log(dt_date);
-      // console.log(gander_e);
-
-      // Capture the Base64 string from the img_select function
       btn_img1
 
       btn_nunmber = edit_nunmber.value
@@ -123,7 +113,7 @@ function btn_editprofile() {
       // Call the updateprofile function with captured values
       updateprofile(newName, newLastName, newPhone, dt_date, gander_e, btn_img1, btn_nunmber, btn_nunmber1, btn_nunmber2, car_type, color_car);
 }
-btn_confirm.onclick = btn_editprofile;
+// btn_confirm.onclick = btn_editprofile;
 
 function btn_editpassword() {
       password = password_updatapass.value
@@ -131,25 +121,22 @@ function btn_editpassword() {
       editpassword(password)
 }
 confirm_updatapass.onclick = btn_editpassword;
-// Call img_select with a callback function
 
 
-// function btn_carlogin() {
-//       car_type = type_res.value
-//       color_car = colorcar.value
-//       btn_nunmber = edit_nunmber.value
-//       btn_nunmber1 = edit_nunmber1.value
-//       btn_nunmber2 = edit_nunmber2.value
-//       insert_car(car_type, color_car, btn_nunmber, btn_nunmber1, btn_nunmber2)
-// }
-// function btn_confirm_edit(){
-
-//       btn_confirm.onclick = btn_carlogin() = btn_editprofile()
-// }
-// btn_confirm.onclick = function () {
-//       btn_carlogin();
-//       btn_editprofile();
-// };
+function loading_edit() {
+      // Attach a click event handler to the element with ID "btn_confirm"
+      $("#btn_confirm").click(function () {
+          // Show loading overlay when button is clicked
+          // Set a timeout to hide the loading overlay after 2000 milliseconds (2 seconds)
+          setTimeout(function () {
+              document.getElementById('loadingOverlay1').style.display = 'none';
+          }, 2000);
+  
+          // Display the loading overlay initially by setting its display property to 'flex'
+          document.getElementById('loadingOverlay1').style.display = 'flex';
+      });
+  }
+  
 async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
       try {
             var newName = a;
@@ -184,11 +171,12 @@ async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
                   }),
                   success: function (response) {
                         if (response) {
+                              loading_edit()
                               c = response.data;
                               console.log("ผ่าน");
                               // Handle success as needed
-                              // $("div[class^=overlay_pass").addClass('open');
-                              $("div[class^=overlay_edit]").removeClass('open');
+                              // $("div[class^=overlay_edit]").removeClass('open');
+                              // location.reload();
                         } else {
                               console.log("ไม่ผ่าน", response.status, response.statusText);
                         }
@@ -753,7 +741,7 @@ $.ajax({
                         // ถ้า profileData.birthday เป็นค่า null หรือ undefined ให้กำหนดค่า default เป็น "-"
                         const birthdayParagraph = document.getElementById('birthdayParagraph');
                         if (birthdayParagraph) {
-                              birthdayParagraph.innerHTML = 'วัน/เดือน/ปีเกิด: ';
+                              birthdayParagraph.innerHTML = '';
                         }
                   }
 

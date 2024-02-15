@@ -19,10 +19,9 @@
 
 <body>
       <div class="loader-container">
-            <div class="loader" id="spinner"><span class="loader-inner"></span></div>
+            <div class="loader"><span class="loader-inner"></span></div>
       </div>
       <div id="loadingOverlay">
-
             <div class="overlay_menu open">
                   <div style="border-radius: 0 0 30px 30px;">
                         <div style="border-radius: 0 0 30px 30px;background-color: #7C00A8;">
@@ -176,108 +175,123 @@
                               </div>
                         </div>
 
-                  <div class="overlay_img">
-                        <div class="head-title">
-                              <svg class="prev_img arrow_left" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none">
-                                    <path d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
-                                          fill="#ffff" />
-                              </svg>
-                              <p style="color: #ffffff;">เพิ่มใบขับขี่</p>
+                        <div class="overlay_img">
+                              <div class="head-title">
+                                    <svg class="prev_img arrow_left" xmlns="http://www.w3.org/2000/svg" width="24"
+                                          height="24" viewBox="0 0 24 24" fill="none">
+                                          <path d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
+                                                fill="#ffff" />
+                                    </svg>
+                                    <p style="color: #ffffff;">เพิ่มใบขับขี่</p>
+                              </div>
+                              <div class="formbg-inner padding-horizontal--48">
+                                    <form id="form_img_car">
+                                          <div class="field padding-bottom--24">
+                                                <label for="" class="brtop">ใปรดใส่ไฟล์ภาพใบขับขี่</label>
+                                                <label id="picture_driving_license" class="picture" for="picture__input"
+                                                      tabIndex="0">
+                                                      <img class="img_pic" width="23.33px" height="23.33px"
+                                                            src="./img/Subtract.png" alt="">
+                                                      <span class="picture__image"></span>
+                                                </label>
+                                                <input type="file" name="picture__input" id="picture__input">
+                                          </div>
+                                          <div class="bt-select padding-10">
+                                                <div id="select_driving_license" class="bt-con-select" name="img_car">
+                                                      <p>ตกลง</p>
+                                                </div>
+                                          </div>
+                                    </form>
+                              </div>
                         </div>
-                        <div class="formbg-inner padding-horizontal--48">
-                              <form id="form_img_car">
-                                    <div class="field padding-bottom--24">
-                                          <label for="" class="brtop">ใปรดใส่ไฟล์ภาพใบขับขี่</label>
-                                          <label id="picture_driving_license" class="picture" for="picture__input" tabIndex="0">
-                                                <img class="img_pic" width="23.33px" height="23.33px"
-                                                      src="./img/Subtract.png" alt="">
-                                                <span class="picture__image"></span>
-                                          </label>
-                                          <input type="file" name="picture__input" id="picture__input">
+
+                        <!-- <div class="loader-container">
+                              <div class="loader"><span class="loader-inner"></span></div>
+                        </div> -->
+                        <div id="loadingOverlay1">
+                              <div class="overlay_edit">
+                                    <div class="head-title" style="height: 25dvh;">
+                                          <svg class="prev_edit arrow_left" xmlns="http://www.w3.org/2000/svg"
+                                                width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
+                                                      fill="#ffff" />
+                                          </svg>
+                                          <p style="color: #ffffff;">แก้ไขข้อมูลส่วนตัว</p>
                                     </div>
-                                    <div class="bt-select padding-10">
-                                          <div id="select_driving_license" class="bt-con-select" name="img_car">
-                                                <p>ตกลง</p>
+                                    <div class="formbg-inner padding-horizontal--49">
+                                          <!-- <form id="form_edit"> -->
+                                          <div class="field padding-bottom--24">
+                                                <label for="" class="brtop">ขื่อ</label>
+                                                <input id="edit_name" type="text" name="" placeholder="ชื่อ">
+                                          </div>
+                                          <div class="field padding-bottom--24">
+                                                <label for="" class="brtop">นามสกุล</label>
+                                                <input id="edit_last" type="text" name="" placeholder="นามสกุล">
+                                          </div>
+                                          <div class="field padding-bottom--24">
+                                                <label for="" class="brtop">เบอร์โทรศัพท์</label>
+                                                <input id="edit_phone" type="" name="" placeholder="000-000-0000">
+                                          </div>
+                                          <div class="field padding-bottom--24">
+                                                <label for="" class="brtop">วัน/เดือน/ปีเกิด</label>
+                                                <input id="edit_date" type="date" name=""
+                                                      placeholder="วัน/เดือน/ปีเกิด">
+                                          </div>
+                                          <div class="field padding-bottom--24">
+                                                <label for="" class="brtop">เพศ</label>
+                                                <div
+                                                      style="width: 100%; border: 1px solid;border-radius: 17px;display: flex;align-items: center;">
+                                                      <select
+                                                            style="border: unset;width:95%;height: 50%;padding-left: 10px;"
+                                                            id="gander_edit">
+                                                            <option value="ชาย">ชาย</option>
+                                                            <option value="หญิง">หญิง</option>
+                                                            <option value="ไม่ระบุ">ไม่ระบุ</option>
+                                                      </select>
+                                                </div>
+                                          </div>
+                                          <div class="field padding-bottom--24">
+                                                <label for="custom_picture__input1" class="brtop">รูปโปรไฟล์</label>
+                                                <label class="custom_picture1" id="custom_picture1"
+                                                      for="custom_picture__input1" tabIndex="0">
+                                                      <img class="custom_img_pic1" width="23.33px" height="23.33px"
+                                                            src="./img/Subtract.png" alt="">
+                                                      <span class="custom_picture__image1"></span>
+                                                </label>
+                                                <input type="file" name="custom_picture__input1"
+                                                      id="custom_picture__input1" style="display: none;">
+                                          </div>
+                                          <div class="field padding-bottom--24">
+                                                <label for="" class="brtop">เลขป้ายทะเบียน(เช่น 22)</label>
+                                                <input type="text" id="edit_nunmber"
+                                                      placeholder="เลขป้ายทะเบียน(เช่น 22)">
+                                          </div>
+                                          <div class="field padding-bottom--24">
+                                                <label for="" class="brtop">เลขป้ายทะเบียน(เช่น กกกก)</label>
+                                                <input type="text" id="edit_nunmber1"
+                                                      placeholder="เลขป้ายทะเบียน(เช่น กกกก)">
+                                          </div>
+                                          <div class="field padding-bottom--24 ">
+                                                <label for="" class="brtop">เลขป้ายทะเบียน(เช่น กรุงเทพ)</label>
+                                                <input type="text" id="edit_nunmber2"
+                                                      placeholder="เลขป้ายทะเบียน(เช่น กรุงเทพ)">
+                                          </div>
+                                          <div class="field padding-bottom--24">
+                                                <label for="car" class="brtop">ประเภทรถ</label>
+                                                <input id="type_res" type="text" name="type_res" placeholder="ประเภทรถ">
+                                          </div>
+                                          <div class="field padding-bottom--24">
+                                                <label for="car_color" class="brtop">สีรถ</label>
+                                                <input id="color_car" type="text" name="car_color" placeholder="สีรถ">
+                                          </div>
+                                          <div class="bt-select padding-10">
+                                                <div id="btn_confirm" class="bt-con-select" name="edit_car">
+                                                      <p>ตกลง</p>
+                                                </div>
                                           </div>
                                     </div>
-                              </form>
-                        </div>
-                  </div>
-                  <div class="overlay_edit">
-                        <div class="head-title" style="height: 25dvh;">
-                              <svg class="prev_edit arrow_left" xmlns="http://www.w3.org/2000/svg" width="24"
-                                    height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
-                                          fill="#ffff" />
-                              </svg>
-                              <p style="color: #ffffff;">แก้ไขข้อมูลส่วนตัว</p>
-                        </div>
-                        <div class="formbg-inner padding-horizontal--49">
-                              <!-- <form id="form_edit"> -->
-                              <div class="field padding-bottom--24">
-                                    <label for="" class="brtop">ขื่อ</label>
-                                    <input id="edit_name" type="text" name="" placeholder="ชื่อ">
-                              </div>
-                              <div class="field padding-bottom--24">
-                                    <label for="" class="brtop">นามสกุล</label>
-                                    <input id="edit_last" type="text" name="" placeholder="นามสกุล">
-                              </div>
-                              <div class="field padding-bottom--24">
-                                    <label for="" class="brtop">เบอร์โทรศัพท์</label>
-                                    <input id="edit_phone" type="" name="" placeholder="000-000-0000">
-                              </div>
-                              <div class="field padding-bottom--24">
-                                    <label for="" class="brtop">วัน/เดือน/ปีเกิด</label>
-                                    <input id="edit_date" type="date" name="" placeholder="วัน/เดือน/ปีเกิด">
-                              </div>
-                              <div class="field padding-bottom--24">
-                                    <label for="" class="brtop">เพศ</label>
-                                    <div
-                                          style="width: 100%; border: 1px solid;border-radius: 17px;display: flex;align-items: center;">
-                                          <select style="border: unset;width:95%;height: 50%;padding-left: 10px;"
-                                                id="gander_edit">
-                                                <option value="ชาย">ชาย</option>
-                                                <option value="หญิง">หญิง</option>
-                                                <option value="ไม่ระบุ">ไม่ระบุ</option>
-                                          </select>
-                                    </div>
-                              </div>
-                              <div class="field padding-bottom--24">
-                                    <label for="custom_picture__input1" class="brtop">รูปโปรไฟล์</label>
-                                    <label class="custom_picture1" id="custom_picture1" for="custom_picture__input1" tabIndex="0">
-                                        <img class="custom_img_pic1" width="23.33px" height="23.33px" src="./img/Subtract.png" alt="">
-                                        <span class="custom_picture__image1"></span>
-                                    </label>
-                                    <input type="file" name="custom_picture__input1" id="custom_picture__input1" style="display: none;">
-                                </div>
-                              <div class="field padding-bottom--24">
-                                    <label for="" class="brtop">เลขป้ายทะเบียน(เช่น 22)</label>
-                                    <input type="text" id="edit_nunmber" placeholder="เลขป้ายทะเบียน(เช่น 22)">
-                              </div>
-                              <div class="field padding-bottom--24">
-                                    <label for="" class="brtop">เลขป้ายทะเบียน(เช่น กกกก)</label>
-                                    <input type="text" id="edit_nunmber1" placeholder="เลขป้ายทะเบียน(เช่น กกกก)">
-                              </div>
-                              <div class="field padding-bottom--24 ">
-                                    <label for="" class="brtop">เลขป้ายทะเบียน(เช่น กรุงเทพ)</label>
-                                    <input type="text" id="edit_nunmber2" placeholder="เลขป้ายทะเบียน(เช่น กรุงเทพ)">
-                              </div>
-                              <div class="field padding-bottom--24">
-                                    <label for="car" class="brtop">ประเภทรถ</label>
-                                    <input id="type_res" type="text" name="type_res" placeholder="ประเภทรถ">
-                              </div>
-                              <div class="field padding-bottom--24">
-                                    <label for="car_color" class="brtop">สีรถ</label>
-                                    <input id="color_car" type="text" name="car_color" placeholder="สีรถ">
-                              </div>
-                              <div class="bt-select padding-10">
-                                    <div id="btn_confirm" class="bt-con-select" name="edit_car">
-                                          <p>ตกลง</p>
-                                    </div>
                               </div>
                         </div>
-                  </div>
 
                         <div class="overlay_supp">
                               <div class="head-title">
@@ -352,15 +366,14 @@
             function simulateTask() {
                   setTimeout(function () {
                         document.getElementById('loadingOverlay').style.display = 'flex';
-                  }, 2000); 
-
+                  }, 2000);
 
                   document.getElementById('loadingOverlay').style.display = 'none';
 
 
             }
-
             simulateTask();
+
       </script>
 
 </body>
