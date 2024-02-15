@@ -189,6 +189,7 @@ async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
                       // Handle success as needed
                       // $("div[class^=overlay_pass").addClass('open');
                       $("div[class^=overlay_edit]").removeClass('open');
+                      location.reload();
                   } else {
                       console.log("ไม่ผ่าน", response.status, response.statusText);
                   }
@@ -206,21 +207,62 @@ async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
   }
   
   function formatDate(date) {
-      if (!date || date.trim() === '') {
+      if (!date || !(date instanceof Date)) {
           return null;
       }
-      
-      var day = date.getDate();
+  
       var month = date.getMonth() + 1;
+      var day = date.getDate();
       var year = date.getFullYear();
   
       // Add leading zeros if needed
-      day = day < 10 ? '0' + day : day;
       month = month < 10 ? '0' + month : month;
+      day = day < 10 ? '0' + day : day;
   
-      return day + '/' + month + '/' + year;
+      return month + '/' + day + '/' + year;
   }
-  
+
+  async function editpassword(a) {
+      try {
+            const password = a
+            // const password1 = password_editpass1.value
+            // if (password !== password1) {
+            //       alert("รหัสไม่ถูกต้อง");
+            //       return;
+            //   }
+            //   alert("ถูกต้อง");
+
+            $.ajax({
+                  type: 'post',
+                  url: editpass,
+                  contentType: "application/json",
+                  headers: { "Authorization": localStorage.getItem('token') },
+                  data: JSON.stringify
+                        ({
+                              password: password,
+                        }),
+                  success: function (response) {
+                        if (response) {
+                              c = response.data;
+                              console.log("ผ่าน");
+                              // Handle success as needed
+                              $("div[class^=overlay_updatapass]").removeClass('open');
+                              location.reload();
+                        } else {
+                              console.log("ไม่ผ่าน", response.status, response.statusText);
+                        }
+                  },
+
+                  error: function (err) {
+                        if (err) {
+                              console.log("ไม่ผ่าน", err)
+                        }
+                  }
+            })
+      } catch (err) {
+            console.log(err)
+      }
+}
 
 
 function ss() {
@@ -664,7 +706,6 @@ $.ajax({
                               <p style="padding-bottom: 30px;">สีรถ :${carData.carcolor}</p>
                               <div style="width: 100%;
                               height: 25dvh;
-                              background-color: aqua;
                               border-radius: 40px ; border: 1px solid;">
                               <div id = "img-picdr" style="
                               width: 100%;
