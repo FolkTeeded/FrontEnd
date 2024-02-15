@@ -113,7 +113,7 @@ function btn_editprofile() {
       // Call the updateprofile function with captured values
       updateprofile(newName, newLastName, newPhone, dt_date, gander_e, btn_img1, btn_nunmber, btn_nunmber1, btn_nunmber2, car_type, color_car);
 }
-// btn_confirm.onclick = btn_editprofile;
+btn_confirm.onclick = btn_editprofile;
 
 function btn_editpassword() {
       password = password_updatapass.value
