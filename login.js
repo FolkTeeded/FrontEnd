@@ -148,6 +148,7 @@ async function send_email(a) {
             console.log(response.data.user_id)
 
             $("div[class^=overlay_passedit").addClass('open');
+            
             updatapass12(response.data.user_id)
         } else {
             console.log("ไม่มีเมล์");
@@ -161,6 +162,7 @@ async function send_email(a) {
 
 function updatapass12(user_id) {
     $('#confirm_pass1').click(function () {
+
         const passw_edit = password_editpass.value
         const passw_edit1 = confirm_editpass.value
         if (passw_edit !== passw_edit1) {
