@@ -659,12 +659,11 @@ $.ajax({
                               <p id="birthdayParagraph">วัน/เดือน/ปีเกิด : ${profileData.birthday}</p>
                               <p>เพศ : ${profileData.gander}</p>
                               <p>เลขป้ายทะเบียน : ${carData.car_text}/${carData.car_number}/${carData.car_country}</p>
-                              <p>ประเภทรถ : ${carData.cartype}</p>
-                              <p style="padding-bottom: 30px;">สีรถ : ${carData.carcolor}</p>
+                              <p id = "cartype" >ประเภทรถ : ${carData.cartype}</p>
+                              <p id = "carcolor" style="padding-bottom: 30px;">สีรถ : ${carData.carcolor}</p>
                               <div style="width: 100%;
                               height: 25dvh;
-                              background-color: aqua;
-                              border-radius: 40px ; border: 1px solid;">
+                              border-radius: 40px ;">
                               <div id = "img-picdr" style="
                               width: 100%;
                               height: 100%;
@@ -712,7 +711,37 @@ $.ajax({
                         // ถ้า profileData.birthday เป็นค่า null หรือ undefined ให้กำหนดค่า default เป็น "-"
                         const birthdayParagraph = document.getElementById('birthdayParagraph');
                         if (birthdayParagraph) {
-                              birthdayParagraph.innerHTML = 'วัน/เดือน/ปีเกิด: ';
+                              birthdayParagraph.innerHTML = '';
+                        }
+                  }
+                  if (carData.cartype) {
+                        // ทำบางสิ่งเมื่อ carData.cartype ไม่ใช่ค่า null หรือ undefined
+                        // เช่น กำหนดค่าให้ HTML element
+                        const cartype = document.getElementById('cartype');
+                        if (cartype) {
+                              cartype.innerHTML = `ประเภทรถ: ${carData.cartype}`;
+                        }
+                  } else {
+                        // ทำบางสิ่งเมื่อ carData.cartype เป็นค่า null หรือ undefined
+                        // เช่น กำหนดค่า default หรือลบค่าใน HTML element
+                        const cartype = document.getElementById('cartype');
+                        if (cartype) {
+                              cartype.innerHTML = '';  // หรือกำหนดค่า default ตามที่ต้องการ
+                        }
+                  }
+                  if (carData.carcolor) {
+                        // ทำบางสิ่งเมื่อ carData.cartype ไม่ใช่ค่า null หรือ undefined
+                        // เช่น กำหนดค่าให้ HTML element
+                        const carcolor = document.getElementById('cartype');
+                        if (carcolor) {
+                              carcolor.innerHTML = `ประเภทรถ: ${carData.carcolor}`;
+                        }
+                  } else {
+                        // ทำบางสิ่งเมื่อ carData.cartype เป็นค่า null หรือ undefined
+                        // เช่น กำหนดค่า default หรือลบค่าใน HTML element
+                        const cartype = document.getElementById('cartype');
+                        if (cartype) {
+                              carcolor.innerHTML = '';  // หรือกำหนดค่า default ตามที่ต้องการ
                         }
                   }
 
@@ -801,6 +830,8 @@ $.ajax({
                   $('#edit_nunmber').val(carData.car_number);
                   $('#edit_nunmber1').val(carData.car_text);
                   $('#edit_nunmber2').val(carData.car_country);
+                  $('#type_res').val(carData.cartype);
+                  $('#color_car').val(carData.carcolor)
             }
       },
       error: function (err) {
