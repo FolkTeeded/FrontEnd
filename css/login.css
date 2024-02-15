@@ -143,7 +143,9 @@
 .overlay_supp,
 .overlay_personal,
 .overlay_editemail,
-.overlay_passedit {
+.overlay_passedit, 
+.overlay_updatapass
+{
     display: none;
     position: fixed;
     width: 100vw;
@@ -162,7 +164,9 @@
 .overlay_supp.open,
 .overlay_personal.open,
 .overlay_editemail.open,
-.overlay_passedit.open {
+.overlay_passedit.open, 
+.overlay_updatapass.open
+{
     display: flex;
     flex-direction: column;
 }

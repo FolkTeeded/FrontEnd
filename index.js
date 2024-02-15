@@ -3,6 +3,7 @@
 
 const apiupdateprofile = 'http://localhost:3000/api/updateprofile'
 const apitypecar = 'http://localhost:3000/api/typecar'
+const editpass= 'http://localhost:3000/api/editpass'
 
 function img_select(callback) {
       return new Promise((resolve, reject) => {
@@ -76,6 +77,11 @@ const name_rigister = document.querySelector('#name_rigister')
 const lastname_res = document.querySelector('#lastname_res')
 const phone_res = document.querySelector('#phone_res')
 const email_res = document.querySelector('#email_res')
+
+const password_updatapass = document.querySelector('#password_updatapass')
+const password_editpass1 = document.querySelector('#password_editpass1')
+const confirm_updatapass = document.querySelector('#confirm_updatapass')
+
 function btn_editprofile() {
       // Capture values from form elements
       newName = editname.value;
@@ -108,7 +114,12 @@ function btn_editprofile() {
 }
 btn_confirm.onclick = btn_editprofile;
 
-
+function btn_editpassword(){
+      password = password_updatapass.value
+      
+      editpassword(password)
+}
+confirm_updatapass.onclick = btn_editpassword;
 // Call img_select with a callback function
 
 
@@ -170,6 +181,7 @@ async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
                               // Handle success as needed
                               // $("div[class^=overlay_pass").addClass('open');
                               $("div[class^=overlay_edit]").removeClass('open');
+                              location.reload();
                         } else {
                               console.log("ไม่ผ่าน", response.status, response.statusText);
                         }
@@ -186,6 +198,61 @@ async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
       }
 }
 
+async function editpassword(a) {
+      try {
+            const password = a
+            // const password1 = password_editpass1.value
+            // if (password !== password1) {
+            //       alert("รหัสไม่ถูกต้อง");
+            //       return;
+            //   }
+            //   alert("ถูกต้อง");
+
+            $.ajax({
+                  type: 'post',
+                  url: editpass,
+                  contentType: "application/json",
+                  headers: { "Authorization": localStorage.getItem('token') },
+                  data: JSON.stringify
+                        ({
+                              password: password,
+                        }),
+                  success: function (response) {
+                        if (response) {
+                              c = response.data;
+                              console.log("ผ่าน");
+                              // Handle success as needed
+                              $("div[class^=overlay_updatapass]").removeClass('open');
+                              location.reload();
+                        } else {
+                              console.log("ไม่ผ่าน", response.status, response.statusText);
+                        }
+                  },
+
+                  error: function (err) {
+                        if (err) {
+                              console.log("ไม่ผ่าน", err)
+                        }
+                  }
+            })
+      } catch (err) {
+            console.log(err)
+      }
+}
+
+
+function ss() {
+      $("#edit_password").click(function () {
+          $(".overlay-content").hide();
+          $("#overlay").hide();
+      });
+  }
+  function aa() {
+      $("#openOverlayBtn").click(function () {
+          $(".overlay-content").show();
+          $("#overlay").show();
+      });
+  }
 
 // async function insert_car(a, b, c, d, e) {
 //       try {
@@ -291,6 +358,23 @@ $(".prev_personal").on("click", function () {
 
       if (direction === "next1") {
             $("div[class^=overlay_personal]").removeClass('open');
+      }
+});
+
+$(".edit_password").on("click", function () {
+
+      var direction = "next1";
+
+      if (direction === "next1") {
+            $("div[class^=overlay_updatapass]").addClass('open');
+      }
+});
+$(".updatapass").on("click", function () {
+
+      var direction = "next1";
+
+      if (direction === "next1") {
+            $("div[class^=overlay_updatapass]").removeClass('open');
       }
 });
 
@@ -463,37 +547,6 @@ document.addEventListener('DOMContentLoaded', function () {
             input.value = phoneNumber;
       }
 });
-
-// document.addEventListener('DOMContentLoaded', function () {
-//       // Get the input element
-//       var phoneInput1 = document.getElementById('edit_Student_ID');
-
-//       // Attach input event listener to format phone number
-//       phoneInput1.addEventListener('input', function () {
-//             formatPhoneNumber(this);
-//       });
-
-//       function formatPhoneNumber(input) {
-//             // Remove non-numeric characters
-//             var phoneNumber1 = input.value.replace(/\D/g, '');
-
-//             // Apply the phone number format
-//             if (phoneNumber1.length > 0) {
-//                   if (phoneNumber1.length <= 12) {
-//                         phoneNumber1 = phoneNumber1.replace(/(\d{1,3})/, '$1');
-//                   } else if (phoneNumber1.length <= 13) {
-//                         phoneNumber1 = phoneNumber1.replace(/(\d{1,3})(\d{1,3})(\d{1,6})(\d{1,1})/, '$1$2$3-$4');
-//                   } else if (phoneNumber1.length > 13) {
-//                         phoneNumber1 = phoneNumber1.slice(0, 13);
-//                         phoneNumber1 = phoneNumber1.replace(/(\d{1,3})(\d{1,3})(\d{1,6})(\d{1,1})/, '$1$2$3-$4');
-//                   }
-//             }
-
-//             // Update the input value
-//             input.value = phoneNumber1;
-//       }
-// });
-
 
 function logout() {
       window.location.href = '/login.html';
