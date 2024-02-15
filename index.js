@@ -4,57 +4,69 @@
 const apiupdateprofile = 'http://localhost:3000/api/updateprofile'
 const apitypecar = 'http://localhost:3000/api/typecar'
 const editpass= 'http://localhost:3000/api/editpass'
+let btn_img1; // ประกาศ btn_img1 เป็นตัวแปรที่เป็น global
 
-function img_select(callback) {
-      return new Promise((resolve, reject) => {
-            const inputFile1 = document.querySelector("#picture__input1");
-            const pictureImage1 = document.querySelector(".picture__image1");
-            const pictureImageTxt1 = "Select file";
-            pictureImage1.innerHTML = pictureImageTxt1;
+function custom_img_select(callback) {
+    const custom_inputFile1 = document.querySelector("#custom_picture__input1");
+    const custom_pictureImage1 = document.querySelector(".custom_picture__image1");
+    const custom_img_pic1 = document.querySelector(".custom_img_pic1");
+    const custom_pictureImageTxt1 = "เลือกไฟล์";
 
-            inputFile1.addEventListener("change", function (e) {
-                  const inputTarget = e.target;
-                  const file = inputTarget.files[0];
+    custom_inputFile1.addEventListener("change", function (e) {
+        const custom_file1 = e.target.files[0];
 
-                  if (file) {
-                        const reader = new FileReader();
+        if (custom_file1) {
+            const custom_reader1 = new FileReader();
 
-                        reader.addEventListener("load", function (e) {
-                              const readerTarget = e.target;
+            custom_reader1.addEventListener("load", function (e) {
+                const custom_img1 = document.createElement("img");
+                custom_img1.src = e.target.result;
+                custom_img1.classList.add("custom_picture__img");
+                custom_pictureImage1.innerHTML = "";
+                custom_pictureImage1.appendChild(custom_img1);
 
-                              const img = document.createElement("img");
-                              img.src = readerTarget.result;
-                              img.classList.add("picture__img");
-                              var sdf = document.querySelector('.img_pic1');
+                // ซ่อน element ที่มี class custom_img_pic1
+                custom_img_pic1.style.display = "none";
 
-                              sdf.classList.add('img_pic1', 'new');
-                              pictureImage1.innerHTML = "";
-                              pictureImage1.appendChild(img);
+                const custom_base64String = e.target.result.split(',')[1];
+                console.log('Custom Base64 String:', custom_base64String);
 
-                              base64String = readerTarget.result.split(',')[1];
-                              console.log('Base64 String:', base64String);
+                btn_img1 = custom_base64String; // กำหนดค่าให้กับตัวแปร btn_img1
 
-                              if (typeof callback === 'function') {
-                                    callback(base64String);
-                                    resolve(inputFile1);
-                              }
-                        });
-
-                        reader.readAsDataURL(file);
-                  } else {
-                        pictureImage1.innerHTML = pictureImageTxt1;
-                  }
+                if (typeof callback === 'function') {
+                    callback(custom_base64String);
+                }
             });
-      });
+
+            custom_reader1.readAsDataURL(custom_file1);
+
+            // เรียกใช้ click ที่ label เพื่อจำลองการคลิก
+            document.getElementById('custom_picture1').click();
+        } else {
+            custom_pictureImage1.innerHTML = custom_pictureImageTxt1;
+
+            // แสดง element ที่มี class custom_img_pic1
+            custom_img_pic1.style.display = "block";
+
+            btn_img1 = undefined; // รีเซ็ต btn_img1 เมื่อไม่มีการเลือกไฟล์
+        }
+    });
+
+    // ป้องกันพฤติกรรมปกติของ label เพื่อหลีกเลี่ยงปัญหาการคลิกซ้ำ
+    document.getElementById('custom_picture1').addEventListener('dblclick', function (e) {
+        e.preventDefault();
+    });
 }
 
-// Usage
-let base64String;
+// การใช้งาน
+custom_img_select(function (custom_base64StringResult) {
+    // ตอนนี้ custom_base64String พร้อมใช้งาน
+    const custom_base64String = custom_base64StringResult;
+    console.log('Custom Selected Image Base64 String:', custom_base64String);
+    // เข้าถึง btn_img1 ที่นี่หากต้องการ
+    console.log('btn_img1:', btn_img1);
+});
 
-img_select(function (base64StringResult) {
-      // Now base64String is available
-      base64String = base64StringResult;
-})
 
 
 const editname = document.querySelector('#edit_name')
@@ -100,8 +112,7 @@ function btn_editprofile() {
       // console.log(gander_e);
 
       // Capture the Base64 string from the img_select function
-      btn_img1 = base64String
-      console.log(btn_img1);
+      btn_img1
 
       btn_nunmber = edit_nunmber.value
       btn_nunmber1 = edit_nunmber1.value
@@ -141,104 +152,75 @@ confirm_updatapass.onclick = btn_editpassword;
 // };
 async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
       try {
-            var newName = a
-            var newLastName = b
-            var newPhone = d
-            var dt_date = e
-            var gander_e = f
-            var btn_img1 = g
-            var btn_nunmber1 = h
-            var btn_nunmber2 = i
-            var btn_nunmber3 = j
-            var cartype = k
-            var colorcar = l
-
-
-
-            $.ajax({
-                  type: 'post',
-                  url: apiupdateprofile,
-                  contentType: "application/json",
-                  headers: { "Authorization": localStorage.getItem('token') },
-                  data: JSON.stringify
-                        ({
-                              newName: newName,
-                              newLastName: newLastName,
-                              newPhone: newPhone,
-                              dt_date: dt_date,
-                              gander_e: gander_e,
-                              btn_img1: btn_img1,
-                              carint: btn_nunmber1,
-                              cartext: btn_nunmber2,
-                              carcounty: btn_nunmber3,
-                              cartype: cartype,
-                              carcolor: colorcar
-                        }),
-                  success: function (response) {
-                        if (response) {
-                              c = response.data;
-                              console.log("ผ่าน");
-                              // Handle success as needed
-                              // $("div[class^=overlay_pass").addClass('open');
-                              $("div[class^=overlay_edit]").removeClass('open');
-                              location.reload();
-                        } else {
-                              console.log("ไม่ผ่าน", response.status, response.statusText);
-                        }
-                  },
-
-                  error: function (err) {
-                        if (err) {
-                              console.log("ไม่ผ่าน", err)
-                        }
+          var newName = a;
+          var newLastName = b;
+          var newPhone = d;
+          var dt_date = e ? formatDate(new Date(e)) : null;
+          var gander_e = f;
+          var btn_img1 = g;
+          var btn_nunmber1 = h;
+          var btn_nunmber2 = i;
+          var btn_nunmber3 = j;
+          var cartype = k;
+          var colorcar = l;
+  
+          $.ajax({
+              type: 'post',
+              url: apiupdateprofile,
+              contentType: "application/json",
+              headers: { "Authorization": localStorage.getItem('token') },
+              data: JSON.stringify({
+                  newName: newName,
+                  newLastName: newLastName,
+                  newPhone: newPhone,
+                  dt_date: dt_date,
+                  gander_e: gander_e,
+                  btn_img1: btn_img1,
+                  carint: btn_nunmber1,
+                  cartext: btn_nunmber2,
+                  carcounty: btn_nunmber3,
+                  cartype: cartype,
+                  carcolor: colorcar
+              }),
+              success: function (response) {
+                  if (response) {
+                      c = response.data;
+                      console.log("ผ่าน");
+                      // Handle success as needed
+                      // $("div[class^=overlay_pass").addClass('open');
+                      $("div[class^=overlay_edit]").removeClass('open');
+                  } else {
+                      console.log("ไม่ผ่าน", response.status, response.statusText);
                   }
-            })
-      } catch (err) {
-            console.log(err)
-      }
-}
-
-async function editpassword(a) {
-      try {
-            const password = a
-            // const password1 = password_editpass1.value
-            // if (password !== password1) {
-            //       alert("รหัสไม่ถูกต้อง");
-            //       return;
-            //   }
-            //   alert("ถูกต้อง");
-
-            $.ajax({
-                  type: 'post',
-                  url: editpass,
-                  contentType: "application/json",
-                  headers: { "Authorization": localStorage.getItem('token') },
-                  data: JSON.stringify
-                        ({
-                              password: password,
-                        }),
-                  success: function (response) {
-                        if (response) {
-                              c = response.data;
-                              console.log("ผ่าน");
-                              // Handle success as needed
-                              $("div[class^=overlay_updatapass]").removeClass('open');
-                              location.reload();
-                        } else {
-                              console.log("ไม่ผ่าน", response.status, response.statusText);
-                        }
-                  },
-
-                  error: function (err) {
-                        if (err) {
-                              console.log("ไม่ผ่าน", err)
-                        }
+              },
+  
+              error: function (err) {
+                  if (err) {
+                      console.log("ไม่ผ่าน", err);
                   }
-            })
+              }
+          });
       } catch (err) {
-            console.log(err)
+          console.log(err);
       }
-}
+  }
+  
+  function formatDate(date) {
+      if (!date || date.trim() === '') {
+          return null;
+      }
+      
+      var day = date.getDate();
+      var month = date.getMonth() + 1;
+      var year = date.getFullYear();
+  
+      // Add leading zeros if needed
+      day = day < 10 ? '0' + day : day;
+      month = month < 10 ? '0' + month : month;
+  
+      return day + '/' + month + '/' + year;
+  }
+  
 
 
 function ss() {
@@ -398,70 +380,57 @@ document.addEventListener('DOMContentLoaded', function () {
             }
       });
 });
-const inputFile = document.querySelector("#picture__input");
-const pictureImage = document.querySelector(".picture__image");
-const pictureImageTxt = "Select file";
-pictureImage.innerHTML = pictureImageTxt;
 
-inputFile.addEventListener("change", function (e) {
-      const inputTarget = e.target;
-      const file = inputTarget.files[0];
-
-      if (file) {
-            const reader = new FileReader();
-
-            reader.addEventListener("load", function (e) {
-                  const readerTarget = e.target;
-
-                  const img = document.createElement("img");
-                  img.src = readerTarget.result;
-                  img.classList.add("picture__img");
-                  var sdf = document.querySelector('.img_pic');
-
-                  // Use classList.add to add one or more classes
-                  sdf.classList.add('img_pic', 'new');
-                  pictureImage.innerHTML = "";
-                  pictureImage.appendChild(img);
-            });
-
-            reader.readAsDataURL(file);
-      } else {
+function img_select(callback_11) {
+      return new Promise((resolve, reject) => {
+            const inputFile = document.querySelector("#picture__input");
+            const pictureImage = document.querySelector(".picture__image");
+            const pictureImageTxt = "Select file";
             pictureImage.innerHTML = pictureImageTxt;
-      }
-});
 
-const inputFile1 = document.querySelector("#picture__input1");
-const pictureImage1 = document.querySelector(".picture__image1");
-const pictureImageTxt1 = "Select file";
-pictureImage1.innerHTML = pictureImageTxt1;
+            inputFile.addEventListener("change", function (e) {
+                  const inputTarget = e.target;
+                  const file = inputTarget.files[0];
 
-inputFile1.addEventListener("change", function (e) {
-      const inputTarget = e.target;
-      const file = inputTarget.files[0];
+                  if (file) {
+                        const reader = new FileReader();
 
-      if (file) {
-            const reader = new FileReader();
+                        reader.addEventListener("load", function (e) {
+                              const readerTarget = e.target;
 
-            reader.addEventListener("load", function (e) {
-                  const readerTarget = e.target;
+                              const img = document.createElement("img");
+                              img.src = readerTarget.result;
+                              img.classList.add("picture__img");
+                              var sdf = document.querySelector('.img_pic');
 
-                  const img = document.createElement("img");
-                  img.src = readerTarget.result;
-                  img.classList.add("picture__img");
-                  var sdf = document.querySelector('.img_pic1');
+                              sdf.classList.add('img_pic', 'new');
+                              pictureImage.innerHTML = "";
+                              pictureImage.appendChild(img);
 
-                  // Use classList.add to add one or more classes
-                  sdf.classList.add('img_pic1', 'new');
-                  pictureImage1.innerHTML = "";
-                  pictureImage1.appendChild(img);
+                              base64 = readerTarget.result.split(',')[1];
+                              console.log('Base64 String:', base64);
+
+                              if (typeof callback_11 === 'function') {
+                                    callback_11(base64);
+                                    resolve(inputFile);
+                              }
+                        });
+
+                        reader.readAsDataURL(file);
+                  } else {
+                        pictureImage.innerHTML = pictureImageTxt;
+                  }
             });
+      });
+}
 
-            reader.readAsDataURL(file);
-      } else {
-            pictureImage1.innerHTML = pictureImageTxt;
-      }
-});
+// Usage
+let base64;
 
+img_select(function (base64ss) {
+      // Now base64String is available
+      base64 = base64ss;
+})
 function triggerFileInput() {
       document.querySelector('#camaraPic').click();
 
@@ -482,7 +451,8 @@ function displaySelectedFile(input) {
                   // Convert file to base64
                   const reader = new FileReader();
                   reader.onloadend = function () {
-                        const base64String = reader.result;
+                        let base64String = reader.result;
+                        base64String = base64String.split(',')[1]
                         // Do something with the base64 string (e.g., send it to the server)
                         alert('Base64 representation: ' + base64String);
                         console.log(base64String)
@@ -669,8 +639,6 @@ $.ajax({
             if (data && data.data) {
                   const profileData = data.data[0];
                   const carData = data.data[1];
-                  console.log(carData) // Assuming car data is in the second element
-
                   const Profileimg = document.querySelector('.container-profile_personal');
                   Profileimg.innerHTML += `<div class="pic-profile-personal">
                   <div class="pic-profile1">
@@ -683,7 +651,7 @@ $.ajax({
               <div style="margin-top: 58px;">
                   <div class="detall-profile_personal">
                       <div class="detall-profile-per">
-                          <div style="color: #ffffff;">
+                          <div id="img_dr" class="img_dr" style="color: #ffffff;">
                               <p>ชื่อ :${profileData.firstname}</p>
                               <p>นามสกุล :${profileData.lastname}</p>
                               <p>รหัสนักศึกษา :${profileData.student_id}</p>
@@ -693,7 +661,16 @@ $.ajax({
                               <p>เพศ :${profileData.gander}</p>
                               <p>เลขป้ายทะเบียน :${carData.car_text}/${carData.car_number}/${carData.car_country}</p>
                               <p>ประเภทรถ :${carData.cartype}</p>
-                              <p>สีรถ :${carData.carcolor}</p>
+                              <p style="padding-bottom: 30px;">สีรถ :${carData.carcolor}</p>
+                              <div style="width: 100%;
+                              height: 25dvh;
+                              background-color: aqua;
+                              border-radius: 40px ; border: 1px solid;">
+                              <div id = "img-picdr" style="
+                              width: 100%;
+                              height: 100%;
+                          "></div>
+                              </div>
                           </div>
                       </div>
                   </div>
@@ -727,9 +704,93 @@ $.ajax({
                   if (birthdayParagraph) {
                         birthdayParagraph.innerHTML = `วัน/เดือน/ปีเกิด: ${formattedDate}`;
                   }
+
+
+                  const image = document.getElementById('img-picdr');
+                  image.innerHTML = '';
+
+                  function convertBase64ToImage(base64Data) {
+                        var image = document.createElement('img');
+                        image.src = "data:image/jpeg;base64," + base64Data;
+                        return image;
+                  }
+
+                  if (profileData.driving_license) {
+                        var imageElement = convertBase64ToImage(profileData.driving_license);
+                        image.appendChild(imageElement);
+                  } else {
+                        console.log('Profile image not available');
+                  }
             }
       },
       error: function (err) {
             console.log(err);
       }
 });
+
+const sl_driving_license =  document.querySelector('#select_driving_license')
+
+function img_driving_license(){
+      let pic_driving = base64
+      driving_licenseimg(pic_driving)
+}
+
+
+sl_driving_license.onclick = img_driving_license
+
+async function driving_licenseimg(a) {
+      try {
+          const imgdrl = a;
+  
+          const response = await $.ajax({
+              type: 'post',
+              url: 'http://localhost:3000/api/driving_img',
+              contentType: "application/json",
+              headers: { "Authorization": localStorage.getItem('token') },
+              data: JSON.stringify({
+                  driving_license: imgdrl
+              }),
+          });
+  
+          if (response.success) {
+              console.log("Driving license updated successfully");
+              // Handle success as needed
+              // $("div[class^=overlay_pass").addClass('open');
+              $("div[class^=overlay_img]").removeClass('open');
+          } else {
+              console.log("Error:", response.message);
+              // Handle error, show appropriate message to the user
+          }
+      } catch (err) {
+          console.log("Error:", err);
+          // Handle unexpected errors
+      }
+  }
+
+
+  $.ajax({
+      url: 'http://localhost:3000/api/Get-Profile',
+      type: 'POST',
+      dataType: 'json',
+      contentType: "application/json",
+      headers: { "Authorization": localStorage.getItem('token') },
+      success: function (data) {
+         if (data && data.data) {
+            const profileData = data.data[0];
+            const carData = data.data[1];
+   
+            // Update form fields with received data
+            $('#edit_name').val(profileData.firstname);
+            $('#edit_last').val(profileData.lastname);
+            $('#edit_phone').val(profileData.phone);
+            $('#edit_date').val(profileData.birthday);
+            $('#gander_edit').val(profileData.gander);
+            $('#edit_nunmber').val(carData.car_number);
+            $('#edit_nunmber1').val(carData.car_text);
+            $('#edit_nunmber2').val(carData.car_country);
+         }
+      },
+      error: function (err) {
+         console.log(err);
+      }
+   });
