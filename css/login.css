@@ -169,7 +169,9 @@
 .overlay_supp,
 .overlay_personal,
 .overlay_editemail,
-.overlay_passedit {
+.overlay_passedit, 
+.overlay_updatapass
+{
     display: none;
     position: fixed;
     width: 100vw;
@@ -188,7 +190,9 @@
 .overlay_supp.open,
 .overlay_personal.open,
 .overlay_editemail.open,
-.overlay_passedit.open {
+.overlay_passedit.open, 
+.overlay_updatapass.open
+{
     display: flex;
     flex-direction: column;
 }
@@ -286,13 +290,14 @@
 .pic-profile {
     width: 80px;
     height: 80px;
-    background-color: white;
     border-radius: 50px;
     position: absolute;
     top: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url('/img/logo1.png'); /* Replace with the path to your image */
+    background-size: cover; /* Adjust as needed */
 
 }
 .pic-profile img{
@@ -363,10 +368,11 @@
 .pic-profile-show {
     width: 80px;
     height: 80px;
-    background-color: brown;
     position: absolute;
     top: 22%;
     border-radius: 50px;
+    background-image: url('/img/logo1.png'); /* Replace with the path to your image */
+    background-size: cover; 
 }
 .pic-profile-show img{
     width: 100%;
@@ -451,10 +457,11 @@ select {
 .pic-profile1 {
     width: 100px;
     height: 100px;
-    background-color: rgb(123, 154, 238);
     border-radius: 50px;
     position: absolute;
     border: 3px solid #C7C7C7;
+    background-image: url('/img/logo1.png'); /* Replace with the path to your image */
+    background-size: cover; 
 
 }
 
@@ -569,4 +576,70 @@ select {
 
 .invalid .error{
     display: flex;
+}
+.load-icon.show {
+    display: block;
+    
+}
+/* Load Icon */
+.load-icon {
+	width: 100px;
+	height: 20px;
+    z-index: 10;
+}
+.load-icon span {
+	position: absolute;
+	display: inline-block;
+    background: rgba(138, 47, 255, 1);
+	width: 20%;
+	height: 100%;
+	border-radius: 100px;
+}
+.load-icon span:nth-of-type(1) {
+	left: 0;
+}
+.load-icon span:nth-of-type(2) {
+	left: 40%;
+}
+.load-icon span:nth-of-type(3) {
+	right: 0;
+}
+
+/* Animation */
+.load-icon span {
+	animation-name: loading;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-fill-mode: both;
+}
+.load-icon span:nth-of-type(2) {
+	animation-delay: .2s;
+}
+.load-icon span:nth-of-type(3) {
+	animation-delay: .4s;
+}
+
+/* Keyframes */
+@keyframes loading {
+	0% { opacity: 1; }
+	50% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+/* This isn't needed, just styling pen. */
+body {
+  font-family: sans-serif;
+  background: #ddd;
+}
+.center {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.blur-background {
+    filter: blur(0.8px);
+     /* Adjust the blur intensity as needed */
 }

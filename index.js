@@ -3,67 +3,68 @@
 
 const apiupdateprofile = 'http://localhost:3000/api/updateprofile'
 const apitypecar = 'http://localhost:3000/api/typecar'
+const editpass = 'http://localhost:3000/api/editpass'
 let btn_img1; // ประกาศ btn_img1 เป็นตัวแปรที่เป็น global
 
 function custom_img_select(callback) {
-    const custom_inputFile1 = document.querySelector("#custom_picture__input1");
-    const custom_pictureImage1 = document.querySelector(".custom_picture__image1");
-    const custom_img_pic1 = document.querySelector(".custom_img_pic1");
-    const custom_pictureImageTxt1 = "เลือกไฟล์";
+      const custom_inputFile1 = document.querySelector("#custom_picture__input1");
+      const custom_pictureImage1 = document.querySelector(".custom_picture__image1");
+      const custom_img_pic1 = document.querySelector(".custom_img_pic1");
+      const custom_pictureImageTxt1 = "เลือกไฟล์";
 
-    custom_inputFile1.addEventListener("change", function (e) {
-        const custom_file1 = e.target.files[0];
+      custom_inputFile1.addEventListener("change", function (e) {
+            const custom_file1 = e.target.files[0];
 
-        if (custom_file1) {
-            const custom_reader1 = new FileReader();
+            if (custom_file1) {
+                  const custom_reader1 = new FileReader();
 
-            custom_reader1.addEventListener("load", function (e) {
-                const custom_img1 = document.createElement("img");
-                custom_img1.src = e.target.result;
-                custom_img1.classList.add("custom_picture__img");
-                custom_pictureImage1.innerHTML = "";
-                custom_pictureImage1.appendChild(custom_img1);
+                  custom_reader1.addEventListener("load", function (e) {
+                        const custom_img1 = document.createElement("img");
+                        custom_img1.src = e.target.result;
+                        custom_img1.classList.add("custom_picture__img");
+                        custom_pictureImage1.innerHTML = "";
+                        custom_pictureImage1.appendChild(custom_img1);
 
-                // ซ่อน element ที่มี class custom_img_pic1
-                custom_img_pic1.style.display = "none";
+                        // ซ่อน element ที่มี class custom_img_pic1
+                        custom_img_pic1.style.display = "none";
 
-                const custom_base64String = e.target.result.split(',')[1];
-                console.log('Custom Base64 String:', custom_base64String);
+                        const custom_base64String = e.target.result.split(',')[1];
+                        console.log('Custom Base64 String:', custom_base64String);
 
-                btn_img1 = custom_base64String; // กำหนดค่าให้กับตัวแปร btn_img1
+                        btn_img1 = custom_base64String; // กำหนดค่าให้กับตัวแปร btn_img1
 
-                if (typeof callback === 'function') {
-                    callback(custom_base64String);
-                }
-            });
+                        if (typeof callback === 'function') {
+                              callback(custom_base64String);
+                        }
+                  });
 
-            custom_reader1.readAsDataURL(custom_file1);
+                  custom_reader1.readAsDataURL(custom_file1);
 
-            // เรียกใช้ click ที่ label เพื่อจำลองการคลิก
-            document.getElementById('custom_picture1').click();
-        } else {
-            custom_pictureImage1.innerHTML = custom_pictureImageTxt1;
+                  // เรียกใช้ click ที่ label เพื่อจำลองการคลิก
+                  document.getElementById('custom_picture1').click();
+            } else {
+                  custom_pictureImage1.innerHTML = custom_pictureImageTxt1;
 
-            // แสดง element ที่มี class custom_img_pic1
-            custom_img_pic1.style.display = "block";
+                  // แสดง element ที่มี class custom_img_pic1
+                  custom_img_pic1.style.display = "block";
 
-            btn_img1 = undefined; // รีเซ็ต btn_img1 เมื่อไม่มีการเลือกไฟล์
-        }
-    });
+                  btn_img1 = undefined; // รีเซ็ต btn_img1 เมื่อไม่มีการเลือกไฟล์
+            }
+      });
 
-    // ป้องกันพฤติกรรมปกติของ label เพื่อหลีกเลี่ยงปัญหาการคลิกซ้ำ
-    document.getElementById('custom_picture1').addEventListener('dblclick', function (e) {
-        e.preventDefault();
-    });
+      // ป้องกันพฤติกรรมปกติของ label เพื่อหลีกเลี่ยงปัญหาการคลิกซ้ำ
+      document.getElementById('custom_picture1').addEventListener('dblclick', function (e) {
+            e.preventDefault();
+      });
 }
 
 // การใช้งาน
 custom_img_select(function (custom_base64StringResult) {
-    // ตอนนี้ custom_base64String พร้อมใช้งาน
-    const custom_base64String = custom_base64StringResult;
-    console.log('Custom Selected Image Base64 String:', custom_base64String);
-    // เข้าถึง btn_img1 ที่นี่หากต้องการ
-    console.log('btn_img1:', btn_img1);
+      // ตอนนี้ custom_base64String พร้อมใช้งาน
+      const custom_base64String = custom_base64StringResult;
+      console.log('Custom Selected Image Base64 String:', custom_base64String);
+      // เข้าถึง btn_img1 ที่นี่หากต้องการ
+      console.log('btn_img1:', btn_img1);
 });
 
 
@@ -88,6 +89,11 @@ const name_rigister = document.querySelector('#name_rigister')
 const lastname_res = document.querySelector('#lastname_res')
 const phone_res = document.querySelector('#phone_res')
 const email_res = document.querySelector('#email_res')
+
+const password_updatapass = document.querySelector('#password_updatapass')
+const password_editpass1 = document.querySelector('#password_editpass1')
+const confirm_updatapass = document.querySelector('#confirm_updatapass')
+
 function btn_editprofile() {
       // Capture values from form elements
       newName = editname.value;
@@ -96,16 +102,6 @@ function btn_editprofile() {
       newPhone = edit_num.value;
       dt_date = edit_date1.value;
       gander_e = gander_edit.value;
-
-      // Log the captured values to the console
-      // console.log(newName);
-      // console.log(newLastName);
-      // console.log(newStudentID);
-      // console.log(newPhone);
-      // console.log(dt_date);
-      // console.log(gander_e);
-
-      // Capture the Base64 string from the img_select function
       btn_img1
 
       btn_nunmber = edit_nunmber.value
@@ -113,104 +109,175 @@ function btn_editprofile() {
       btn_nunmber2 = edit_nunmber2.value
       car_type = type_res.value
       color_car = colorcar.value
+      $(".overlay_edit .load-icon").show();
 
       // Call the updateprofile function with captured values
       updateprofile(newName, newLastName, newPhone, dt_date, gander_e, btn_img1, btn_nunmber, btn_nunmber1, btn_nunmber2, car_type, color_car);
 }
 btn_confirm.onclick = btn_editprofile;
 
+function btn_editpassword() {
+      password = password_updatapass.value
 
-// Call img_select with a callback function
+      editpassword(password)
+}
+confirm_updatapass.onclick = btn_editpassword;
 
 
-// function btn_carlogin() {
-//       car_type = type_res.value
-//       color_car = colorcar.value
-//       btn_nunmber = edit_nunmber.value
-//       btn_nunmber1 = edit_nunmber1.value
-//       btn_nunmber2 = edit_nunmber2.value
-//       insert_car(car_type, color_car, btn_nunmber, btn_nunmber1, btn_nunmber2)
-// }
-// function btn_confirm_edit(){
+function loading_edit() {
+      // Attach a click event handler to the element with ID "btn_confirm"
+      $("#btn_confirm").click(function () {
+            // Show loading overlay when button is clicked
+            // Set a timeout to hide the loading overlay after 2000 milliseconds (2 seconds)
+            setTimeout(function () {
+                  document.getElementById('loadingOverlay1').style.display = 'none';
+            }, 2000);
 
-//       btn_confirm.onclick = btn_carlogin() = btn_editprofile()
-// }
-// btn_confirm.onclick = function () {
-//       btn_carlogin();
-//       btn_editprofile();
-// };
+            // Display the loading overlay initially by setting its display property to 'flex'
+            document.getElementById('loadingOverlay1').style.display = 'flex';
+      });
+}
+
 async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
       try {
-          var newName = a;
-          var newLastName = b;
-          var newPhone = d;
-          var dt_date = e ? formatDate(new Date(e)) : null;
-          var gander_e = f;
-          var btn_img1 = g;
-          var btn_nunmber1 = h;
-          var btn_nunmber2 = i;
-          var btn_nunmber3 = j;
-          var cartype = k;
-          var colorcar = l;
-  
-          $.ajax({
-              type: 'post',
-              url: apiupdateprofile,
-              contentType: "application/json",
-              headers: { "Authorization": localStorage.getItem('token') },
-              data: JSON.stringify({
-                  newName: newName,
-                  newLastName: newLastName,
-                  newPhone: newPhone,
-                  dt_date: dt_date,
-                  gander_e: gander_e,
-                  btn_img1: btn_img1,
-                  carint: btn_nunmber1,
-                  cartext: btn_nunmber2,
-                  carcounty: btn_nunmber3,
-                  cartype: cartype,
-                  carcolor: colorcar
-              }),
-              success: function (response) {
-                  if (response) {
-                      c = response.data;
-                      console.log("ผ่าน");
-                      // Handle success as needed
-                      // $("div[class^=overlay_pass").addClass('open');
-                      $("div[class^=overlay_edit]").removeClass('open');
-                  } else {
-                      console.log("ไม่ผ่าน", response.status, response.statusText);
+            var newName = a;
+            var newLastName = b;
+            var newPhone = d;
+            var dt_date = e ? formatDate(new Date(e)) : null;
+            var gander_e = f;
+            var btn_img1 = g;
+            var btn_nunmber1 = h;
+            var btn_nunmber2 = i;
+            var btn_nunmber3 = j;
+            var cartype = k;
+            var colorcar = l;
+
+            // Show the loading icon
+            $(".overlay_edit .load-icon").addClass('show');
+
+            $("body").addClass('blur-background');
+
+            await $.ajax({
+                  type: 'post',
+                  url: apiupdateprofile,
+                  contentType: "application/json",
+                  headers: { "Authorization": localStorage.getItem('token') },
+                  data: JSON.stringify({
+                        newName: newName,
+                        newLastName: newLastName,
+                        newPhone: newPhone,
+                        dt_date: dt_date,
+                        gander_e: gander_e,
+                        btn_img1: btn_img1,
+                        carint: btn_nunmber1,
+                        cartext: btn_nunmber2,
+                        carcounty: btn_nunmber3,
+                        cartype: cartype,
+                        carcolor: colorcar
+                  }),
+                  success: function (response) {
+                        if (response) {
+                              c = response.data;
+
+                              // Delay the removal of the overlay by approximately 3 seconds
+                              setTimeout(function () {
+                                    // Remove the loading icon
+                                    $("body").removeClass('blur-background');
+
+                                    // Remove the loading icon
+                                    $(".overlay_edit .load-icon").removeClass('show');
+
+                                    // Remove the 'open' class from the overlay to hide it
+                                    $("div[class^=overlay_edit]").removeClass('open');
+                              }, 3000);
+                        } else {
+                              console.log("ไม่ผ่าน", response.status, response.statusText);
+                        }
+                  },
+                  error: function (err) {
+                        if (err) {
+                              console.log("ไม่ผ่าน", err);
+                        }
                   }
-              },
-  
-              error: function (err) {
-                  if (err) {
-                      console.log("ไม่ผ่าน", err);
-                  }
-              }
-          });
+            });
       } catch (err) {
-          console.log(err);
+            console.log(err);
       }
-  }
-  
-  function formatDate(date) {
-      if (!date || date.trim() === '') {
-          return null;
+}
+
+
+function formatDate(date) {
+      if (!date || !(date instanceof Date)) {
+            return null;
       }
-      
+
       var day = date.getDate();
       var month = date.getMonth() + 1;
+      var day = date.getDate();
       var year = date.getFullYear();
-  
-      // Add leading zeros if needed
-      day = day < 10 ? '0' + day : day;
-      month = month < 10 ? '0' + month : month;
-  
-      return day + '/' + month + '/' + year;
-  }
-  
 
+      // Add leading zeros if needed
+      month = month < 10 ? '0' + month : month;
+      day = day < 10 ? '0' + day : day;
+
+      return month + '/' + day + '/' + year;
+}
+
+async function editpassword(a) {
+      try {
+            const password = a
+            // const password1 = password_editpass1.value
+            // if (password !== password1) {
+            //       alert("รหัสไม่ถูกต้อง");
+            //       return;
+            //   }
+            //   alert("ถูกต้อง");
+
+            $.ajax({
+                  type: 'post',
+                  url: editpass,
+                  contentType: "application/json",
+                  headers: { "Authorization": localStorage.getItem('token') },
+                  data: JSON.stringify
+                        ({
+                              password: password,
+                        }),
+                  success: function (response) {
+                        if (response) {
+                              c = response.data;
+                              console.log("ผ่าน");
+                              // Handle success as needed
+                              $("div[class^=overlay_updatapass]").removeClass('open');
+                              location.reload();
+                        } else {
+                              console.log("ไม่ผ่าน", response.status, response.statusText);
+                        }
+                  },
+
+                  error: function (err) {
+                        if (err) {
+                              console.log("ไม่ผ่าน", err)
+                        }
+                  }
+            })
+      } catch (err) {
+            console.log(err)
+      }
+}
+
+
+function ss() {
+      $("#edit_password").click(function () {
+            $(".overlay-content").hide();
+            $("#overlay").hide();
+      });
+}
+function aa() {
+      $("#openOverlayBtn").click(function () {
+            $(".overlay-content").show();
+            $("#overlay").show();
+      });
+}
 
 // async function insert_car(a, b, c, d, e) {
 //       try {
@@ -316,6 +383,23 @@ $(".prev_personal").on("click", function () {
 
       if (direction === "next1") {
             $("div[class^=overlay_personal]").removeClass('open');
+      }
+});
+
+$(".edit_password").on("click", function () {
+
+      var direction = "next1";
+
+      if (direction === "next1") {
+            $("div[class^=overlay_updatapass]").addClass('open');
+      }
+});
+$(".updatapass").on("click", function () {
+
+      var direction = "next1";
+
+      if (direction === "next1") {
+            $("div[class^=overlay_updatapass]").removeClass('open');
       }
 });
 
@@ -492,37 +576,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 });
 
-// document.addEventListener('DOMContentLoaded', function () {
-//       // Get the input element
-//       var phoneInput1 = document.getElementById('edit_Student_ID');
-
-//       // Attach input event listener to format phone number
-//       phoneInput1.addEventListener('input', function () {
-//             formatPhoneNumber(this);
-//       });
-
-//       function formatPhoneNumber(input) {
-//             // Remove non-numeric characters
-//             var phoneNumber1 = input.value.replace(/\D/g, '');
-
-//             // Apply the phone number format
-//             if (phoneNumber1.length > 0) {
-//                   if (phoneNumber1.length <= 12) {
-//                         phoneNumber1 = phoneNumber1.replace(/(\d{1,3})/, '$1');
-//                   } else if (phoneNumber1.length <= 13) {
-//                         phoneNumber1 = phoneNumber1.replace(/(\d{1,3})(\d{1,3})(\d{1,6})(\d{1,1})/, '$1$2$3-$4');
-//                   } else if (phoneNumber1.length > 13) {
-//                         phoneNumber1 = phoneNumber1.slice(0, 13);
-//                         phoneNumber1 = phoneNumber1.replace(/(\d{1,3})(\d{1,3})(\d{1,6})(\d{1,1})/, '$1$2$3-$4');
-//                   }
-//             }
-
-//             // Update the input value
-//             input.value = phoneNumber1;
-//       }
-// });
-
-
 function logout() {
       window.location.href = '/login.html';
       localStorage.removeItem('token');
@@ -657,20 +710,19 @@ $.ajax({
                   <div class="detall-profile_personal">
                       <div class="detall-profile-per">
                           <div id="img_dr" class="img_dr" style="color: #ffffff;">
-                              <p>ชื่อ :${profileData.firstname}</p>
-                              <p>นามสกุล :${profileData.lastname}</p>
-                              <p>รหัสนักศึกษา :${profileData.student_id}</p>
-                              <p>อีเมล์ :${profileData.email}</p>
-                              <p>เบอร์โทรศัพท์ :${profileData.phone}</p>
-                              <p id="birthdayParagraph">วัน/เดือน/ปีเกิด :${profileData.birthday}</p>
-                              <p>เพศ :${profileData.gander}</p>
-                              <p>เลขป้ายทะเบียน :${carData.car_text}/${carData.car_number}/${carData.car_country}</p>
-                              <p>ประเภทรถ :${carData.cartype}</p>
-                              <p style="padding-bottom: 30px;">สีรถ :${carData.carcolor}</p>
+                              <p>ชื่อ : ${profileData.firstname}</p>
+                              <p>นามสกุล : ${profileData.lastname}</p>
+                              <p>รหัสนักศึกษา : ${profileData.student_id}</p>
+                              <p>อีเมล์ : ${profileData.email}</p>
+                              <p>เบอร์โทรศัพท์ : ${profileData.phone}</p>
+                              <p id="birthdayParagraph">วัน/เดือน/ปีเกิด : ${profileData.birthday}</p>
+                              <p>เพศ : ${profileData.gander}</p>
+                              <p>เลขป้ายทะเบียน : ${carData.car_text}/${carData.car_number}/${carData.car_country}</p>
+                              <p id = "cartype" >ประเภทรถ : ${carData.cartype}</p>
+                              <p id = "carcolor" style="padding-bottom: 30px;">สีรถ : ${carData.carcolor}</p>
                               <div style="width: 100%;
                               height: 25dvh;
-                              background-color: aqua;
-                              border-radius: 40px ; border: 1px solid;">
+                              border-radius: 40px ;">
                               <div id = "img-picdr" style="
                               width: 100%;
                               height: 100%;
@@ -696,19 +748,63 @@ $.ajax({
                   } else {
                         console.log('Profile image not available');
                   }
-                  const timestamp = new Date(profileData.birthday);
+                  // ตรวจสอบว่า profileData.birthday ไม่ใช่ค่า null หรือ undefined
+                  if (profileData.birthday) {
+                        // ทำการแปลง profileData.birthday เป็น timestamp
+                        const timestamp = new Date(profileData.birthday);
+                        const day = timestamp.getUTCDate();
+                        const month = timestamp.getUTCMonth() + 1;
+                        const year = timestamp.getUTCFullYear();
 
-                  // Extracting date components of the timestamp
-                  const day = timestamp.getUTCDate();
-                  const month = timestamp.getUTCMonth() + 1; // Note: Months are zero-based, so we add 1
-                  const year = timestamp.getUTCFullYear();
-                  const formattedDate = `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`;
+                        // ตรวจสอบค่า day, month, year ถ้าเป็น falsy ให้กำหนดค่า default เป็น "-"
+                        const formattedDate = day && month && year
+                              ? `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`
+                              : '-';
 
-                  // Displaying the formatted date in your HTML
-                  const birthdayParagraph = document.getElementById('birthdayParagraph'); // Replace 'birthdayParagraph' with the actual ID or class of your HTML element
-                  if (birthdayParagraph) {
-                        birthdayParagraph.innerHTML = `วัน/เดือน/ปีเกิด: ${formattedDate}`;
+                        // นำ formattedDate ไปใช้งานต่อ
+                        const birthdayParagraph = document.getElementById('birthdayParagraph');
+                        if (birthdayParagraph) {
+                              birthdayParagraph.innerHTML = `วัน/เดือน/ปีเกิด: ${formattedDate}`;
+                        }
+                  } else {
+                        // ถ้า profileData.birthday เป็นค่า null หรือ undefined ให้กำหนดค่า default เป็น "-"
+                        const birthdayParagraph = document.getElementById('birthdayParagraph');
+                        if (birthdayParagraph) {
+                              birthdayParagraph.innerHTML = '';
+                        }
                   }
+                  if (carData.cartype) {
+                        // ทำบางสิ่งเมื่อ carData.cartype ไม่ใช่ค่า null หรือ undefined
+                        // เช่น กำหนดค่าให้ HTML element
+                        const cartype = document.getElementById('cartype');
+                        if (cartype) {
+                              cartype.innerHTML = `ประเภทรถ: ${carData.cartype}`;
+                        }
+                  } else {
+                        // ทำบางสิ่งเมื่อ carData.cartype เป็นค่า null หรือ undefined
+                        // เช่น กำหนดค่า default หรือลบค่าใน HTML element
+                        const cartype = document.getElementById('cartype');
+                        if (cartype) {
+                              cartype.innerHTML = '';  // หรือกำหนดค่า default ตามที่ต้องการ
+                        }
+                  }
+                  if (carData.carcolor) {
+                        // ทำบางสิ่งเมื่อ carData.cartype ไม่ใช่ค่า null หรือ undefined
+                        // เช่น กำหนดค่าให้ HTML element
+                        const carcolor = document.getElementById('cartype');
+                        if (carcolor) {
+                              carcolor.innerHTML = `ประเภทรถ: ${carData.carcolor}`;
+                        }
+                  } else {
+                        // ทำบางสิ่งเมื่อ carData.cartype เป็นค่า null หรือ undefined
+                        // เช่น กำหนดค่า default หรือลบค่าใน HTML element
+                        const cartype = document.getElementById('cartype');
+                        if (cartype) {
+                              carcolor.innerHTML = '';  // หรือกำหนดค่า default ตามที่ต้องการ
+                        }
+                  }
+
+
 
 
                   const image = document.getElementById('img-picdr');
@@ -733,9 +829,9 @@ $.ajax({
       }
 });
 
-const sl_driving_license =  document.querySelector('#select_driving_license')
+const sl_driving_license = document.querySelector('#select_driving_license')
 
-function img_driving_license(){
+function img_driving_license() {
       let pic_driving = base64
       driving_licenseimg(pic_driving)
 }
@@ -745,57 +841,59 @@ sl_driving_license.onclick = img_driving_license
 
 async function driving_licenseimg(a) {
       try {
-          const imgdrl = a;
-  
-          const response = await $.ajax({
-              type: 'post',
-              url: 'http://localhost:3000/api/driving_img',
-              contentType: "application/json",
-              headers: { "Authorization": localStorage.getItem('token') },
-              data: JSON.stringify({
-                  driving_license: imgdrl
-              }),
-          });
-  
-          if (response.success) {
-              console.log("Driving license updated successfully");
-              // Handle success as needed
-              // $("div[class^=overlay_pass").addClass('open');
-              $("div[class^=overlay_img]").removeClass('open');
-          } else {
-              console.log("Error:", response.message);
-              // Handle error, show appropriate message to the user
-          }
+            const imgdrl = a;
+
+            const response = await $.ajax({
+                  type: 'post',
+                  url: 'http://localhost:3000/api/driving_img',
+                  contentType: "application/json",
+                  headers: { "Authorization": localStorage.getItem('token') },
+                  data: JSON.stringify({
+                        driving_license: imgdrl
+                  }),
+            });
+
+            if (response.success) {
+                  console.log("Driving license updated successfully");
+                  // Handle success as needed
+                  // $("div[class^=overlay_pass").addClass('open');
+                  $("div[class^=overlay_img]").removeClass('open');
+            } else {
+                  console.log("Error:", response.message);
+                  // Handle error, show appropriate message to the user
+            }
       } catch (err) {
-          console.log("Error:", err);
-          // Handle unexpected errors
+            console.log("Error:", err);
+            // Handle unexpected errors
       }
-  }
+}
 
 
-  $.ajax({
+$.ajax({
       url: 'http://localhost:3000/api/Get-Profile',
       type: 'POST',
       dataType: 'json',
       contentType: "application/json",
       headers: { "Authorization": localStorage.getItem('token') },
       success: function (data) {
-         if (data && data.data) {
-            const profileData = data.data[0];
-            const carData = data.data[1];
-   
-            // Update form fields with received data
-            $('#edit_name').val(profileData.firstname);
-            $('#edit_last').val(profileData.lastname);
-            $('#edit_phone').val(profileData.phone);
-            $('#edit_date').val(profileData.birthday);
-            $('#gander_edit').val(profileData.gander);
-            $('#edit_nunmber').val(carData.car_number);
-            $('#edit_nunmber1').val(carData.car_text);
-            $('#edit_nunmber2').val(carData.car_country);
-         }
+            if (data && data.data) {
+                  const profileData = data.data[0];
+                  const carData = data.data[1];
+
+                  // Update form fields with received data
+                  $('#edit_name').val(profileData.firstname);
+                  $('#edit_last').val(profileData.lastname);
+                  $('#edit_phone').val(profileData.phone);
+                  $('#edit_date').val(profileData.birthday);
+                  $('#gander_edit').val(profileData.gander);
+                  $('#edit_nunmber').val(carData.car_number);
+                  $('#edit_nunmber1').val(carData.car_text);
+                  $('#edit_nunmber2').val(carData.car_country);
+                  $('#type_res').val(carData.cartype);
+                  $('#color_car').val(carData.carcolor)
+            }
       },
       error: function (err) {
-         console.log(err);
+            console.log(err);
       }
-   });
+});
