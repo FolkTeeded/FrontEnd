@@ -118,25 +118,25 @@ btn_confirm.onclick = btn_editprofile;
 
 function btn_editpassword() {
       password = password_updatapass.value
-
+      // password1 = password_editpass1.value
       editpassword(password)
 }
 confirm_updatapass.onclick = btn_editpassword;
 
 
-function loading_edit() {
-      // Attach a click event handler to the element with ID "btn_confirm"
-      $("#btn_confirm").click(function () {
-            // Show loading overlay when button is clicked
-            // Set a timeout to hide the loading overlay after 2000 milliseconds (2 seconds)
-            setTimeout(function () {
-                  document.getElementById('loadingOverlay1').style.display = 'none';
-            }, 2000);
+// function loading_edit() {
+//       // Attach a click event handler to the element with ID "btn_confirm"
+//       $("#btn_confirm").click(function () {
+//             // Show loading overlay when button is clicked
+//             // Set a timeout to hide the loading overlay after 2000 milliseconds (2 seconds)
+//             setTimeout(function () {
+//                   document.getElementById('loadingOverlay1').style.display = 'none';
+//             }, 2000);
 
-            // Display the loading overlay initially by setting its display property to 'flex'
-            document.getElementById('loadingOverlay1').style.display = 'flex';
-      });
-}
+//             // Display the loading overlay initially by setting its display property to 'flex'
+//             document.getElementById('loadingOverlay1').style.display = 'flex';
+//       });
+// }
 
 async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
       try {
@@ -155,7 +155,7 @@ async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
             // Show the loading icon
             $(".overlay_edit .load-icon").addClass('show');
 
-            $("body").addClass('blur-background');
+            $(".overlay_menu .open").addClass('blur-background');
 
             await $.ajax({
                   type: 'post',
@@ -175,21 +175,28 @@ async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
                         cartype: cartype,
                         carcolor: colorcar
                   }),
+
                   success: function (response) {
                         if (response) {
                               c = response.data;
-
-                              // Delay the removal of the overlay by approximately 3 seconds
+                              Swal.fire({
+                                    icon: "success",
+                                    title: "อัพเดทสำเร็จ",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                              });
                               setTimeout(function () {
                                     // Remove the loading icon
-                                    $("body").removeClass('blur-background');
+                                    $("overlay_menu .open").removeClass('blur-background');
 
                                     // Remove the loading icon
                                     $(".overlay_edit .load-icon").removeClass('show');
 
                                     // Remove the 'open' class from the overlay to hide it
                                     $("div[class^=overlay_edit]").removeClass('open');
+                                    location.reload();
                               }, 3000);
+
                         } else {
                               console.log("ไม่ผ่าน", response.status, response.statusText);
                         }
@@ -225,13 +232,13 @@ function formatDate(date) {
 
 async function editpassword(a) {
       try {
-            const password = a
-            // const password1 = password_editpass1.value
-            // if (password !== password1) {
-            //       alert("รหัสไม่ถูกต้อง");
-            //       return;
-            //   }
-            //   alert("ถูกต้อง");
+            const password = a;
+            const password_editpass1 = document.getElementById('password_editpass1').value;
+            if (password !== password_editpass1) {
+                  alert("รหัสไม่ถูกต้อง");
+                  return;
+            }
+            alert("ถูกต้อง");
 
             $.ajax({
                   type: 'post',
@@ -278,39 +285,6 @@ function aa() {
             $("#overlay").show();
       });
 }
-
-// async function insert_car(a, b, c, d, e) {
-//       try {
-//             console.log(a, b, c, d, e)
-//             var cartype = a
-//             var colorcar = b
-//             var btn_nunmber = c
-//             var btn_nunmber1 = d
-//             var btn_nunmber2 = e
-
-//             $.ajax({
-//                   type: 'post',
-//                   url: apitypecar,
-//                   contentType: "application/json",
-//                   data: JSON.stringify({ cartype: cartype, colorcar: colorcar, btnnunmber: btn_nunmber, btnnunmber1: btn_nunmber1, btnnunmber2: btn_nunmber2 }),
-//                   success: function (response) {
-//                         if (response) {
-//                               c = response.data;
-//                               console.log(c)
-//                               console.log("ผ่าน");
-//                               // Handle success as needed
-//                               // $("div[class^=overlay_pass").addClass('open');
-//                               $("div[class^=overlay_edit]").removeClass('open');
-//                         } else {
-//                               console.log("ไม่ผ่าน");
-//                               // Handle failure as needed
-//                         }
-//                   }
-//             })
-//       } catch (err) {
-//             console.log(err)
-//       }
-// }
 
 
 $(".img1").on("click", function () {
@@ -576,10 +550,30 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 });
 
+// setTimeout(function () {
+//       // Remove the loading icon
+//       $("overlay_menu .open").removeClass('blur-background');
+
+//       // Remove the loading icon
+//       $(".overlay_img .load-icon").removeClass('show');
+
+//       $("div[class^=overlay_img]").removeClass('open');
+
+//       location.reload();
+// }, 3000);
+
 function logout() {
-      window.location.href = '/login.html';
-      localStorage.removeItem('token');
-      localStorage.removeItem('refresh');
+      Swal.fire({
+            icon: "success",
+            title: "ออกจากระบบ",
+            showConfirmButton: false,
+            timer: 1500
+      });
+      setTimeout(function () {
+            window.location.href = '/login.html';
+            localStorage.removeItem('token');
+            localStorage.removeItem('refresh');
+      }, 1500);
 }
 
 $.ajax({
@@ -595,23 +589,37 @@ $.ajax({
 
                   const containerProfile = document.getElementById('container-profile');
                   containerProfile.innerHTML += `
-                              <div class="detall-profile">
-                                          <div class="pic-profile-menu">
-                                                <div class="pic-profile" >
-                                                      <div id="imageContainer" style ="width: 100%;
-                                                      height: 100%;">
-                                                      </div>
-                                                </div>
-                                          </div>
-                                          <div class="detall-profile-pf">
-                                          <div id="name">ชื่อ : ${profileData.firstname}</div>
-                                          <div id="lastname">นามสกุล : ${profileData.lastname}</div>
-                                          <div id="studentId">รหัสนักศึกษา : ${profileData.student_id}</div>
-                                    </div>
-                              </div>`;
-
+                        <div class="detall-profile is_loading">
+                                 <div class="pic-profile-menu is_loading">
+                                       <div class="pic-profile img_skeleton">
+                                             <div class="header-img img_skeleton" id="imageContainer">
+                                             </div>
+                                       </div>
+                                 </div>
+                                 <div class="detall-profile-pf">
+                                       <div class="text-n1 hide-text1" id="name">ชื่อ : ${profileData.firstname}</div>
+                                       <div class="text-n2 hide-text1" id="lastname">นามสกุล : ${profileData.lastname}</div>
+                                       <div class="text-n3 hide-text1" id="studentId">รหัสนักศึกษา : ${profileData.student_id}</div>
+                                 </div>
+                           </div>`;
                   const imageContainer = document.getElementById('imageContainer');
                   imageContainer.innerHTML = '';
+
+                  const removeClassWithDelay = (selector, className, delay) => {
+                        const element = document.querySelector(selector);
+                        setTimeout(() => {
+                            element.classList.remove(className);
+                        }, delay);
+                    };
+                    
+                    // Usage
+                    removeClassWithDelay(".detall-profile", "is_loading", 2500);
+                    removeClassWithDelay(".pic-profile-menu", "is_loading", 2500);
+                    removeClassWithDelay(".text-n1", "hide-text1", 2500);
+                    removeClassWithDelay(".text-n2", "hide-text1", 2500);
+                    removeClassWithDelay(".text-n3", "hide-text1", 2500);
+                    removeClassWithDelay(".header-img", "img_skeleton", 2500);
+                    removeClassWithDelay(".pic-profile", "img_skeleton", 2500);
 
                   function convertBase64ToImage(base64Data) {
                         var image = document.createElement('img');
@@ -834,6 +842,7 @@ const sl_driving_license = document.querySelector('#select_driving_license')
 function img_driving_license() {
       let pic_driving = base64
       driving_licenseimg(pic_driving)
+      $(".overlay_img .load-icon").show();
 }
 
 
@@ -842,6 +851,9 @@ sl_driving_license.onclick = img_driving_license
 async function driving_licenseimg(a) {
       try {
             const imgdrl = a;
+            $(".overlay_img .load-icon").addClass('show');
+
+            $(".overlay_menu .open").addClass('blur-background');
 
             const response = await $.ajax({
                   type: 'post',
@@ -852,12 +864,25 @@ async function driving_licenseimg(a) {
                         driving_license: imgdrl
                   }),
             });
-
             if (response.success) {
-                  console.log("Driving license updated successfully");
-                  // Handle success as needed
-                  // $("div[class^=overlay_pass").addClass('open');
-                  $("div[class^=overlay_img]").removeClass('open');
+                  Swal.fire({
+                        icon: "success",
+                        title: "เพิ่มรูปสำเร็จ",
+                        showConfirmButton: false,
+                        timer: 1500
+                  });
+                  setTimeout(function () {
+                        // Remove the loading icon
+                        $("overlay_menu .open").removeClass('blur-background');
+
+                        // Remove the loading icon
+                        $(".overlay_img .load-icon").removeClass('show');
+
+                        $("div[class^=overlay_img]").removeClass('open');
+
+                        location.reload();
+                  }, 3000);
+
             } else {
                   console.log("Error:", response.message);
                   // Handle error, show appropriate message to the user
@@ -897,3 +922,19 @@ $.ajax({
             console.log(err);
       }
 });
+
+const removeClassWithDelay = (selector, className, delay) => {
+      const element = document.querySelector(selector);
+      setTimeout(() => {
+          element.classList.remove(className);
+      }, delay);
+  };
+  
+  // Removing "is-loading" class from menu items
+  removeClassWithDelay(".menu-item", "is-loading", 3000);
+  removeClassWithDelay(".menu-item1", "is-loading", 3000);
+  removeClassWithDelay(".menu-item2", "is-loading", 3000);
+  removeClassWithDelay(".menu-item3", "is-loading", 3000);
+  
+  // Removing "loading_scan" class from .scanblue element
+  removeClassWithDelay(".scanblue", "loading_scan", 3000);
