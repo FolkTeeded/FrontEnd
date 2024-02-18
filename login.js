@@ -64,12 +64,6 @@ function btn_email_pass() {
 }
 confirm_email.onclick = btn_email_pass
 
-// function btn_confirm_pass() {
-//     const passw_edit = password_editpass.value
-//     const passw_edit1= confirm_editpass.value
-//     send_password(passw_edit, passw_edit1)
-// }
-// confirm_password.onclick = btn_confirm_pass
 
 function btn_registerlogin() {
     // Declare variables and retrieve values from form elements
@@ -111,7 +105,17 @@ async function send_data(a, b) {
         if (response && response.data && response.data.user_id) {
             const token = response.data;
             const refresh = response.data;
-            window.location.href = '/index.html';
+            Swal.fire({
+                icon: "success",
+                title: "ล็อกอินสำเร็จ",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            setTimeout(function () {
+                window.location.href = '/index.html';
+                location.reload();
+            }, 1000);
+            // window.location.href = '/index.html';
             // $("div[class^=overlay_menu").addClass('open');
             localStorage.setItem('token', JSON.stringify(token));
             localStorage.setItem('refresh', JSON.stringify(refresh));
@@ -123,10 +127,20 @@ async function send_data(a, b) {
         } else {
             console.log("Login failed");
             // Handle failure as needed
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "โปรใส่อีเมล์หรือรหัสผ่านให้ถูก!",
+            });
         }
     } catch (err) {
-        console.log("Unexpected error:", err);
-        // Handle AJAX request errors
+        // console.log("Unexpected error:", err);
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "โปรใส่อีเมล์หรือรหัสผ่านให้ถูก!",
+        });
+
     }
 }
 
@@ -147,15 +161,33 @@ async function send_email(a) {
         if (response && response.data && response.data.user_id) {
             console.log(response.data.user_id)
 
-            $("div[class^=overlay_passedit").addClass('open');
-            
+            Swal.fire({
+                icon: "success",
+                title: "สำเร็จ",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            setTimeout(function () {
+                $("div[class^=overlay_passedit").addClass('open');
+                // location.reload();
+            }, 1500);
+            // $("div[class^=overlay_passedit").addClass('open');
+
             updatapass12(response.data.user_id)
         } else {
-            console.log("ไม่มีเมล์");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "โปรใส่อีเมล์ให้ถูก!",
+            });
             // Handle failure as needed
         }
     } catch (err) {
-        console.log("ไม่มีเมล์:", err);
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "โปรใส่อีเมล์ให้ถูก!",
+        });
         // Handle AJAX request errors
     }
 }
@@ -166,10 +198,14 @@ function updatapass12(user_id) {
         const passw_edit = password_editpass.value
         const passw_edit1 = confirm_editpass.value
         if (passw_edit !== passw_edit1) {
-            alert("รหัสไม่ถูกต้อง");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "โปรใส่รหัสผ่านให้เหมือนกัน",
+            });
             return;
         }
-        alert("ถูกต้อง");
+
         $.ajax({
             type: 'post',
             url: updatepass,
@@ -181,8 +217,17 @@ function updatapass12(user_id) {
                 console.log(response)
                 if (response) {
                     const c = response.data;
-                    closeOverlayAll();
-                     console.log("ผ่าน");
+
+                    Swal.fire({
+                        icon: "success",
+                        title: "เปลี่ยนรหัสผ่านแล้ว",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    setTimeout(function () {
+                        closeOverlayAll();
+                        location.reload();
+                    }, 1500);
                 } else {
                     console.log("ไม่ถูกต้อง", response.status, response.statusText);
                 }
@@ -197,47 +242,6 @@ function updatapass12(user_id) {
     })
 }
 
-async function updateprofile(a, passComfim1) {
-    try {
-        var password = a
-
-        if (password !== passComfim1) {
-            alert("รหัสไม่ถูกต้อง");
-            return;
-        }
-
-        alert("ถูกต้อง");
-        $.ajax({
-            type: 'post',
-            url: updatepass,
-            contentType: "application/json",
-            headers: { "Authorization": localStorage.getItem('token') },
-            data: JSON.stringify
-                ({
-                    password: password,
-                }),
-            success: function (response) {
-                if (response) {
-                    c = response.data;
-                    console.log("ผ่าน");
-                    // Handle success as needed
-                    // $("div[class^=overlay_pass").addClass('open');
-                    $("div[class^=overlay_edit]").removeClass('open');
-                } else {
-                    console.log("ไม่ผ่าน", response.status, response.statusText);
-                }
-            },
-
-            error: function (err) {
-                if (err) {
-                    console.log("ไม่ผ่าน", err)
-                }
-            }
-        })
-    } catch (err) {
-        console.log(err)
-    }
-}
 
 //    * function insert api
 //    * @author   audy
@@ -256,11 +260,13 @@ async function insert_data(a, b, c, d, s, y, z, u, p, passComfim) {
         var password = p;
 
         if (password !== passComfim) {
-            alert("รหัสไม่ถูกต้อง");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "โปรใส่รหัสผ่านให้เหมือนกัน",
+            });
             return;
         }
-
-        alert("ถูกต้อง");
 
         $.ajax({
             type: 'post',
@@ -283,8 +289,19 @@ async function insert_data(a, b, c, d, s, y, z, u, p, passComfim) {
                     const token = response.data; // Adjust this based on your response structure
                     const refresh = response.data; // Adjust this based on your response structure
 
-                    console.log("ผ่าน");
-                    closeOverlayAll();
+                    Swal.fire({
+                        icon: "success",
+                        title: "ลงทะบียนสำเร็จ",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    setTimeout(function () {
+                        closeOverlayAll();
+                        location.reload();
+                    }, 1500);
+
+                    // console.log("ผ่าน");
+                    // closeOverlayAll();
 
                     // Storing token and refresh in localStorage
                     localStorage.setItem('token', JSON.stringify(token));
@@ -304,6 +321,54 @@ async function insert_data(a, b, c, d, s, y, z, u, p, passComfim) {
         console.log(err);
     }
 }
+
+// async function updateprofile(a, passComfim1) {
+//     try {
+//         var password = a
+//         if (password !== passComfim1) {
+//             Swal.fire({
+//                 icon: "error",
+//                 title: "Oops...",
+//                 text: "โปรใส่รหัสผ่านให้เหมือนกัน",
+//             });
+//             return;
+//         }
+
+//         alert("ถูกต้อง");
+//         $.ajax({
+//             type: 'post',
+//             url: updatepass,
+//             contentType: "application/json",
+//             headers: { "Authorization": localStorage.getItem('token') },
+//             data: JSON.stringify
+//                 ({
+//                     password: password,
+//                 }),
+//             success: function (response) {
+//                 if (response) {
+//                     c = response.data;
+
+//                     console.log("ผ่าน");
+
+//                     // Handle success as needed
+//                     // $("div[class^=overlay_pass").addClass('open');
+//                     $("div[class^=overlay_edit]").removeClass('open');
+
+//                 } else {
+//                     console.log("ไม่ผ่าน", response.status, response.statusText);
+//                 }
+//             },
+
+//             error: function (err) {
+//                 if (err) {
+//                     console.log("ไม่ผ่าน", err)
+//                 }
+//             }
+//         })
+//     } catch (err) {
+//         console.log(err)
+//     }
+// }
 
 
 $(".login_register").on("click", function () {
