@@ -78,8 +78,6 @@ const gander_edit = document.querySelector('#gander_edit')
 
 const btn_confirm = document.querySelector('#btn_confirm')
 const edit_nunmber = document.querySelector('#edit_nunmber')
-const edit_nunmber1 = document.querySelector('#edit_nunmber1')
-const edit_nunmber2 = document.querySelector('#edit_nunmber2')
 const type_res = document.querySelector('#type_res')
 const colorcar = document.querySelector('#color_car')
 const StudentID_Error = document.querySelector('#studentid-error')
@@ -105,14 +103,12 @@ function btn_editprofile() {
       btn_img1
 
       btn_nunmber = edit_nunmber.value
-      btn_nunmber1 = edit_nunmber1.value
-      btn_nunmber2 = edit_nunmber2.value
       car_type = type_res.value
       color_car = colorcar.value
       $(".overlay_edit .load-icon").show();
 
       // Call the updateprofile function with captured values
-      updateprofile(newName, newLastName, newPhone, dt_date, gander_e, btn_img1, btn_nunmber, btn_nunmber1, btn_nunmber2, car_type, color_car);
+      updateprofile(newName, newLastName, newPhone, dt_date, gander_e, btn_img1, btn_nunmber, car_type, color_car);
 }
 btn_confirm.onclick = btn_editprofile;
 
@@ -147,8 +143,6 @@ async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
             var gander_e = f;
             var btn_img1 = g;
             var btn_nunmber1 = h;
-            var btn_nunmber2 = i;
-            var btn_nunmber3 = j;
             var cartype = k;
             var colorcar = l;
 
@@ -170,8 +164,6 @@ async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
                         gander_e: gander_e,
                         btn_img1: btn_img1,
                         carint: btn_nunmber1,
-                        cartext: btn_nunmber2,
-                        carcounty: btn_nunmber3,
                         cartype: cartype,
                         carcolor: colorcar
                   }),
@@ -234,6 +226,7 @@ async function editpassword(a) {
       try {
             const password = a;
             const password_editpass1 = document.getElementById('password_editpass1').value;
+            console.log(password_editpass1)
             if (password !== password_editpass1) {
                   alert("รหัสไม่ถูกต้อง");
                   return;
@@ -598,13 +591,13 @@ $.ajax({
                     };
                     
                     // Usage
-                    removeClassWithDelay(".detall-profile", "is_loading", 2500);
-                    removeClassWithDelay(".pic-profile-menu", "is_loading", 2500);
-                    removeClassWithDelay(".text-n1", "hide-text1", 2500);
-                    removeClassWithDelay(".text-n2", "hide-text1", 2500);
-                    removeClassWithDelay(".text-n3", "hide-text1", 2500);
-                    removeClassWithDelay(".header-img", "img_skeleton", 2500);
-                    removeClassWithDelay(".pic-profile", "img_skeleton", 2500);
+                    removeClassWithDelay(".detall-profile", "is_loading", 1000);
+                    removeClassWithDelay(".pic-profile-menu", "is_loading", 1000);
+                    removeClassWithDelay(".text-n1", "hide-text1", 1000);
+                    removeClassWithDelay(".text-n2", "hide-text1", 1000);
+                    removeClassWithDelay(".text-n3", "hide-text1", 1000);
+                    removeClassWithDelay(".header-img", "img_skeleton", 1000);
+                    removeClassWithDelay(".pic-profile", "img_skeleton", 1000);
 
                   function convertBase64ToImage(base64Data) {
                         var image = document.createElement('img');
@@ -836,10 +829,7 @@ sl_driving_license.onclick = img_driving_license
 async function driving_licenseimg(a) {
       try {
             const imgdrl = a;
-            $(".overlay_img .load-icon").addClass('show');
-
-            $(".overlay_menu .open").addClass('blur-background');
-
+      
             const response = await $.ajax({
                   type: 'post',
                   url: 'http://localhost:3000/api/driving_img',
@@ -854,8 +844,12 @@ async function driving_licenseimg(a) {
                         icon: "success",
                         title: "เพิ่มรูปสำเร็จ",
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 1500 
                   });
+                  $(".overlay_img .load-icon").addClass('show');
+
+                  $(".overlay_menu .open").addClass('blur-background');
+      
                   setTimeout(function () {
                         // Remove the loading icon
                         $("overlay_menu .open").removeClass('blur-background');
@@ -897,8 +891,6 @@ $.ajax({
                   $('#edit_date').val(profileData.birthday);
                   $('#gander_edit').val(profileData.gander);
                   $('#edit_nunmber').val(carData.car_number);
-                  $('#edit_nunmber1').val(carData.car_text);
-                  $('#edit_nunmber2').val(carData.car_country);
                   $('#type_res').val(carData.cartype);
                   $('#color_car').val(carData.carcolor)
             }
@@ -916,10 +908,9 @@ const removeClassWithDelay = (selector, className, delay) => {
   };
   
   // Removing "is-loading" class from menu items
-  removeClassWithDelay(".menu-item", "is-loading", 3000);
-  removeClassWithDelay(".menu-item1", "is-loading", 3000);
-  removeClassWithDelay(".menu-item2", "is-loading", 3000);
-  removeClassWithDelay(".menu-item3", "is-loading", 3000);
-  
+  removeClassWithDelay(".menu-item", "is-loading", 1500);
+  removeClassWithDelay(".menu-item1", "is-loading", 1500);
+  removeClassWithDelay(".menu-item2", "is-loading", 1500);
+  removeClassWithDelay(".menu-item3", "is-loading", 1500);
   // Removing "loading_scan" class from .scanblue element
-  removeClassWithDelay(".scanblue", "loading_scan", 3000);
+  removeClassWithDelay(".scanblue", "loading_scan", 1500);
