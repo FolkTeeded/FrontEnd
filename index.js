@@ -228,10 +228,13 @@ async function editpassword(a) {
             const password_editpass1 = document.getElementById('password_editpass1').value;
             console.log(password_editpass1)
             if (password !== password_editpass1) {
-                  alert("รหัสไม่ถูกต้อง");
+                  Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "โปรใส่รหัสผ่านให้เหมือนกัน",
+                    });
                   return;
             }
-            alert("ถูกต้อง");
 
             $.ajax({
                   type: 'post',
@@ -251,9 +254,13 @@ async function editpassword(a) {
                                     showConfirmButton: false,
                                     timer: 1500
                               });
+                              setTimeout(function () {
+                                    $("div[class^=overlay_updatapass]").removeClass('open');
+                                    location.reload();
+                                }, 1000);
                               // Handle success as needed
-                              $("div[class^=overlay_updatapass]").removeClass('open');
-                              location.reload();
+                              // $("div[class^=overlay_updatapass]").removeClass('open');
+                              // location.reload();
                         } else {
                               console.log("ไม่ผ่าน", response.status, response.statusText);
                         }
