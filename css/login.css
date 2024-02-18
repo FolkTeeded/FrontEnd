@@ -299,6 +299,7 @@
     align-items: center;
     background-image: url('/img/logo1.png'); /* Replace with the path to your image */
     background-size: cover; /* Adjust as needed */
+    background-color: #fff;
 
 }
 .pic-profile img{
@@ -406,7 +407,8 @@
     top: 22%;
     border-radius: 50px;
     background-image: url('/img/logo1.png'); /* Replace with the path to your image */
-    background-size: cover; 
+    background-size: cover;
+    background-color: #fff; 
 }
 .pic-profile-show img{
     width: 100%;
@@ -496,6 +498,7 @@ select {
     border: 3px solid #C7C7C7;
     background-image: url('/img/logo1.png'); /* Replace with the path to your image */
     background-size: cover; 
+    background-color: #fff;
 
 }
 

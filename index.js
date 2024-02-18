@@ -245,7 +245,12 @@ async function editpassword(a) {
                   success: function (response) {
                         if (response) {
                               c = response.data;
-                              console.log("ผ่าน");
+                              Swal.fire({
+                                    icon: "success",
+                                    title: "เปลี่ยนรหัสผ่านสำเร็จ",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                              });
                               // Handle success as needed
                               $("div[class^=overlay_updatapass]").removeClass('open');
                               location.reload();
@@ -451,7 +456,7 @@ function displaySelectedFile(input) {
             // Check file size (in bytes)
             const fileSize = file.size;
             // Limit the file size to, for example, 1 MB
-            const maxSize = 5 * 1024 * 1024; // 1 MB in bytes
+            const maxSize = 10 * 1024 * 1024; // 1 MB in bytes
 
             if (fileSize > maxSize) {
                   alert('File size exceeds the allowed limit.');
@@ -462,11 +467,26 @@ function displaySelectedFile(input) {
                   const reader = new FileReader();
                   reader.onloadend = function () {
                         let base64String = reader.result;
-                        base64String = base64String.split(',')[1]
-                        // Do something with the base64 string (e.g., send it to the server)
+                        const img = new Image();
+                        img.onload = function () {
+                              const canvas = document.createElement('canvas');
+                              const ctx = canvas.getContext('2d');
+                  
+                              canvas.width = img.width;
+                              canvas.height = img.height;
+                              ctx.drawImage(img, 0, 0);
+                  
+                              const dataURL = canvas.toDataURL('image/jpeg');
+                              base64String = dataURL.split(',')[1]
+                              // Use dataURL for further processing (e.g., displaying, sending to server)
+                              console.log(base64String);
+                          };
+                        
                         alert('Base64 representation: ' + base64String);
                         console.log(base64String)
                         cameraSend(base64String)
+                        img.src = event.target.result;
+
                   };
                   reader.readAsDataURL(file);
             }
