@@ -147,7 +147,7 @@
 }
 
 .login-icon {
-    width: 25%;
+    width: 34%;
     /* border-radius: 40%; */
     height: auto;
     padding-top: 10px;
@@ -220,11 +220,18 @@
 
 .container-menu {
     height: 55dvh;
-    width: 50dvh;
+    width: 45dvh;
     display: grid;
     grid-template-columns: auto auto;
     padding: 20px;
     justify-content: space-between;
+}
+
+.License_card {
+    border-radius: 15px 15px 15px 15px; 
+    position: absolute;
+    left: 16px;
+    top: -10px;
 }
 
 .menu-item, .menu-item1 ,.menu-item2, .menu-item3 {
@@ -240,6 +247,7 @@
     width: 147px;
     height: 127px;
     position: relative;
+    border: 1px solid #8A2FFF;
 }
 
 .menu-all-font {
