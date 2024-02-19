@@ -515,7 +515,12 @@ function cameraSend(base64String) {
                 const containerProfile = document.getElementById('container-profile_personal23');
                 containerProfile.innerHTML += `
                     <div class="pic-profile-personal">
-                        <div class="pic-profile1"></div>
+                        <div class="pic-profile1">
+                        <div id ="image-picporcar" style="
+                  width: 100%;
+                  height: 100%;
+              "></div>
+                        </div>
                     </div>
                     <div style="margin-top: 58px;">
                         <div class="detall-profile_personal">
@@ -525,15 +530,36 @@ function cameraSend(base64String) {
                                     <p>นามสกุล : ${profileData.lastname}</p>
                                     <p>อีเมล์ : ${profileData.email}</p>
                                     <p>เบอร์โทรศัพท์ : ${profileData.phone}</p>
-                                    <p>เลขป้ายทะเบียน : ${carData.car_number}</p>
-                                    <p>ประเภทรถ : ${carData.cartype}</p> <!-- Use correct property name -->
+                                    <p>เลขป้ายทะเบียน : ${carData.car_number} ${carData.car_country}</p>
+                                    <p>ประเภทรถ : ${carData.cartype}</p> 
                                     <p style="padding-bottom: 30px;">สีรถ : ${carData.carcolor}</p> <!-- Use correct property name -->
                                 </div>
                             </div>
                         </div>
+                        <div style="width: 100%;height: 25dvh;display: flex;justify-content: center;align-items: center;">
+                        <div style="width: 90%;height: 80%;border-radius: 17px;"></div>
+                  </div>
+            </div>
                     </div>`;
         
                 $("div[class^=overlay_cardetail]").addClass('open');
+                const imageContainer = document.getElementById('image-picporcar');
+                imageContainer.innerHTML = '';
+
+                function convertBase64ToImage(base64Data) {
+                      var image = document.createElement('img');
+
+                      image.src = "data:image/jpeg;base64," + base64Data;
+
+                      return image;
+                }
+
+                if (profileData.img_pro) {
+                      var imageElement = convertBase64ToImage(profileData.img_pro);
+                      imageContainer.appendChild(imageElement);
+                } else {
+                      
+                }
             } else {
                 console.log("ไม่ผ่าน");
                 // Handle failure as needed
@@ -617,12 +643,11 @@ $.ajax({
       contentType: "application/json",
       headers: { "Authorization": localStorage.getItem('token') },
       success: function (data) {
-
             if (data && data.data && data.data.length > 0) {
                   const profileData = data.data[0];
 
                   const containerProfile = document.getElementById('container-profile');
-                  containerProfile.innerHTML += `
+                        containerProfile.innerHTML += `
                         <div class="detall-profile is_loading">
                                  <div class="pic-profile-menu is_loading">
                                        <div class="pic-profile img_skeleton">
@@ -718,7 +743,7 @@ $.ajax({
                         var imageElement = convertBase64ToImage(profileData.img_pro);
                         imageContainer.appendChild(imageElement);
                   } else {
-                        console.log('Profile image not available');
+                        
                   }
 
 
@@ -971,4 +996,7 @@ const removeClassWithDelay = (selector, className, delay) => {
   // Removing "loading_scan" class from .scanblue element
   removeClassWithDelay(".scanblue", "loading_scan", 1500);
 
-
+function closeshow(){
+      location.reload();
+      closeOverlayAll();
+}
