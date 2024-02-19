@@ -509,6 +509,7 @@ function cameraSend(base64String) {
             success: function (response) {
                   if (response) {
                         console.log("ผ่าน");
+                        console.log(response);
                   } else {
                         console.log("ไม่ผ่าน");
                         // Handle failure as needed

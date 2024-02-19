@@ -708,3 +708,18 @@ body {
     /* margin-right: 1rem; */
     flex-shrink: 0;
 }
+.overlay_cardetail{
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    background-color: #ffffff
+}
+.overlay_cardetail.open
+{
+    display: flex;
+    flex-direction: column;
+}
