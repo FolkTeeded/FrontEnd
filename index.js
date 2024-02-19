@@ -78,7 +78,6 @@ const gander_edit = document.querySelector('#gander_edit')
 
 const btn_confirm = document.querySelector('#btn_confirm')
 const edit_nunmber = document.querySelector('#edit_nunmber')
-const edit_nunmber1 = document.querySelector('#edit_nunmber1')
 const type_res = document.querySelector('#type_res')
 const colorcar = document.querySelector('#color_car')
 const StudentID_Error = document.querySelector('#studentid-error')
@@ -104,13 +103,12 @@ function btn_editprofile() {
       btn_img1
 
       btn_nunmber = edit_nunmber.value
-      btn_nummber1 = edit_nunmber1.value
       car_type = type_res.value
       color_car = colorcar.value
       $(".overlay_edit .load-icon").show();
 
       // Call the updateprofile function with captured values
-      updateprofile(newName, newLastName, newPhone, dt_date, gander_e, btn_img1, btn_nunmber, btn_nummber1, car_type, color_car);
+      updateprofile(newName, newLastName, newPhone, dt_date, gander_e, btn_img1, btn_nunmber, car_type, color_car);
 }
 btn_confirm.onclick = btn_editprofile;
 
@@ -136,7 +134,7 @@ confirm_updatapass.onclick = btn_editpassword;
 //       });
 // }
 
-async function updateprofile(a, b, d, e, f, g, h, i, k, l) {
+async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
       try {
             var newName = a;
             var newLastName = b;
@@ -144,8 +142,7 @@ async function updateprofile(a, b, d, e, f, g, h, i, k, l) {
             var dt_date = e ? formatDate(new Date(e)) : null;
             var gander_e = f;
             var btn_img1 = g;
-            var btn_nunmber = h;
-            var btn_nunmber1 = i;
+            var btn_nunmber1 = h;
             var cartype = k;
             var colorcar = l;
 
@@ -166,8 +163,7 @@ async function updateprofile(a, b, d, e, f, g, h, i, k, l) {
                         dt_date: dt_date,
                         gander_e: gander_e,
                         btn_img1: btn_img1,
-                        carint: btn_nunmber,
-                        carcounty: btn_nunmber1,
+                        carint: btn_nunmber1,
                         cartype: cartype,
                         carcolor: colorcar
                   }),
@@ -179,7 +175,7 @@ async function updateprofile(a, b, d, e, f, g, h, i, k, l) {
                                     icon: "success",
                                     title: "อัพเดทสำเร็จ",
                                     showConfirmButton: false,
-                                    timer: 3000
+                                    timer: 1500
                               });
                               setTimeout(function () {
                                     // Remove the loading icon
@@ -393,7 +389,6 @@ $(".updatapass").on("click", function () {
 
       if (direction === "next1") {
             $("div[class^=overlay_updatapass]").removeClass('open');
-            
       }
 });
 
@@ -501,11 +496,9 @@ function displaySelectedFile(input) {
                               const dataURL = canvas.toDataURL('image/jpeg');
                               base64String = dataURL.split(',')[1]
                               // Use dataURL for further processing (e.g., displaying, sending to server)
-                              console.log(base64String);
                           };
                         
                         alert('Base64 representation: ' + base64String);
-                        console.log(base64String)
                         cameraSend(base64String)
                         img.src = event.target.result;
 
@@ -516,27 +509,84 @@ function displaySelectedFile(input) {
 }
 function cameraSend(base64String) {
       $.ajax({
-            type: 'post',
-            url: `http://localhost:3000/api/camerasend`,
-            contentType: "application/json",
-            headers: { "Authorization": localStorage.getItem('token') },
-            data: JSON.stringify({ base64String }),
-            success: function (response) {
-                  if (response) {
-                        console.log("ผ่าน");
-                  } else {
-                        console.log("ไม่ผ่าน");
-                        // Handle failure as needed
-                  }
-            },
+          type: 'post',
+          url: `http://localhost:3000/api/camerasend`,
+          contentType: "application/json",
+          headers: { "Authorization": localStorage.getItem('token') },
+          data: JSON.stringify({ base64String }),
+          success: function (data) {
+            console.log("Response:", data);
+        
+            if (data && data.data.car && data.data.user) {
+                const profileData = data.data.user;
+                const carData = data.data.car;
+                console.log("ผ่าน");
+        
+                const containerProfile = document.getElementById('container-profile_personal23');
+                containerProfile.innerHTML += `
+                    <div class="pic-profile-personal">
+                        <div class="pic-profile1">
+                        <div id ="image-picporcar" style="
+                  width: 100%;
+                  height: 100%;
+              "></div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 58px;">
+                        <div class="detall-profile_personal">
+                            <div class="detall-profile-per">
+                                <div id="carP" class="carP" style="color: #ffffff;">
+                                    <p>ชื่อ : ${profileData.firstname}</p>
+                                    <p>นามสกุล : ${profileData.lastname}</p>
+                                    <p>อีเมล์ : ${profileData.email}</p>
+                                    <p>เบอร์โทรศัพท์ : ${profileData.phone}</p>
+                                    <p>เลขป้ายทะเบียน : ${carData.car_number} ${carData.car_country}</p>
+                                    <p>ประเภทรถ : ${carData.cartype}</p> 
+                                    <p style="padding-bottom: 30px;">สีรถ : ${carData.carcolor}</p> <!-- Use correct property name -->
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 100%;height: 25dvh;display: flex;justify-content: center;align-items: center;">
+                        <div style="width: 90%;height: 80%;border-radius: 17px;"></div>
+                  </div>
+            </div>
+                    </div>`;
+        
+                $("div[class^=overlay_cardetail]").addClass('open');
+                const imageContainer = document.getElementById('image-picporcar');
+                imageContainer.innerHTML = '';
 
-            error: function (err) {
-                  if (err) {
-                        console.log("ไม่ผ่าน", err)
-                  }
+                function convertBase64ToImage(base64Data) {
+                      var image = document.createElement('img');
+
+                      image.src = "data:image/jpeg;base64," + base64Data;
+
+                      return image;
+                }
+
+                if (profileData.img_pro) {
+                      var imageElement = convertBase64ToImage(profileData.img_pro);
+                      imageContainer.appendChild(imageElement);
+                } else {
+                      
+                }
+            } else {
+                console.log("ไม่ผ่าน");
+                // Handle failure as needed
             }
+        },
+        
+          error: function (err) {
+              if (err) {
+                  console.log("ไม่ผ่าน", err);
+              }
+          }
       });
-}
+  }
+  
+  
+  
+  
 
 document.addEventListener('DOMContentLoaded', function () {
       // Get the input element
@@ -603,12 +653,11 @@ $.ajax({
       contentType: "application/json",
       headers: { "Authorization": localStorage.getItem('token') },
       success: function (data) {
-
             if (data && data.data && data.data.length > 0) {
                   const profileData = data.data[0];
 
                   const containerProfile = document.getElementById('container-profile');
-                  containerProfile.innerHTML += `
+                        containerProfile.innerHTML += `
                         <div class="detall-profile is_loading">
                                  <div class="pic-profile-menu is_loading">
                                        <div class="pic-profile img_skeleton">
@@ -704,7 +753,7 @@ $.ajax({
                         var imageElement = convertBase64ToImage(profileData.img_pro);
                         imageContainer.appendChild(imageElement);
                   } else {
-                        console.log('Profile image not available');
+                        
                   }
 
 
@@ -933,7 +982,6 @@ $.ajax({
                   $('#edit_date').val(profileData.birthday);
                   $('#gander_edit').val(profileData.gander);
                   $('#edit_nunmber').val(carData.car_number);
-                  $('#edit_nunmber1').val(carData.car_country);
                   $('#type_res').val(carData.cartype);
                   $('#color_car').val(carData.carcolor)
             }
@@ -976,3 +1024,7 @@ const removeClassWithDelay = (selector, className, delay) => {
 
 
   
+function closeshow(){
+      location.reload();
+      closeOverlayAll();
+}
