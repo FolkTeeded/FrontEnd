@@ -731,7 +731,7 @@ $.ajax({
                               <p>เบอร์โทรศัพท์ : ${profileData.phone}</p>
                               <p id="birthdayParagraph">วัน/เดือน/ปีเกิด : ${profileData.birthday}</p>
                               <p>เพศ : ${profileData.gander}</p>
-                              <p>เลขป้ายทะเบียน : ${carData.car_text}/${carData.car_number}/${carData.car_country}</p>
+                              <p>เลขป้ายทะเบียน : ${carData.car_number}/${carData.car_country}</p>
                               <p id = "cartype" >ประเภทรถ : ${carData.cartype}</p>
                               <p id = "carcolor" style="padding-bottom: 30px;">สีรถ : ${carData.carcolor}</p>
                               <div style="width: 100%;
@@ -942,3 +942,6 @@ const removeClassWithDelay = (selector, className, delay) => {
   removeClassWithDelay(".menu-item3", "is-loading", 1500);
   // Removing "loading_scan" class from .scanblue element
   removeClassWithDelay(".scanblue", "loading_scan", 1500);
+
+
+  
