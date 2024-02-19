@@ -486,11 +486,9 @@ function displaySelectedFile(input) {
                               const dataURL = canvas.toDataURL('image/jpeg');
                               base64String = dataURL.split(',')[1]
                               // Use dataURL for further processing (e.g., displaying, sending to server)
-                              console.log(base64String);
                           };
                         
                         alert('Base64 representation: ' + base64String);
-                        console.log(base64String)
                         cameraSend(base64String)
                         img.src = event.target.result;
 
@@ -501,28 +499,58 @@ function displaySelectedFile(input) {
 }
 function cameraSend(base64String) {
       $.ajax({
-            type: 'post',
-            url: `http://localhost:3000/api/camerasend`,
-            contentType: "application/json",
-            headers: { "Authorization": localStorage.getItem('token') },
-            data: JSON.stringify({ base64String }),
-            success: function (response) {
-                  if (response) {
-                        console.log("ผ่าน");
-                        console.log()
-                  } else {
-                        console.log("ไม่ผ่าน");
-                        // Handle failure as needed
-                  }
-            },
-
-            error: function (err) {
-                  if (err) {
-                        console.log("ไม่ผ่าน", err)
-                  }
+          type: 'post',
+          url: `http://localhost:3000/api/camerasend`,
+          contentType: "application/json",
+          headers: { "Authorization": localStorage.getItem('token') },
+          data: JSON.stringify({ base64String }),
+          success: function (data) {
+            console.log("Response:", data);
+        
+            if (data && data.data.car && data.data.user) {
+                const profileData = data.data.user;
+                const carData = data.data.car;
+                console.log("ผ่าน");
+        
+                const containerProfile = document.getElementById('container-profile_personal23');
+                containerProfile.innerHTML += `
+                    <div class="pic-profile-personal">
+                        <div class="pic-profile1"></div>
+                    </div>
+                    <div style="margin-top: 58px;">
+                        <div class="detall-profile_personal">
+                            <div class="detall-profile-per">
+                                <div id="carP" class="carP" style="color: #ffffff;">
+                                    <p>ชื่อ : ${profileData.firstname}</p>
+                                    <p>นามสกุล : ${profileData.lastname}</p>
+                                    <p>อีเมล์ : ${profileData.email}</p>
+                                    <p>เบอร์โทรศัพท์ : ${profileData.phone}</p>
+                                    <p>เลขป้ายทะเบียน : ${carData.car_number}</p>
+                                    <p>ประเภทรถ : ${carData.cartype}</p> <!-- Use correct property name -->
+                                    <p style="padding-bottom: 30px;">สีรถ : ${carData.carcolor}</p> <!-- Use correct property name -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+        
+                $("div[class^=overlay_cardetail]").addClass('open');
+            } else {
+                console.log("ไม่ผ่าน");
+                // Handle failure as needed
             }
+        },
+        
+          error: function (err) {
+              if (err) {
+                  console.log("ไม่ผ่าน", err);
+              }
+          }
       });
-}
+  }
+  
+  
+  
+  
 
 document.addEventListener('DOMContentLoaded', function () {
       // Get the input element
@@ -944,4 +972,3 @@ const removeClassWithDelay = (selector, className, delay) => {
   removeClassWithDelay(".scanblue", "loading_scan", 1500);
 
 
-  
