@@ -35,7 +35,6 @@ const email_res = document.querySelector('#email_res');
 const insert_std = document.getElementById('stude_id');
 const insert_nunmber = document.querySelector('#car_nunmber');
 const insert_nunmber1 = document.querySelector('#car_nunmber1');
-const insert_nunmber2 = document.querySelector('#car_nunmber2');
 
 // Selecting form password elements by their IDs
 const confirm_res = document.querySelector('#confirm_res');
@@ -74,12 +73,11 @@ function btn_registerlogin() {
     let insert_student = insert_std.value;
     let insert_num = insert_nunmber.value;
     let insert_num1 = insert_nunmber1.value;
-    let insert_num2 = insert_nunmber2.value;
     let pass1 = password_res.value;
     let pass2 = confirm_pass.value;
 
     // Call the insert_data function with the retrieved values
-    insert_data(name_res, last_res, phonessrester, emailregister, insert_student, insert_num, insert_num1, insert_num2, pass1, pass2);
+    insert_data(name_res, last_res, phonessrester, emailregister, insert_student, insert_num, insert_num1, pass1, pass2);
 }
 
 // Attach btn_registerlogin function to the click event of confirm_res element
@@ -247,7 +245,7 @@ function updatapass12(user_id) {
 //    * @author   audy
 //    * @create   2024-01-31
 //    * @update  
-async function insert_data(a, b, c, d, s, y, z, u, p, passComfim) {
+async function insert_data(a, b, c, d, s, y, z, p, passComfim) {
     try {
         var na = a;
         var lastname = b;
@@ -256,7 +254,6 @@ async function insert_data(a, b, c, d, s, y, z, u, p, passComfim) {
         var st_id = s;
         var carnum1 = y;
         var carnum2 = z;
-        var carnum3 = u;
         var password = p;
 
         if (password !== passComfim) {
@@ -280,8 +277,7 @@ async function insert_data(a, b, c, d, s, y, z, u, p, passComfim) {
                 email: emai_l,
                 studentID: st_id,
                 carint: carnum1,
-                cartext: carnum2,
-                carcouty: carnum3,
+                carcouty : carnum2,
                 password: password
             }),
             success: function (response) {
