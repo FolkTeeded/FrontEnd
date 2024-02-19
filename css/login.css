@@ -761,17 +761,16 @@ body {
     align-items: center;
   }
   
-.header-scan
+/* .header-scan
 {
     height: 50px;
     width: 50px;
     position: absolute;
     top: 18px;
     object-fit: cover;
-    /* border-radius: 100%; */
-    /* margin-right: 1rem; */
+
     flex-shrink: 0;
-}
+} */
 
 .overlay_cardetail{
     display: none;

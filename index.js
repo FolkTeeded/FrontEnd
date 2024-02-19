@@ -78,6 +78,7 @@ const gander_edit = document.querySelector('#gander_edit')
 
 const btn_confirm = document.querySelector('#btn_confirm')
 const edit_nunmber = document.querySelector('#edit_nunmber')
+const edit_nunmber1 = document.querySelector('#edit_nunmber1')
 const type_res = document.querySelector('#type_res')
 const colorcar = document.querySelector('#color_car')
 const StudentID_Error = document.querySelector('#studentid-error')
@@ -103,12 +104,13 @@ function btn_editprofile() {
       btn_img1
 
       btn_nunmber = edit_nunmber.value
+      btn_nunmber1 = edit_nunmber1.value
       car_type = type_res.value
       color_car = colorcar.value
       $(".overlay_edit .load-icon").show();
 
       // Call the updateprofile function with captured values
-      updateprofile(newName, newLastName, newPhone, dt_date, gander_e, btn_img1, btn_nunmber, car_type, color_car);
+      updateprofile(newName, newLastName, newPhone, dt_date, gander_e, btn_img1, btn_nunmber, btn_nunmber1, car_type, color_car);
 }
 btn_confirm.onclick = btn_editprofile;
 
@@ -134,7 +136,7 @@ confirm_updatapass.onclick = btn_editpassword;
 //       });
 // }
 
-async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
+async function updateprofile(a, b, d, e, f, g, h, i, k, l) {
       try {
             var newName = a;
             var newLastName = b;
@@ -142,7 +144,8 @@ async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
             var dt_date = e ? formatDate(new Date(e)) : null;
             var gander_e = f;
             var btn_img1 = g;
-            var btn_nunmber1 = h;
+            var btn_nunmber = h;
+            var btn_nunmber1 = i;
             var cartype = k;
             var colorcar = l;
 
@@ -163,7 +166,8 @@ async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
                         dt_date: dt_date,
                         gander_e: gander_e,
                         btn_img1: btn_img1,
-                        carint: btn_nunmber1,
+                        carint: btn_nunmber,
+                        carcounty: btn_nunmber1,      
                         cartype: cartype,
                         carcolor: colorcar
                   }),
@@ -507,10 +511,11 @@ function displaySelectedFile(input) {
             }
       }
 }
+
 function cameraSend(base64String) {
       $.ajax({
           type: 'post',
-          url: `http://localhost:3000/api/camerasend`,
+          url: 'http://localhost:3000/api/camerasend',
           contentType: "application/json",
           headers: { "Authorization": localStorage.getItem('token') },
           data: JSON.stringify({ base64String }),
@@ -583,7 +588,7 @@ function cameraSend(base64String) {
           }
       });
   }
-  
+
   
   
   
@@ -982,6 +987,7 @@ $.ajax({
                   $('#edit_date').val(profileData.birthday);
                   $('#gander_edit').val(profileData.gander);
                   $('#edit_nunmber').val(carData.car_number);
+                  $('#edit_nunmber1').val(carData.car_country);
                   $('#type_res').val(carData.cartype);
                   $('#color_car').val(carData.carcolor)
             }
