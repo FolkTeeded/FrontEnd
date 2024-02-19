@@ -334,22 +334,32 @@ $(".prev_edit").on("click", function () {
 });
 
 $(".supp1").on("click", function () {
-
       var direction = "next1";
-
+  
       if (direction === "next1") {
-            $("div[class^=overlay_supp]").addClass('open');
+          $("div[class^=overlay_supp]").addClass('open');
+  
+          Swal.fire({
+            title: "ขออภัย",
+            text: "เมนูส่วนนนี้ยังอยู่ในระหว่างการอัปเดต",
+              icon: "warning",
+              showButton: true,
+              preConfirm: () => {
+                  $("div[class^=overlay_supp]").removeClass('open');
+              }
+          });
       }
-});
-
-$(".prev_supp").on("click", function () {
-
-      var direction = "next1";
-
-      if (direction === "next1") {
-            $("div[class^=overlay_supp]").removeClass('open');
-      }
-});
+  });
+  
+  // Add a separate click event listener for $(".prev_supp")
+//   $(".prev_supp").on("click", function () {
+//       var direction = "next1";
+  
+//       if (direction === "next1") {
+//           $("div[class^=overlay_supp]").removeClass('open');
+//       }
+//   });
+  
 
 $(".pers1").on("click", function () {
 
@@ -735,7 +745,7 @@ $.ajax({
                               <p>เบอร์โทรศัพท์ : ${profileData.phone}</p>
                               <p id="birthdayParagraph">วัน/เดือน/ปีเกิด : ${profileData.birthday}</p>
                               <p>เพศ : ${profileData.gander}</p>
-                              <p>เลขป้ายทะเบียน : ${carData.car_text}/${carData.car_number}/${carData.car_country}</p>
+                              <p>เลขป้ายทะเบียน : ${carData.car_number}/${carData.car_country}</p>
                               <p id = "cartype" >ประเภทรถ : ${carData.cartype}</p>
                               <p id = "carcolor" style="padding-bottom: 30px;">สีรถ : ${carData.carcolor}</p>
                               <div style="width: 100%;
@@ -940,10 +950,29 @@ const removeClassWithDelay = (selector, className, delay) => {
       }, delay);
   };
   
-  // Removing "is-loading" class from menu items
+  // Removing "" class from menu items
   removeClassWithDelay(".menu-item", "is-loading", 1500);
   removeClassWithDelay(".menu-item1", "is-loading", 1500);
   removeClassWithDelay(".menu-item2", "is-loading", 1500);
   removeClassWithDelay(".menu-item3", "is-loading", 1500);
+
   // Removing "loading_scan" class from .scanblue element
   removeClassWithDelay(".scanblue", "loading_scan", 1500);
+
+  const removeClassWithDelay1 = (selector, className, delay) => {
+      const element = document.querySelector(selector);
+      setTimeout(() => {
+          element.classList.remove(className);
+      }, delay);
+  };
+  
+  // Removing "is-loading" class from menu items
+  removeClassWithDelay1(".menu-item", "img_skeleton1", 1500);
+  removeClassWithDelay1(".menu-item1", "img_skeleton1", 1500);
+  removeClassWithDelay1(".menu-item2", "img_skeleton1", 1500);
+  removeClassWithDelay1(".menu-item3", "img_skeleton1", 1500);
+
+  // Removing "loading_scan" class from .scanblue element
+
+
+  

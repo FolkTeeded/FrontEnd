@@ -198,11 +198,19 @@
     flex-direction: column;
 }
 
+.container-scan {
+    width: 38dvn; 
+    height: 38dvh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
 
 
 .container-profile {
     width: 100%;
-    height: 20dvh;
+    height: 120px;
+    padding-bottom: 5px;
     background: rgb(124, 0, 168);
     background: linear-gradient(180deg, rgba(124, 0, 168, 0.92) 64%, rgba(75, 0, 187, 1) 98%, rgba(39, 2, 186, 1) 100%);
     display: flex;
@@ -212,42 +220,66 @@
 
 .detall-profile {
     background-color: #D2AFFF;
-    height: 90%;
     width: 90%;
+    height: auto;
     border-radius: 30px;
     display: flex;
 }
-
+.img-menu3,.img-menu2,.img-menu1,.img-menu{
+    width: 100%;
+    height: 70%;
+}
+.img-menu > img , .img-menu1 > img ,.img-menu2 > img , .img-menu3 > img {
+    width: auto;
+    height: 100%;
+}
 .container-menu {
     height: 55dvh;
-    width: 45dvh;
+    width: 50dvh;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 50% 50%;
     padding: 20px;
     justify-content: space-between;
+    gap: 10px
 }
 
-.License_card {
-    border-radius: 15px 15px 15px 15px; 
-    position: absolute;
-    left: 16px;
-    top: -10px;
+.img_scan1 {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    
 }
-
+.img_scan1 {
+    width: 100%;
+    height: 80%;
+    padding-top: 5px;
+}
+.img_scan1 > img {
+    width: auto;
+    height: 100%;
+    padding: 5px;
+}
 .menu-item, .menu-item1 ,.menu-item2, .menu-item3 {
     background-color: #EDEDFC;
     border-radius: 17px;
     font-size: 16px;
     text-align: center;
     display: flex;
+    align-items: center;
     flex-direction: column;
     justify-content: center;
     margin-bottom: 10px;
     color: #8A2FFF;
-    width: 147px;
-    height: 127px;
+    width: 100%;
+    height: 100%;
     position: relative;
     border: 1px solid #8A2FFF;
+    
 }
 
 .menu-all-font {
@@ -326,16 +358,23 @@
 }
 
 .scanblue {
-    width: 115px; background-color: #8A2FFF; 
-    height: 115px; 
-    border: 2px solid #028EBA; 
-    border-radius: 76px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    flex-direction: column; 
-    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #8A2FFF;
+    border: 2px solid #028EBA;
 }
+/* .scanblue {
+    width: 100px;
+    height: 70%;
+    background-color: #8A2FFF;
+    border: 2px solid #028EBA;
+    border-radius: 78%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+} */
 
 .scanblue1 {
     width: 115px; background-color: #8A2FFF; 
@@ -349,14 +388,9 @@
     position: relative;
 }
 .text_scan {
-    color: #ffffff; 
-    position: absolute; 
-    top: 76px;
+ color: white;
 }
 
-/* .detall-profile {
-
-} */
 
 #overlay {
     position: fixed;
@@ -587,28 +621,37 @@ select {
 
 }
 
-.driverLic {
-    position: absolute;
+.driverLic ,.profileText,.callcenter,.profile2{
+    /* position: absolute;
     left: 36px;
-    top: 96px;
+    top: 96px; */
+    max-width: 90%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: ce;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  
 }
 
 .profileText {
-    position: absolute;
+    /* position: absolute;
     left: 15px;
-    top: 95px;
+    top: 95px; */
 }
 
 .callcenter {
-    position: absolute;
+    /* position: absolute;
     top: 95px;
-    left: 25px;
+    left: 25px; */
 }
 
 .profile2 {
-    position: absolute;
+    /* position: absolute;
     top: 95px;
-    left: 25px;
+    left: 25px; */
 }
 
 .error {
@@ -705,14 +748,8 @@ body {
     display: flex;
     align-items: center;
   }
+  
 .header-scan
 {
-    height: 50px;
-    width: 50px;
-    position: absolute;
-    top: 18px;
-    object-fit: cover;
-    /* border-radius: 100%; */
-    /* margin-right: 1rem; */
-    flex-shrink: 0;
+
 }

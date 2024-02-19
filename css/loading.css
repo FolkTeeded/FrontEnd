@@ -116,6 +116,17 @@
   background: #e2e2e2;
 }
 
+.img_skeleton1 { 
+  content: "";
+  position: relative;
+  opacity: .7;
+  animation: skeleton-loading 1s linear infinite alternate;
+  background: #e2e2e2;
+  color: transparent;
+}
+.img_skeleton1 .License_card {
+  display: none;
+}
 
 .is_loading {
   background: #eee;
