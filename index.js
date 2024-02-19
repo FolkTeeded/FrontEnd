@@ -78,7 +78,6 @@ const gander_edit = document.querySelector('#gander_edit')
 
 const btn_confirm = document.querySelector('#btn_confirm')
 const edit_nunmber = document.querySelector('#edit_nunmber')
-const edit_nunmber1 = document.querySelector('#edit_nunmber1')
 const type_res = document.querySelector('#type_res')
 const colorcar = document.querySelector('#color_car')
 const StudentID_Error = document.querySelector('#studentid-error')
@@ -104,13 +103,12 @@ function btn_editprofile() {
       btn_img1
 
       btn_nunmber = edit_nunmber.value
-      btn_nummber1 = edit_nunmber1.value
       car_type = type_res.value
       color_car = colorcar.value
       $(".overlay_edit .load-icon").show();
 
       // Call the updateprofile function with captured values
-      updateprofile(newName, newLastName, newPhone, dt_date, gander_e, btn_img1, btn_nunmber, btn_nummber1, car_type, color_car);
+      updateprofile(newName, newLastName, newPhone, dt_date, gander_e, btn_img1, btn_nunmber, car_type, color_car);
 }
 btn_confirm.onclick = btn_editprofile;
 
@@ -136,7 +134,7 @@ confirm_updatapass.onclick = btn_editpassword;
 //       });
 // }
 
-async function updateprofile(a, b, d, e, f, g, h, i, k, l) {
+async function updateprofile(a, b, d, e, f, g, h, i, j, k, l) {
       try {
             var newName = a;
             var newLastName = b;
@@ -144,8 +142,7 @@ async function updateprofile(a, b, d, e, f, g, h, i, k, l) {
             var dt_date = e ? formatDate(new Date(e)) : null;
             var gander_e = f;
             var btn_img1 = g;
-            var btn_nunmber = h;
-            var btn_nunmber1 = i;
+            var btn_nunmber1 = h;
             var cartype = k;
             var colorcar = l;
 
@@ -166,8 +163,7 @@ async function updateprofile(a, b, d, e, f, g, h, i, k, l) {
                         dt_date: dt_date,
                         gander_e: gander_e,
                         btn_img1: btn_img1,
-                        carint: btn_nunmber,
-                        carcounty: btn_nunmber1,
+                        carint: btn_nunmber1,
                         cartype: cartype,
                         carcolor: colorcar
                   }),
@@ -179,7 +175,7 @@ async function updateprofile(a, b, d, e, f, g, h, i, k, l) {
                                     icon: "success",
                                     title: "อัพเดทสำเร็จ",
                                     showConfirmButton: false,
-                                    timer: 3000
+                                    timer: 1500
                               });
                               setTimeout(function () {
                                     // Remove the loading icon
@@ -383,7 +379,6 @@ $(".updatapass").on("click", function () {
 
       if (direction === "next1") {
             $("div[class^=overlay_updatapass]").removeClass('open');
-            
       }
 });
 
@@ -514,7 +509,7 @@ function cameraSend(base64String) {
             success: function (response) {
                   if (response) {
                         console.log("ผ่าน");
-                        console.log(response);
+                        console.log()
                   } else {
                         console.log("ไม่ผ่าน");
                         // Handle failure as needed
@@ -924,7 +919,6 @@ $.ajax({
                   $('#edit_date').val(profileData.birthday);
                   $('#gander_edit').val(profileData.gander);
                   $('#edit_nunmber').val(carData.car_number);
-                  $('#edit_nunmber1').val(carData.car_country);
                   $('#type_res').val(carData.cartype);
                   $('#color_car').val(carData.carcolor)
             }
