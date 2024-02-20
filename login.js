@@ -1,7 +1,7 @@
 // const apilogin = 'https://0b01-113-53-150-169.ngrok-free.app/api/login'
 // const apiregister = 'https://0b01-113-53-150-169.ngrok-free.app/api/register'
 
-const apilogin = 'http://localhost:3000/api/login'
+const apilogin = '140.99.98.129/api/login'
 const apiregister = 'http://localhost:3000/api/register'
 const check_email = 'http://localhost:3000/api/check_email'
 const updatepass = 'http://localhost:3000/api/updatepass'
