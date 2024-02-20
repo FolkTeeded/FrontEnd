@@ -243,7 +243,7 @@ async function updateprofile(a, b, d, e, f, g, h, i, k, l,m) {
                                     icon: "success",
                                     title: "อัพเดทสำเร็จ",
                                     showConfirmButton: false,
-                                    timer: 1500
+                                    timer: 3000
                               });
                               setTimeout(function () {
                                     // Remove the loading icon
