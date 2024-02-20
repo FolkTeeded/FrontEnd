@@ -294,25 +294,32 @@ async function editpassword(a) {
       try {
             const password = a;
             const password_editpass1 = document.getElementById('password_editpass1').value;
-            console.log(password_editpass1)
+            
+            if (!password_editpass1 && !password) {
+                  Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "โปรดกรอกรหัสผ่าน",
+                  });
+                  return;
+            }
+
             if (password !== password_editpass1) {
                   Swal.fire({
                         icon: "error",
                         title: "Oops...",
-                        text: "โปรใส่รหัสผ่านให้เหมือนกัน",
-                    });
+                        text: "โปรดใส่รหัสผ่านให้เหมือนกัน",
+                  });
                   return;
             }
-
             $.ajax({
                   type: 'post',
-                  url: editpass,
+                  url: 'http://localhost:3000/api/editpass', // ตั้งค่า URL ของคุณ
                   contentType: "application/json",
                   headers: { "Authorization": localStorage.getItem('token') },
-                  data: JSON.stringify
-                        ({
-                              password: password,
-                        }),
+                  data: JSON.stringify({
+                        password: password,
+                  }),
                   success: function (response) {
                         if (response) {
                               c = response.data;
@@ -325,10 +332,7 @@ async function editpassword(a) {
                               setTimeout(function () {
                                     $("div[class^=overlay_updatapass]").removeClass('open');
                                     location.reload();
-                                }, 1000);
-                              // Handle success as needed
-                              // $("div[class^=overlay_updatapass]").removeClass('open');
-                              // location.reload();
+                              }, 1000);
                         } else {
                               console.log("ไม่ผ่าน", response.status, response.statusText);
                         }
@@ -336,14 +340,15 @@ async function editpassword(a) {
 
                   error: function (err) {
                         if (err) {
-                              console.log("ไม่ผ่าน", err)
+                              console.log("ไม่ผ่าน", err);
                         }
                   }
-            })
+            });
       } catch (err) {
-            console.log(err)
+            console.log(err);
       }
 }
+
 
 
 function ss() {
@@ -463,7 +468,7 @@ $(".updatapass").on("click", function () {
 document.addEventListener('DOMContentLoaded', function () {
       const openOverlayBtn = document.getElementById('openOverlayBtn');
       const closeOverlayBtn = document.getElementById('closeOverlayBtn');
-      const overlay = document.getElementById('overlay');
+      // const overlay = document.getElementById('overlay');
 
       openOverlayBtn.addEventListener('click', function () {
             overlay.style.left = '0'; /* Slide in from the left */
@@ -474,11 +479,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       // Close overlay if user clicks outside the content
-      overlay.addEventListener('click', function (event) {
-            if (event.target === overlay) {
-                  overlay.style.left = '-100%';
-            }
-      });
+
 });
 
 function img_select(callback_11) {
