@@ -4,6 +4,9 @@
 const apiupdateprofile = 'http://localhost:3000/api/updateprofile'
 const apitypecar = 'http://localhost:3000/api/typecar'
 const editpass = 'http://localhost:3000/api/editpass'
+const Get_Profile = 'http://localhost:3000/api/Get-Profile'
+const driving_img = 'http://localhost:3000/api/driving_img'
+
 let btn_img1; // ประกาศ btn_img1 เป็นตัวแปรที่เป็น global
 
 function custom_img_select(callback) {
@@ -314,7 +317,7 @@ async function editpassword(a) {
             }
             $.ajax({
                   type: 'post',
-                  url: 'http://localhost:3000/api/editpass', // ตั้งค่า URL ของคุณ
+                  url: editpass, // ตั้งค่า URL ของคุณ
                   contentType: "application/json",
                   headers: { "Authorization": localStorage.getItem('token') },
                   data: JSON.stringify({
@@ -779,7 +782,7 @@ function logout() {
 }
 
 $.ajax({
-      url: 'http://localhost:3000/api/Get-Profile',
+      url: Get_Profile,
       type: 'POST',
       dataType: 'json',
       contentType: "application/json",
@@ -844,7 +847,7 @@ $.ajax({
       }
 });
 $.ajax({
-      url: 'http://localhost:3000/api/Get-Profile',
+      url: Get_Profile,
       type: 'POST',
       dataType: 'json',
       contentType: "application/json",
@@ -896,7 +899,7 @@ $.ajax({
 });
 
 $.ajax({
-      url: 'http://localhost:3000/api/Get-Profile',
+      url: Get_Profile,
       type: 'POST',
       dataType: 'json',
       contentType: "application/json",
@@ -1065,7 +1068,7 @@ async function driving_licenseimg(a) {
 
             const response = await $.ajax({
                   type: 'post',
-                  url: 'http://localhost:3000/api/driving_img',
+                  url: driving_img,
                   contentType: "application/json",
                   headers: { "Authorization": localStorage.getItem('token') },
                   data: JSON.stringify({
@@ -1107,7 +1110,7 @@ async function driving_licenseimg(a) {
 
 
 $.ajax({
-      url: 'http://localhost:3000/api/Get-Profile',
+      url: Get_Profile,
       type: 'POST',
       dataType: 'json',
       contentType: "application/json",
@@ -1158,6 +1161,7 @@ removeClassWithDelay(".menu-item3", "is-loading", 1500);
 
 // Removing "loading_scan" class from .scanblue element
 removeClassWithDelay(".scanblue", "loading_scan", 1500);
+removeClassWithDelay(".bt-register1", "loading_scan", 1500);
 // removeClassWithDelay(".scanblue1", "loading_scan", 1500);
 
 const removeClassWithDelay1 = (selector, className, delay) => {
