@@ -104,13 +104,13 @@
 
                   <div class="container_menu">
                         <div class="container-menu">
-                              <div class="menu-item img_skeleton1 img1 ">
+                              <div class="menu-item img_skeleton1 img1">
                                     <div class="img-menu">
                                           <img class="License_card" src="/img/License_card-export.png">
                                     </div>
                                     <div class="driverLic">เพิ่มใบขับขี่</div>
                               </div>
-                              <div  class="menu-item1 img_skeleton1 edit1">
+                              <div class="menu-item1 img_skeleton1 edit1">
                                     <div class="img-menu1">
                                           <img class="License_card" src="/img/Profile1-export.png" alt="">
                                     </div>
@@ -130,9 +130,10 @@
                               </div>
                         </div>
 
-                        <div class="container-scan">
-                              <div class="scanblue loading_scan">
-                                    <!-- <div class="dada"> -->
+                            <div class="test">
+                              <div style="width: 33.33%; height: 100%;"></div>
+                              <div class="container-scan">
+                                    <div class="scanblue loading_scan">
                                           <div class="img_scan1" onclick="triggerFileInput()">
                                                 <input class="inputca" type="file"
                                                       accept="image/png, image/jpeg, image/heif, image/heic"
@@ -140,210 +141,217 @@
                                                       id="camaraPic">
                                                 <img class="header-scan" src="img/scanner.png" alt="">
                                                 <div class="text_scan">สแกน</div>
-                                                
-
-                                          <!-- </div> -->
+                                          </div>
+                                    </div>
+                                
+                              </div>
+                              <div style="    width: 33.33%;
+                              height: 100%;
+                              display: flex;
+                              justify-content: flex-end;">
+                                    <div class="bt-register1 searc loading_scan">
+                                          <div style="display: flex; align-items: center;">
+                                                <img class="text_scan2" src="img/Frame2.png" alt="">
+                                                <div class="text_scan2">ค้นหา</div>
+                                          </div>
                                     </div>
                               </div>
+
                         </div>
-                        <div ></div>
+
+             
+
                   </div>
-
-
-
             </div>
-      </div>
-      <div class="overlay_updatapass">
-            <div class="head-title">
-                  <svg class="updatapass arrow_left" xmlns="http://www.w3.org/2000/svg" width="24"
-                        height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
-                              fill="#ffff" />
-                  </svg>
-                  <p style="color: #ffffff;">แก้ไขรหัสผ่าน</p>
-            </div>
-            <div class="formbg-inner padding-horizontal--48">
-                  <form id="form_updatapass">
-                        <div class="field padding-bottom--24">
-                              <label for="password_updatapass" class="brtop">ตั้งรหัสผ่าน</label>
-                              <input id="password_updatapass" type="password" placeholder="ตั้งรหัสผ่าน">
-                        </div>
-                        <div class="field padding-bottom--24">
-                              <label for="password_editpass1" class="brtop">ยืนยันรหัสผ่าน</label>
-                              <input id="password_editpass1" type="password" placeholder="ยืนยันรหัสผ่าน">
-                        </div>
-                        <div class="bt-select padding-10">
-                              <div id="confirm_updatapass" class="bt-con-select">
-                                    <p>ตกลง</p>
+            <div class="overlay_updatapass">
+                  <div class="head-title">
+                        <svg class="updatapass arrow_left" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                              viewBox="0 0 24 24" fill="none">
+                              <path d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
+                                    fill="#ffff" />
+                        </svg>
+                        <p style="color: #ffffff;">แก้ไขรหัสผ่าน</p>
+                  </div>
+                  <div class="formbg-inner padding-horizontal--48">
+                        <form id="form_updatapass">
+                              <div class="field padding-bottom--24">
+                                    <label for="password_updatapass" class="brtop">ตั้งรหัสผ่าน</label>
+                                    <input id="password_updatapass" type="password" placeholder="ตั้งรหัสผ่าน">
                               </div>
-                        </div>
-                  </form>
-            </div>
-      </div>
-
-      <div class="overlay_img">
-            <div class="load-icon center" style="display: none;">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-            </div>
-            <div class="head-title">
-                  <svg class="prev_img arrow_left" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                        viewBox="0 0 24 24" fill="none">
-                        <path d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
-                              fill="#ffff" />
-                  </svg>
-                  <p style="color: #ffffff;">เพิ่มใบขับขี่</p>
-            </div>
-            <div class="formbg-inner padding-horizontal--48">
-                  <form id="form_img_car">
-                        <div class="field padding-bottom--24">
-                              <label for="" class="brtop">โปรดใส่ไฟล์ภาพใบขับขี่</label>
-                              <label id="picture_driving_license" class="picture" for="picture__input"
-                                    tabIndex="0">
-                                    <img class="img_pic" width="23.33px" height="23.33px"
-                                          src="./img/Subtract.png" alt="">
-                                    <span class="picture__image"></span>
-                              </label>
-                              <input type="file" name="picture__input" id="picture__input">
-                        </div>
-                        <div class="bt-select padding-10">
-                              <div id="select_driving_license" class="bt-con-select" name="img_car">
-                                    <p>ตกลง</p>
+                              <div class="field padding-bottom--24">
+                                    <label for="password_editpass1" class="brtop">ยืนยันรหัสผ่าน</label>
+                                    <input id="password_editpass1" type="password" placeholder="ยืนยันรหัสผ่าน">
                               </div>
-                        </div>
-                  </form>
+                              <div class="bt-select padding-10">
+                                    <div id="confirm_updatapass" class="bt-con-select">
+                                          <p>ตกลง</p>
+                                    </div>
+                              </div>
+                        </form>
+                  </div>
             </div>
-      </div>
 
-      <!-- <div class="loader-container">
-                  <div class="loader"><span class="loader-inner"></span></div>
-            </div> -->
-      <div id="loadingOverlay1">
-            <div class="overlay_edit overlay-slide_R_to_L" >
+            <div class="overlay_img">
                   <div class="load-icon center" style="display: none;">
                         <span></span>
                         <span></span>
                         <span></span>
                   </div>
-
-                  <div class="head-title" style="height: 25dvh;">
-                        <svg class="prev_edit arrow_left" xmlns="http://www.w3.org/2000/svg" width="24"
-                              height="24" viewBox="0 0 24 24" fill="none">
+                  <div class="head-title">
+                        <svg class="prev_img arrow_left" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                              viewBox="0 0 24 24" fill="none">
                               <path d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
                                     fill="#ffff" />
                         </svg>
-                        <p style="color: #ffffff;">แก้ไขข้อมูลส่วนตัว</p>
+                        <p style="color: #ffffff;">เพิ่มใบขับขี่</p>
                   </div>
-                  <div class="formbg-inner padding-horizontal--49">
-                        <!-- <form id="form_edit"> -->
-                        <div class="field padding-bottom--24">
-                              <label for="" class="brtop">ขื่อ</label>
-                              <input id="edit_name" type="text" name="" placeholder="ชื่อ">
-                        </div>
-                        <div class="field padding-bottom--24">
-                              <label for="" class="brtop">นามสกุล</label>
-                              <input id="edit_last" type="text" name="" placeholder="นามสกุล">
-                        </div>
-                        <div class="field padding-bottom--24">
-                              <label for="" class="brtop">เบอร์โทรศัพท์</label>
-                              <input id="edit_phone" type="" name="" placeholder="000-000-0000">
-                        </div>
-                        <div class="field padding-bottom--24">
-                              <label for="" class="brtop">วัน/เดือน/ปีเกิด</label>
-                              <input id="edit_date" type="date" name="" placeholder="วัน/เดือน/ปีเกิด">
-                        </div>
-                        <div class="field padding-bottom--24">
-                              <label for="" class="brtop">เพศ</label>
-                              <div
-                                    style="width: 100%; border: 1px solid;border-radius: 17px;display: flex;align-items: center;">
-                                    <select style="border: unset;width:95%;height: 50%;padding-left: 10px;"
-                                          id="gander_edit">
-                                          <option value="ชาย">ชาย</option>
-                                          <option value="หญิง">หญิง</option>
-                                          <option value="ไม่ระบุ">ไม่ระบุ</option>
-                                    </select>
+                  <div class="formbg-inner padding-horizontal--48">
+                        <form id="form_img_car">
+                              <div class="field padding-bottom--24">
+                                    <label for="" class="brtop">โปรดใส่ไฟล์ภาพใบขับขี่</label>
+                                    <label id="picture_driving_license" class="picture" for="picture__input"
+                                          tabIndex="0">
+                                          <img class="img_pic" width="23.33px" height="23.33px" src="./img/Subtract.png"
+                                                alt="">
+                                          <span class="picture__image"></span>
+                                    </label>
+                                    <input type="file" name="picture__input" id="picture__input">
                               </div>
-                        </div>
-                        <div class="field padding-bottom--24">
-                              <label for="custom_picture__input1" class="brtop">รูปโปรไฟล์</label>
-                              <label class="custom_picture1" id="custom_picture1"
-                                    for="custom_picture__input1" tabIndex="0">
-                                    <img class="custom_img_pic1" width="23.33px" height="23.33px"
-                                          src="./img/Subtract.png" alt="">
-                                    <span class="custom_picture__image1"></span>
-                              </label>
-                              <input type="file" name="custom_picture__input1" id="custom_picture__input1"
-                                    style="display: none;">
-                        </div>
-                        <div class="field padding-bottom--24">
-                              <label for="" class="brtop">เลขป้ายทะเบียน(เช่น 22กกกก)</label>
-                              <input type="text" id="edit_nunmber"
-                                    placeholder="เลขป้ายทะเบียน(เช่น 22กกกก)">
-                        </div>
-                        <div class="field padding-bottom--24">
-                              <label for="" class="brtop">เลขป้ายทะเบียน(เช่น กรุงเทพ)</label>
-                              <input type="text" id="edit_nunmber1"
-                                    placeholder="เลขป้ายทะเบียน(เช่น กรุงเทพ)">
-                        </div>
-                        <div class="field padding-bottom--24">
-                              <label for="car" class="brtop">ประเภทรถ</label>
-                              <input id="type_res" type="text" name="type_res" placeholder="ประเภทรถ">
-                        </div>
-                        <div class="field padding-bottom--24">
-                              <label for="car_color" class="brtop">สีรถ</label>
-                              <input id="color_car" type="text" name="car_color" placeholder="สีรถ">
-                        </div>
-                        <div class="field padding-bottom--24">
-                              <label for="customPictureInputcar" class="brtop">รูปยานพาหนะ</label>
-                              <label class="customPictureLabelcar" id="customPictureLabelcar"
-                                    for="customPictureInputcar" tabIndex="0">
-                                    <img class="customImgPiccar" width="23.33px" height="23.33px"
-                                          src="./img/Subtract.png" alt="">
-                                    <span class="customPictureImagecar"></span>
-                              </label>
-                              <input type="file" name="customPictureInputcar" id="customPictureInputcar"
-                                    style="display: none;">
-
-                        </div>
-                        <div class="bt-select padding-10">
-                              <div id="btn_confirm" class="bt-con-select" name="edit_car">
-                                    <p>ตกลง</p>
+                              <div class="bt-select padding-10">
+                                    <div id="select_driving_license" class="bt-con-select" name="img_car">
+                                          <p>ตกลง</p>
+                                    </div>
                               </div>
-                        </div>
+                        </form>
                   </div>
             </div>
-      </div>
 
-      <div class="overlay_supp">
-            <div class="head-title">
-                  <svg class="prev_supp arrow_left" xmlns="http://www.w3.org/2000/svg" width="24"
-                        height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
-                              fill="#ffff" />
-                  </svg>
-                  <p style="color: #ffffff;">ข่าวสาร</p>
-            </div>
-            <div style="display: flex; flex-direction: column; align-items: center;">
-                  <!-- <div style="width: 100%; height: 100%;"> -->
-                  <!-- </div> -->
-            </div>
-      </div>
-
-      <div class="overlay_personal">
-            <div class="head-title">
-                  <!-- <div class="fa fa-angle-left prev_personal" style="color: #ffffff;">
+            <!-- <div class="loader-container">
+                  <div class="loader"><span class="loader-inner"></span></div>
             </div> -->
-                  <svg class="prev_personal arrow_left" xmlns="http://www.w3.org/2000/svg" width="24"
-                        height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
-                              fill="#ffff" />
-                  </svg>
+            <div id="loadingOverlay1">
+                  <div class="overlay_edit overlay-slide_R_to_L">
+                        <div class="load-icon center" style="display: none;">
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                        </div>
 
-                  <p style="color: #ffffff;">ข้อมูลส่วนบุคคล</p>
+                        <div class="head-title" style="height: 25dvh;">
+                              <svg class="prev_edit arrow_left" xmlns="http://www.w3.org/2000/svg" width="24"
+                                    height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
+                                          fill="#ffff" />
+                              </svg>
+                              <p style="color: #ffffff;">แก้ไขข้อมูลส่วนตัว</p>
+                        </div>
+                        <div class="formbg-inner padding-horizontal--49">
+                              <!-- <form id="form_edit"> -->
+                              <div class="field padding-bottom--24">
+                                    <label for="" class="brtop">ขื่อ</label>
+                                    <input id="edit_name" type="text" name="" placeholder="ชื่อ">
+                              </div>
+                              <div class="field padding-bottom--24">
+                                    <label for="" class="brtop">นามสกุล</label>
+                                    <input id="edit_last" type="text" name="" placeholder="นามสกุล">
+                              </div>
+                              <div class="field padding-bottom--24">
+                                    <label for="" class="brtop">เบอร์โทรศัพท์</label>
+                                    <input id="edit_phone" type="" name="" placeholder="000-000-0000">
+                              </div>
+                              <div class="field padding-bottom--24">
+                                    <label for="" class="brtop">วัน/เดือน/ปีเกิด</label>
+                                    <input id="edit_date" type="date" name="" placeholder="วัน/เดือน/ปีเกิด">
+                              </div>
+                              <div class="field padding-bottom--24">
+                                    <label for="" class="brtop">เพศ</label>
+                                    <div
+                                          style="width: 100%; border: 1px solid;border-radius: 17px;display: flex;align-items: center;">
+                                          <select style="border: unset;width:95%;height: 50%;padding-left: 10px;"
+                                                id="gander_edit">
+                                                <option value="ชาย">ชาย</option>
+                                                <option value="หญิง">หญิง</option>
+                                                <option value="ไม่ระบุ">ไม่ระบุ</option>
+                                          </select>
+                                    </div>
+                              </div>
+                              <div class="field padding-bottom--24">
+                                    <label for="custom_picture__input1" class="brtop">รูปโปรไฟล์</label>
+                                    <label class="custom_picture1" id="custom_picture1" for="custom_picture__input1"
+                                          tabIndex="0">
+                                          <img class="custom_img_pic1" width="23.33px" height="23.33px"
+                                                src="./img/Subtract.png" alt="">
+                                          <span class="custom_picture__image1"></span>
+                                    </label>
+                                    <input type="file" name="custom_picture__input1" id="custom_picture__input1"
+                                          style="display: none;">
+                              </div>
+                              <div class="field padding-bottom--24">
+                                    <label for="" class="brtop">เลขป้ายทะเบียน(เช่น 22กกกก)</label>
+                                    <input type="text" id="edit_nunmber" placeholder="เลขป้ายทะเบียน(เช่น 22กกกก)">
+                              </div>
+                              <div class="field padding-bottom--24">
+                                    <label for="" class="brtop">เลขป้ายทะเบียน(เช่น กรุงเทพ)</label>
+                                    <input type="text" id="edit_nunmber1" placeholder="เลขป้ายทะเบียน(เช่น กรุงเทพ)">
+                              </div>
+                              <div class="field padding-bottom--24">
+                                    <label for="car" class="brtop">ประเภทรถ</label>
+                                    <input id="type_res" type="text" name="type_res" placeholder="ประเภทรถ">
+                              </div>
+                              <div class="field padding-bottom--24">
+                                    <label for="car_color" class="brtop">สีรถ</label>
+                                    <input id="color_car" type="text" name="car_color" placeholder="สีรถ">
+                              </div>
+                              <div class="field padding-bottom--24">
+                                    <label for="customPictureInputcar" class="brtop">รูปยานพาหนะ</label>
+                                    <label class="customPictureLabelcar" id="customPictureLabelcar"
+                                          for="customPictureInputcar" tabIndex="0">
+                                          <img class="customImgPiccar" width="23.33px" height="23.33px"
+                                                src="./img/Subtract.png" alt="">
+                                          <span class="customPictureImagecar"></span>
+                                    </label>
+                                    <input type="file" name="customPictureInputcar" id="customPictureInputcar"
+                                          style="display: none;">
+
+                              </div>
+                              <div class="bt-select padding-10">
+                                    <div id="btn_confirm" class="bt-con-select" name="edit_car">
+                                          <p>ตกลง</p>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
             </div>
-            <div class="container-profile_personal">
-                  <!-- <div class="pic-profile-personal">
+
+            <div class="overlay_supp">
+                  <div class="head-title">
+                        <svg class="prev_supp arrow_left" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                              viewBox="0 0 24 24" fill="none">
+                              <path d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
+                                    fill="#ffff" />
+                        </svg>
+                        <p style="color: #ffffff;">ข่าวสาร</p>
+                  </div>
+                  <div style="display: flex; flex-direction: column; align-items: center;">
+                        <!-- <div style="width: 100%; height: 100%;"> -->
+                        <!-- </div> -->
+                  </div>
+            </div>
+
+            <div class="overlay_personal">
+                  <div class="head-title">
+                        <!-- <div class="fa fa-angle-left prev_personal" style="color: #ffffff;">
+            </div> -->
+                        <svg class="prev_personal arrow_left" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                              viewBox="0 0 24 24" fill="none">
+                              <path d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
+                                    fill="#ffff" />
+                        </svg>
+
+                        <p style="color: #ffffff;">ข้อมูลส่วนบุคคล</p>
+                  </div>
+                  <div class="container-profile_personal">
+                        <!-- <div class="pic-profile-personal">
                         <div class="pic-profile1"></div>
                   </div>
                   <div style=" margin-top: 58px;">
@@ -371,22 +379,22 @@
 
                         </div>
                   </div> -->
+                  </div>
             </div>
-      </div>
-      <div class="overlay_cardetail" style="background-color: aliceblue;">
-            <div class="head-title">
-                  <!-- <div class="fa fa-angle-left prev_personal" style="color: #ffffff;">
+            <div class="overlay_cardetail" style="background-color: aliceblue;">
+                  <div class="head-title">
+                        <!-- <div class="fa fa-angle-left prev_personal" style="color: #ffffff;">
             </div> -->
-                  <!-- <svg class="prev_personal arrow_left" xmlns="http://www.w3.org/2000/svg" width="24"
+                        <!-- <svg class="prev_personal arrow_left" xmlns="http://www.w3.org/2000/svg" width="24"
                         height="24" viewBox="0 0 24 24" fill="none">
                         <path d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
                               fill="#ffff" />
                   </svg> -->
 
-                  <p style="color: #ffffff;">ข้อมูลส่วนบุคคล</p>
-            </div>
-            <div id="container-profile_personal23" class="container-profile_personal">
-                  <!-- <div class="pic-profile-personal">
+                        <p style="color: #ffffff;">ข้อมูลส่วนบุคคล</p>
+                  </div>
+                  <div id="container-profile_personal23" class="container-profile_personal">
+                        <!-- <div class="pic-profile-personal">
                         <div class="pic-profile1"></div>
                   </div>
                   <div style=" margin-top: 58px;">
@@ -407,52 +415,55 @@
 
                         </div>
                   </div> -->
-                  <!-- <div style="width: 100%;height: 15dvh;display: flex;justify-content: center;align-items: center;">
+                        <!-- <div style="width: 100%;height: 15dvh;display: flex;justify-content: center;align-items: center;">
                         <div style="width: 80%;height: 80%;background-color: #FFE071;border-radius: 17px;"></div>
                   </div> -->
-            </div>
-            <div onclick="closeshow()"
-                  style="width: 100%;height: 15dvh;display: flex;justify-content: center;align-items: center;">
-                  <div style="width: 90%;height: 60%;background-color: #FFE071;border-radius: 40px;display: flex;justify-content: center;
-            align-items: center;">
-                        <p>ตกลง</p>
                   </div>
+                  <div onclick="closeshow()"
+                        style="width: 100%;height: 15dvh;display: flex;justify-content: center;align-items: center;">
+                        <div style="width: 90%;height: 60%;background-color: #FFE071;border-radius: 40px;display: flex;justify-content: center;
+            align-items: center;">
+                              <p>ตกลง</p>
+                        </div>
+                  </div>
+                  <!-- </form> -->
             </div>
-            <!-- </form> -->
-      </div>
 
-      <div class="overlay_pass">
-            <div class="head-title">
-                  <svg class="prev1 arrow_left" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                        viewBox="0 0 24 24" fill="none">
-                        <path d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
-                              fill="#ffff" />
-                  </svg>
-                  <p style="color: #ffffff;">ลงทะเบียน</p>
-            </div>
-            <div class="formbg-inner padding-horizontal--48">
-                  <form id="form_resister">
-                        <div class="field padding-bottom--24">
-                              <label for="password" class="brtop">ตั้งรหัสผ่าน</label>
-                              <input id="password_res" type="password" name="password" placeholder="ตั้งรหัสผ่าน">
-                        </div>
-                        <div class="field padding-bottom--24">
-                              <label for="password" class="brtop">ยืนยันรหัสผ่าน</label>
-                              <input id="confirm_pass" type="password" name="password"
-                                    placeholder="ยืนยันรหัสผ่าน">
-                        </div>
-                        <div class="bt-select padding-10">
-                              <div id="confirm_res" class="bt-con-select" name="login_pass">
-                                    <p>ตกลง</p>
+            <div class="overlay_pass">
+                  <div class="head-title">
+                        <svg class="prev1 arrow_left" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                              viewBox="0 0 24 24" fill="none">
+                              <path d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
+                                    fill="#ffff" />
+                        </svg>
+                        <p style="color: #ffffff;">ลงทะเบียน</p>
+                  </div>
+                  <div class="formbg-inner padding-horizontal--48">
+                        <form id="form_resister">
+                              <div class="field padding-bottom--24">
+                                    <label for="password" class="brtop">ตั้งรหัสผ่าน</label>
+                                    <input id="password_res" type="password" name="password" placeholder="ตั้งรหัสผ่าน">
                               </div>
-                        </div>
+                              <div class="field padding-bottom--24">
+                                    <label for="password" class="brtop">ยืนยันรหัสผ่าน</label>
+                                    <input id="confirm_pass" type="password" name="password"
+                                          placeholder="ยืนยันรหัสผ่าน">
+                              </div>
+                              <div class="bt-select padding-10">
+                                    <div id="confirm_res" class="bt-con-select" name="login_pass">
+                                          <p>ตกลง</p>
+                                    </div>
+                              </div>
+                        </form>
+                  </div>
                   </form>
             </div>
             </form>
       </div>
-      <div class="overlay_search open" style="background-color: aliceblue;" >
+      
+      <div class="overlay_search" style="background-color: aliceblue;" >
             <div class="head-title" style="height: 8dvh;">
-                  <svg class="prev_edit arrow_left" xmlns="http://www.w3.org/2000/svg" width="24"
+                  <svg class="search_edit arrow_left" xmlns="http://www.w3.org/2000/svg" width="24"
                         height="24" viewBox="0 0 24 24" fill="none">
                         <path d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
                               fill="#ffff" />
