@@ -807,7 +807,6 @@ $.ajax({
                         var imageElement = convertBase64ToImage(profileData.img_pro);
                         imageContainer.appendChild(imageElement);
                   } else {
-                        console.log('Profile image not available');
                   }
 
 
@@ -899,7 +898,7 @@ $.ajax({
                               <p>เบอร์โทรศัพท์ : ${profileData.phone}</p>
                               <p id="birthdayParagraph">วัน/เดือน/ปีเกิด : ${profileData.birthday}</p>
                               <p id="gander12">เพศ : ${profileData.gander}</p>
-                              <p>เลขป้ายทะเบียน : ${carData.car_number}/${carData.car_country}</p>
+                              <p>เลขป้ายทะเบียน : ${carData.car_number} ${carData.car_country}</p>
                               <p id = "cartype" >ประเภทรถ : ${carData.cartype}</p>
                               <p id = "carcolor" style="padding-bottom: 30px;">สีรถ : ${carData.carcolor}</p>
                               <div style="width: 100%;
@@ -928,7 +927,6 @@ $.ajax({
                         var imageElement = convertBase64ToImage(profileData.img_pro);
                         imageContainer.appendChild(imageElement);
                   } else {
-                        console.log('Profile image not available');
                   }
                   // ตรวจสอบว่า profileData.birthday ไม่ใช่ค่า null หรือ undefined
                   if (profileData.birthday) {
