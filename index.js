@@ -29,7 +29,7 @@ function custom_img_select(callback) {
                         custom_img_pic1.style.display = "none";
 
                         const custom_base64String = e.target.result.split(',')[1];
-                        console.log('Custom Base64 String:', custom_base64String);
+                        // console.log('Custom Base64 String:', custom_base64String);
 
                         btn_img1 = custom_base64String; // กำหนดค่าให้กับตัวแปร btn_img1
 
@@ -62,9 +62,9 @@ function custom_img_select(callback) {
 custom_img_select(function (custom_base64StringResult) {
       // ตอนนี้ custom_base64String พร้อมใช้งาน
       const custom_base64String = custom_base64StringResult;
-      console.log('Custom Selected Image Base64 String:', custom_base64String);
+      // console.log('Custom Selected Image Base64 String:', custom_base64String);
       // เข้าถึง btn_img1 ที่นี่หากต้องการ
-      console.log('btn_img1:', btn_img1);
+      // console.log('btn_img1:', btn_img1);
 });
 
 let btnImgCar; // ประกาศ btnImgCar เป็นตัวแปรที่เป็น global
@@ -92,7 +92,7 @@ function customImgCarSelect(callback) {
                         customImgPicCar.style.display = "none";
 
                         const customBase64StringCar = e.target.result.split(',')[1];
-                        console.log('Custom Base64 String:', customBase64StringCar);
+                        // console.log('Custom Base64 String:', customBase64StringCar);
 
                         btnImgCar = customBase64StringCar; // กำหนดค่าให้กับตัวแปร btnImgCar
 
@@ -125,9 +125,9 @@ function customImgCarSelect(callback) {
 customImgCarSelect(function (customBase64StringResult) {
       // ตอนนี้ customBase64String พร้อมใช้งาน
       const customBase64StringCar = customBase64StringResult;
-      console.log('Custom Selected Image Base64 String:', customBase64StringCar);
+      // console.log('Custom Selected Image Base64 String:', customBase64StringCar);
       // เข้าถึง btnImgCar ที่นี่หากต้องการ
-      console.log('btnImgCar:', btnImgCar);
+      // console.log('btnImgCar:', btnImgCar);
 });
 
 const editname = document.querySelector('#edit_name')
@@ -332,7 +332,7 @@ async function editpassword(a) {
                               setTimeout(function () {
                                     $("div[class^=overlay_updatapass]").removeClass('open');
                                     location.reload();
-                              }, 1000);
+                              }, 1500);
                         } else {
                               console.log("ไม่ผ่าน", response.status, response.statusText);
                         }
@@ -412,7 +412,7 @@ $(".supp1").on("click", function () {
                   title: "ขออภัย",
                   text: "เมนูส่วนนนี้ยังอยู่ในระหว่างการอัปเดต",
                   icon: "warning",
-                  showButton: true,
+                  // showButton: true,
                   preConfirm: () => {
                         $("div[class^=overlay_supp]").removeClass('open');
                   }
@@ -509,7 +509,7 @@ function img_select(callback_11) {
                               pictureImage.appendChild(img);
 
                               base64 = readerTarget.result.split(',')[1];
-                              console.log('Base64 String:', base64);
+                              // console.log('Base64 String:', base64);
 
                               if (typeof callback_11 === 'function') {
                                     callback_11(base64);
@@ -567,7 +567,13 @@ function displaySelectedFile(input) {
                               // Use dataURL for further processing (e.g., displaying, sending to server)
                         };
 
-                        alert('Base64 representation: ' + base64String);
+                        // alert('Base64 representation: ' + base64String);
+                        Swal.fire({
+                              icon: "success",
+                              title: "กำลังค้นหาป้านทะเบียน",
+                              showConfirmButton: false,
+                              timer: 1500
+                            });
                         cameraSend(base64String)
                         img.src = event.target.result;
 
@@ -585,12 +591,12 @@ function cameraSend(base64String) {
             headers: { "Authorization": localStorage.getItem('token') },
             data: JSON.stringify({ base64String }),
             success: function (data) {
-                  console.log("Response:", data);
+                  // console.log("Response:", data);
 
                   if (data && data.data.car && data.data.user) {
                         const profileData = data.data.user;
                         const carData = data.data.car;
-                        console.log("ผ่าน");
+                        // console.log("ผ่าน");
 
                         const containerProfile = document.getElementById('container-profile_personal23');
                         containerProfile.innerHTML += `
@@ -651,9 +657,9 @@ function cameraSend(base64String) {
                         if (carData.img_car) {
                               var imageElementCar = convertBase64ToImage(carData.img_car);
                               imageContainercar.appendChild(imageElementCar);
-                              console.log("รถผ่าน");
+                              // console.log("รถผ่าน");
                         } else {
-                              console.log("รถไม่ผ่าน");
+                              // console.log("รถไม่ผ่าน");
                         }
                         const carpy = document.getElementById('carpy');
 
@@ -676,14 +682,19 @@ function cameraSend(base64String) {
                               }
                         }
                   } else {
-                        console.log("ไม่ผ่าน");
+                        console.log("ไม่ผ่าน1");
                         // Handle failure as needed
                   }
             },
 
             error: function (err) {
                   if (err) {
-                        console.log("ไม่ผ่าน", err);
+                        setTimeout(function () {
+                              Swal.fire({
+                                    icon: "error",
+                                    text: "ไม่พบป้ายทะเบียน โปรดถ่ายใหม่!",
+                                });
+                          }, 2000);
                   }
             }
       });
@@ -1012,7 +1023,7 @@ $.ajax({
                         var imageElement = convertBase64ToImage(profileData.driving_license);
                         image.appendChild(imageElement);
                   } else {
-                        console.log('Profile image not available');
+                        // console.log('Profile image not available');
                   }
             }
       },
@@ -1066,7 +1077,7 @@ async function driving_licenseimg(a) {
                         $("div[class^=overlay_img]").removeClass('open');
 
                         location.reload();
-                  }, 3000);
+                  }, 1500);
 
             } else {
                   console.log("Error:", response.message);
