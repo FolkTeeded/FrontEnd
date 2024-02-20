@@ -1133,6 +1133,7 @@ removeClassWithDelay(".menu-item3", "is-loading", 1500);
 
 // Removing "loading_scan" class from .scanblue element
 removeClassWithDelay(".scanblue", "loading_scan", 1500);
+// removeClassWithDelay(".scanblue1", "loading_scan", 1500);
 
 const removeClassWithDelay1 = (selector, className, delay) => {
       const element = document.querySelector(selector);
