@@ -722,7 +722,6 @@ function cameraSend(base64String) {
 
 
 
-
 document.addEventListener('DOMContentLoaded', function () {
       // Get the input element
       var phoneInput = document.getElementById('edit_phone');
@@ -1142,9 +1141,126 @@ const btn_cars = document.getElementById('edit_car3')
 function btn_cars_2() {
       const value_car1 = edit_car1.value
       console.log(value_car1)
-      // send_data(value_car1, value_car2)
+      send_datav2(value_car1)
   }
 btn_cars.onclick = btn_cars_2
+
+async function send_datav2(a) {
+      try {
+            const datacar = a;
+            $.ajax({
+                  type: 'post',
+                  url: 'http://localhost:3000/api/datacarV2',
+                  contentType: "application/json",
+                  headers: { "Authorization": localStorage.getItem('token') },
+                  data: JSON.stringify({
+                        datacarv2: datacar,
+                  }),
+                  success: function (response) {
+                        console.log('response',response)
+                        if (response && response.data.car && response.data.user) {
+                            const profileData = response.data.user;
+                            const carData = response.data.car;
+                            const containerProfile = document.getElementById('container-profile_personal23');
+                        containerProfile.innerHTML += `
+                    <div class="pic-profile-personal">
+                        <div class="pic-profile1">
+                        <div id ="image-picporcar" style="
+                  width: 100%;
+                  height: 100%;
+              "></div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 58px;">
+                        <div class="detall-profile_personal">
+                            <div class="detall-profile-per">
+                                <div id="carP" class="carP" style="color: #ffffff;">
+                                    <p>ชื่อ : ${profileData.firstname}</p>
+                                    <p>นามสกุล : ${profileData.lastname}</p>
+                                    <p>อีเมล์ : ${profileData.email}</p>
+                                    <p>เบอร์โทรศัพท์ : ${profileData.phone}</p>
+                                    <p>เลขป้ายทะเบียน : ${carData.car_number} ${carData.car_country}</p>
+                                    <p id = "carpy">ประเภทรถ : ${carData.cartype}</p> 
+                                    <p id = "carcolor11" style="padding-bottom: 30px;">สีรถ : ${carData.carcolor}</p> <!-- Use correct property name -->
+                                    <div style="width: 100%;
+                              height: 25dvh;
+                              border-radius: 40px ;">
+                              <div id = "imgcartt" style="
+                              width: 100%;
+                              height: 100%;
+                          "></div>
+                              </div>
+                                </div>
+                            </div>
+                        </div>
+                  </div>
+            </div>
+                    </div>`;
+
+                        $("div[class^=overlay_cardetail]").addClass('open');
+                        function convertBase64ToImage(base64Data) {
+                              var image = document.createElement('img');
+                              image.src = "data:image/jpeg;base64," + base64Data;
+                              return image;
+                        }
+
+                        // แสดงรูปภาพของโปรไฟล์
+                        const imageContainer = document.getElementById('image-picporcar');
+                        imageContainer.innerHTML = '';
+
+                        if (profileData.img_pro) {
+                              var imageElementProfile = convertBase64ToImage(profileData.img_pro);
+                              imageContainer.appendChild(imageElementProfile);
+                        }
+
+                        // แสดงรูปภาพของรถ
+                        const imageContainercar = document.getElementById('imgcartt');
+                        imageContainercar.innerHTML = '';
+
+                        if (carData.img_car) {
+                              var imageElementCar = convertBase64ToImage(carData.img_car);
+                              imageContainercar.appendChild(imageElementCar);
+                              // console.log("รถผ่าน");
+                        } else {
+                              // console.log("รถไม่ผ่าน");
+                        }
+                        const carpy = document.getElementById('carpy');
+
+                        if (carpy) {
+                              if (carData.cartype) {
+                                    carpy.innerHTML = `ประเภทรถ: ${carData.cartype}`;
+                              } else {carcolor11
+                                    // Handle the case when profileData.gander is null or undefined
+                                    carpy.innerHTML = '';  // You might want to set a default value here
+                              }
+                        }
+                        const colorc = document.getElementById('carcolor11');
+
+                        if (colorc) {
+                              if (carData.carcolor) {
+                                    colorc.innerHTML = `สีรถ: ${carData.carcolor}`;
+                              } else {
+                                    // Handle the case when profileData.gander is null or undefined
+                                    colorc.innerHTML = '';  // You might want to set a default value here
+                              }
+                        }
+                        }
+                        // rest of the code
+                     else {
+                              console.log("ไม่ผ่าน");
+                        }
+                  },
+
+                  error: function (err) {
+                        if (err) {
+                              console.log("ไม่ผ่าน", err);
+                        }
+                  }
+            });
+      } catch (err) {
+            console.log(err);
+      }
+}
 
 const removeClassWithDelay = (selector, className, delay) => {
       const element = document.querySelector(selector);
