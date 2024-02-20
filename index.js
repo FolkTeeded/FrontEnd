@@ -605,7 +605,7 @@ function displaySelectedFile(input) {
 function cameraSend(base64String) {
       $.ajax({
             type: 'post',
-            url: 'http://140.99.98.129:3000/api/camerasend',
+            url: 'http://localhost:3000/api/camerasend',
             contentType: "application/json",
             headers: { "Authorization": localStorage.getItem('token') },
             data: JSON.stringify({ base64String }),
@@ -638,10 +638,13 @@ function cameraSend(base64String) {
                                     <p>เลขป้ายทะเบียน : ${carData.car_number} ${carData.car_country}</p>
                                     <p id = "carpy">ประเภทรถ : ${carData.cartype}</p> 
                                     <p id = "carcolor11" style="padding-bottom: 30px;">สีรถ : ${carData.carcolor}</p> <!-- Use correct property name -->
-                                    <div style="width: 100%;height: 20dvh;display: flex;justify-content: center;">
-                                    <div style="width: 80%;height: 100%;border-radius: 40px ;">
-                                    <div id = "imgcartt" style="width: 100%;height: 100%;"></div>
-                              </div>
+                                    <div style="width: 100%;
+                              height: 25dvh;
+                              border-radius: 40px ;">
+                              <div id = "imgcartt" style="
+                              width: 100%;
+                              height: 100%;
+                          "></div>
                               </div>
                                 </div>
                             </div>
@@ -1179,11 +1182,14 @@ async function send_datav2(a) {
                                     <p>เลขป้ายทะเบียน : ${carData.car_number} ${carData.car_country}</p>
                                     <p id = "carpy">ประเภทรถ : ${carData.cartype}</p> 
                                     <p id = "carcolor11" style="padding-bottom: 30px;">สีรถ : ${carData.carcolor}</p> <!-- Use correct property name -->
-                                    <div style="width: 100%;height: 20dvh;display: flex;justify-content: center;">
-                                    <div style="width: 80%;height: 100%;border-radius: 40px ;">
-                                    <div id = "imgcartt" style="width: 100%;height: 100%;"></div>
+                                    <div style="width: 100%;
+                              height: 25dvh;
+                              border-radius: 40px ;">
+                              <div id = "imgcartt" style="
+                              width: 100%;
+                              height: 100%;
+                          "></div>
                               </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1288,11 +1294,7 @@ removeClassWithDelay1(".menu-item2", "img_skeleton1", 1500);
 removeClassWithDelay1(".menu-item3", "img_skeleton1", 1500);
 
 // Removing "loading_scan" class from .scanblue element
-$(document).ready(function(){
-      $("#prevupdatapass").click(function(){
-          location.reload();
-      });
-  });
+
 
 
 function closeshow() {

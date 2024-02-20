@@ -302,14 +302,15 @@ async function insert_data(a, b, c, d, s, y, z, p, passComfim) {
                     // Storing token and refresh in localStorage
                     localStorage.setItem('token', JSON.stringify(token));
                     localStorage.setItem('refresh', JSON.stringify(refresh));
-                } else {
-                    console.log("ไม่ผ่าน");
-                    // Handle failure as needed
                 }
             },
             error: function (err) {
                 if (err) {
-                    console.log("ไม่ผ่าน", err);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "โปรดกรอกข้อมูลให้ครบถ้วน",
+                    });
                 }
             }
         });
