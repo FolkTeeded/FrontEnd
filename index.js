@@ -70,64 +70,64 @@ custom_img_select(function (custom_base64StringResult) {
 let btnImgCar; // ประกาศ btnImgCar เป็นตัวแปรที่เป็น global
 
 function customImgCarSelect(callback) {
-    const customInputFileCar = document.querySelector("#customPictureInputcar");
-    const customPictureImageCar = document.querySelector(".customPictureImagecar");
-    const customImgPicCar = document.querySelector(".customImgPiccar");
-    const customPictureImageTxtCar = "Select File";
+      const customInputFileCar = document.querySelector("#customPictureInputcar");
+      const customPictureImageCar = document.querySelector(".customPictureImagecar");
+      const customImgPicCar = document.querySelector(".customImgPiccar");
+      const customPictureImageTxtCar = "Select File";
 
-    customInputFileCar.addEventListener("change", function (e) {
-        const customFileCar = e.target.files[0];
+      customInputFileCar.addEventListener("change", function (e) {
+            const customFileCar = e.target.files[0];
 
-        if (customFileCar) {
-            const customReaderCar = new FileReader();
+            if (customFileCar) {
+                  const customReaderCar = new FileReader();
 
-            customReaderCar.addEventListener("load", function (e) {
-                const customImgCar = document.createElement("img");
-                customImgCar.src = e.target.result;
-                customImgCar.classList.add("customPictureImgcar");
-                customPictureImageCar.innerHTML = "";
-                customPictureImageCar.appendChild(customImgCar);
+                  customReaderCar.addEventListener("load", function (e) {
+                        const customImgCar = document.createElement("img");
+                        customImgCar.src = e.target.result;
+                        customImgCar.classList.add("customPictureImgcar");
+                        customPictureImageCar.innerHTML = "";
+                        customPictureImageCar.appendChild(customImgCar);
 
-                // ซ่อน element ที่มี class customImgPicCar
-                customImgPicCar.style.display = "none";
+                        // ซ่อน element ที่มี class customImgPicCar
+                        customImgPicCar.style.display = "none";
 
-                const customBase64StringCar = e.target.result.split(',')[1];
-                console.log('Custom Base64 String:', customBase64StringCar);
+                        const customBase64StringCar = e.target.result.split(',')[1];
+                        console.log('Custom Base64 String:', customBase64StringCar);
 
-                btnImgCar = customBase64StringCar; // กำหนดค่าให้กับตัวแปร btnImgCar
+                        btnImgCar = customBase64StringCar; // กำหนดค่าให้กับตัวแปร btnImgCar
 
-                if (typeof callback === 'function') {
-                    callback(customBase64StringCar);
-                }
-            });
+                        if (typeof callback === 'function') {
+                              callback(customBase64StringCar);
+                        }
+                  });
 
-            customReaderCar.readAsDataURL(customFileCar);
+                  customReaderCar.readAsDataURL(customFileCar);
 
-            // เรียกใช้ click ที่ label เพื่อจำลองการคลิก
-            document.getElementById('customPictureLabelcar').click();
-        } else {
-            customPictureImageCar.innerHTML = customPictureImageTxtCar;
+                  // เรียกใช้ click ที่ label เพื่อจำลองการคลิก
+                  document.getElementById('customPictureLabelcar').click();
+            } else {
+                  customPictureImageCar.innerHTML = customPictureImageTxtCar;
 
-            // แสดง element ที่มี class customImgPicCar
-            customImgPicCar.style.display = "block";
+                  // แสดง element ที่มี class customImgPicCar
+                  customImgPicCar.style.display = "block";
 
-            btnImgCar = undefined; // รีเซ็ต btnImgCar เมื่อไม่มีการเลือกไฟล์
-        }
-    });
+                  btnImgCar = undefined; // รีเซ็ต btnImgCar เมื่อไม่มีการเลือกไฟล์
+            }
+      });
 
-    // ป้องกันพฤติกรรมปกติของ label เพื่อหลีกเลี่ยงปัญหาการคลิกซ้ำ
-    document.getElementById('customPictureLabelcar').addEventListener('dblclick', function (e) {
-        e.preventDefault();
-    });
+      // ป้องกันพฤติกรรมปกติของ label เพื่อหลีกเลี่ยงปัญหาการคลิกซ้ำ
+      document.getElementById('customPictureLabelcar').addEventListener('dblclick', function (e) {
+            e.preventDefault();
+      });
 }
 
 // การใช้งาน
 customImgCarSelect(function (customBase64StringResult) {
-    // ตอนนี้ customBase64String พร้อมใช้งาน
-    const customBase64StringCar = customBase64StringResult;
-    console.log('Custom Selected Image Base64 String:', customBase64StringCar);
-    // เข้าถึง btnImgCar ที่นี่หากต้องการ
-    console.log('btnImgCar:', btnImgCar);
+      // ตอนนี้ customBase64String พร้อมใช้งาน
+      const customBase64StringCar = customBase64StringResult;
+      console.log('Custom Selected Image Base64 String:', customBase64StringCar);
+      // เข้าถึง btnImgCar ที่นี่หากต้องการ
+      console.log('btnImgCar:', btnImgCar);
 });
 
 const editname = document.querySelector('#edit_name')
@@ -172,7 +172,7 @@ function btn_editprofile() {
       $(".overlay_edit .load-icon").show();
 
       // Call the updateprofile function with captured values
-      updateprofile(newName, newLastName, newPhone, dt_date, gander_e, btn_img1, btn_nunmber, btn_nunmber1, car_type, color_car,btnImgCar);
+      updateprofile(newName, newLastName, newPhone, dt_date, gander_e, btn_img1, btn_nunmber, btn_nunmber1, car_type, color_car, btnImgCar);
 }
 btn_confirm.onclick = btn_editprofile;
 
@@ -198,7 +198,7 @@ confirm_updatapass.onclick = btn_editpassword;
 //       });
 // }
 
-async function updateprofile(a, b, d, e, f, g, h, i, k, l,m) {
+async function updateprofile(a, b, d, e, f, g, h, i, k, l, m) {
       try {
             var newName = a;
             var newLastName = b;
@@ -230,10 +230,10 @@ async function updateprofile(a, b, d, e, f, g, h, i, k, l,m) {
                         gander_e: gander_e,
                         btn_img1: btn_img1,
                         carint: btn_nunmber,
-                        carcounty: btn_nunmber1,      
+                        carcounty: btn_nunmber1,
                         cartype: cartype,
                         carcolor: colorcar,
-                        piccar:imgcar
+                        piccar: imgcar
                   }),
 
                   success: function (response) {
@@ -243,7 +243,7 @@ async function updateprofile(a, b, d, e, f, g, h, i, k, l,m) {
                                     icon: "success",
                                     title: "อัพเดทสำเร็จ",
                                     showConfirmButton: false,
-                                    timer: 3000
+                                    timer: 2000
                               });
                               setTimeout(function () {
                                     // Remove the loading icon
@@ -255,7 +255,7 @@ async function updateprofile(a, b, d, e, f, g, h, i, k, l,m) {
                                     // Remove the 'open' class from the overlay to hide it
                                     $("div[class^=overlay_edit]").removeClass('open');
                                     location.reload();
-                              }, 3000);
+                              }, 2000);
 
                         } else {
                               console.log("ไม่ผ่าน", response.status, response.statusText);
@@ -294,25 +294,32 @@ async function editpassword(a) {
       try {
             const password = a;
             const password_editpass1 = document.getElementById('password_editpass1').value;
-            console.log(password_editpass1)
+
+            if (!password_editpass1 && !password) {
+                  Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "โปรดกรอกรหัสผ่าน",
+                  });
+                  return;
+            }
+
             if (password !== password_editpass1) {
                   Swal.fire({
                         icon: "error",
                         title: "Oops...",
-                        text: "โปรใส่รหัสผ่านให้เหมือนกัน",
-                    });
+                        text: "โปรดใส่รหัสผ่านให้เหมือนกัน",
+                  });
                   return;
             }
-
             $.ajax({
                   type: 'post',
-                  url: editpass,
+                  url: 'http://localhost:3000/api/editpass', // ตั้งค่า URL ของคุณ
                   contentType: "application/json",
                   headers: { "Authorization": localStorage.getItem('token') },
-                  data: JSON.stringify
-                        ({
-                              password: password,
-                        }),
+                  data: JSON.stringify({
+                        password: password,
+                  }),
                   success: function (response) {
                         if (response) {
                               c = response.data;
@@ -325,10 +332,7 @@ async function editpassword(a) {
                               setTimeout(function () {
                                     $("div[class^=overlay_updatapass]").removeClass('open');
                                     location.reload();
-                                }, 1000);
-                              // Handle success as needed
-                              // $("div[class^=overlay_updatapass]").removeClass('open');
-                              // location.reload();
+                              }, 1000);
                         } else {
                               console.log("ไม่ผ่าน", response.status, response.statusText);
                         }
@@ -336,14 +340,15 @@ async function editpassword(a) {
 
                   error: function (err) {
                         if (err) {
-                              console.log("ไม่ผ่าน", err)
+                              console.log("ไม่ผ่าน", err);
                         }
                   }
-            })
+            });
       } catch (err) {
-            console.log(err)
+            console.log(err);
       }
 }
+
 
 
 function ss() {
@@ -399,31 +404,31 @@ $(".prev_edit").on("click", function () {
 
 $(".supp1").on("click", function () {
       var direction = "next1";
-  
+
       if (direction === "next1") {
-          $("div[class^=overlay_supp]").addClass('open');
-  
-          Swal.fire({
-            title: "ขออภัย",
-            text: "เมนูส่วนนนี้ยังอยู่ในระหว่างการอัปเดต",
-              icon: "warning",
-              showButton: true,
-              preConfirm: () => {
-                  $("div[class^=overlay_supp]").removeClass('open');
-              }
-          });
+            $("div[class^=overlay_supp]").addClass('open');
+
+            Swal.fire({
+                  title: "ขออภัย",
+                  text: "เมนูส่วนนนี้ยังอยู่ในระหว่างการอัปเดต",
+                  icon: "warning",
+                  showButton: true,
+                  preConfirm: () => {
+                        $("div[class^=overlay_supp]").removeClass('open');
+                  }
+            });
       }
-  });
-  
-  // Add a separate click event listener for $(".prev_supp")
+});
+
+// Add a separate click event listener for $(".prev_supp")
 //   $(".prev_supp").on("click", function () {
 //       var direction = "next1";
-  
+
 //       if (direction === "next1") {
 //           $("div[class^=overlay_supp]").removeClass('open');
 //       }
 //   });
-  
+
 
 $(".pers1").on("click", function () {
 
@@ -463,7 +468,7 @@ $(".updatapass").on("click", function () {
 document.addEventListener('DOMContentLoaded', function () {
       const openOverlayBtn = document.getElementById('openOverlayBtn');
       const closeOverlayBtn = document.getElementById('closeOverlayBtn');
-      const overlay = document.getElementById('overlay');
+      // const overlay = document.getElementById('overlay');
 
       openOverlayBtn.addEventListener('click', function () {
             overlay.style.left = '0'; /* Slide in from the left */
@@ -474,11 +479,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       // Close overlay if user clicks outside the content
-      overlay.addEventListener('click', function (event) {
-            if (event.target === overlay) {
-                  overlay.style.left = '-100%';
-            }
-      });
+
 });
 
 function img_select(callback_11) {
@@ -556,16 +557,16 @@ function displaySelectedFile(input) {
                         img.onload = function () {
                               const canvas = document.createElement('canvas');
                               const ctx = canvas.getContext('2d');
-                  
+
                               canvas.width = img.width;
                               canvas.height = img.height;
                               ctx.drawImage(img, 0, 0);
-                  
+
                               const dataURL = canvas.toDataURL('image/jpeg');
                               base64String = dataURL.split(',')[1]
                               // Use dataURL for further processing (e.g., displaying, sending to server)
-                          };
-                        
+                        };
+
                         alert('Base64 representation: ' + base64String);
                         cameraSend(base64String)
                         img.src = event.target.result;
@@ -578,21 +579,21 @@ function displaySelectedFile(input) {
 
 function cameraSend(base64String) {
       $.ajax({
-          type: 'post',
-          url: 'http://localhost:3000/api/camerasend',
-          contentType: "application/json",
-          headers: { "Authorization": localStorage.getItem('token') },
-          data: JSON.stringify({ base64String }),
-          success: function (data) {
-            console.log("Response:", data);
-        
-            if (data && data.data.car && data.data.user) {
-                const profileData = data.data.user;
-                const carData = data.data.car;
-                console.log("ผ่าน");
-        
-                const containerProfile = document.getElementById('container-profile_personal23');
-                containerProfile.innerHTML += `
+            type: 'post',
+            url: 'http://localhost:3000/api/camerasend',
+            contentType: "application/json",
+            headers: { "Authorization": localStorage.getItem('token') },
+            data: JSON.stringify({ base64String }),
+            success: function (data) {
+                  console.log("Response:", data);
+
+                  if (data && data.data.car && data.data.user) {
+                        const profileData = data.data.user;
+                        const carData = data.data.car;
+                        console.log("ผ่าน");
+
+                        const containerProfile = document.getElementById('container-profile_personal23');
+                        containerProfile.innerHTML += `
                     <div class="pic-profile-personal">
                         <div class="pic-profile1">
                         <div id ="image-picporcar" style="
@@ -610,8 +611,8 @@ function cameraSend(base64String) {
                                     <p>อีเมล์ : ${profileData.email}</p>
                                     <p>เบอร์โทรศัพท์ : ${profileData.phone}</p>
                                     <p>เลขป้ายทะเบียน : ${carData.car_number} ${carData.car_country}</p>
-                                    <p>ประเภทรถ : ${carData.cartype}</p> 
-                                    <p style="padding-bottom: 30px;">สีรถ : ${carData.carcolor}</p> <!-- Use correct property name -->
+                                    <p id = "carpy">ประเภทรถ : ${carData.cartype}</p> 
+                                    <p id = "carcolor11" style="padding-bottom: 30px;">สีรถ : ${carData.carcolor}</p> <!-- Use correct property name -->
                                     <div style="width: 100%;
                               height: 25dvh;
                               border-radius: 40px ;">
@@ -626,51 +627,71 @@ function cameraSend(base64String) {
                   </div>
             </div>
                     </div>`;
-        
-                $("div[class^=overlay_cardetail]").addClass('open');
-                function convertBase64ToImage(base64Data) {
-                  var image = document.createElement('img');
-                  image.src = "data:image/jpeg;base64," + base64Data;
-                  return image;
-              }
-              
-              // แสดงรูปภาพของโปรไฟล์
-              const imageContainer = document.getElementById('image-picporcar');
-              imageContainer.innerHTML = '';
-              
-              if (profileData.img_pro) {
-                  var imageElementProfile = convertBase64ToImage(profileData.img_pro);
-                  imageContainer.appendChild(imageElementProfile);
-              }
-              
-              // แสดงรูปภาพของรถ
-              const imageContainercar = document.getElementById('imgcartt');
-              imageContainercar.innerHTML = '';
-              
-              if (carData.img_car) {
-                  var imageElementCar = convertBase64ToImage(carData.img_car);
-                  imageContainercar.appendChild(imageElementCar);
-                  console.log("รถผ่าน");
-              } else {
-                  console.log("รถไม่ผ่าน");
-              }
-            } else {
-                console.log("ไม่ผ่าน");
-                // Handle failure as needed
-            }
-        },
-        
-          error: function (err) {
-              if (err) {
-                  console.log("ไม่ผ่าน", err);
-              }
-          }
-      });
-  }
 
-  
-  
-  
+                        $("div[class^=overlay_cardetail]").addClass('open');
+                        function convertBase64ToImage(base64Data) {
+                              var image = document.createElement('img');
+                              image.src = "data:image/jpeg;base64," + base64Data;
+                              return image;
+                        }
+
+                        // แสดงรูปภาพของโปรไฟล์
+                        const imageContainer = document.getElementById('image-picporcar');
+                        imageContainer.innerHTML = '';
+
+                        if (profileData.img_pro) {
+                              var imageElementProfile = convertBase64ToImage(profileData.img_pro);
+                              imageContainer.appendChild(imageElementProfile);
+                        }
+
+                        // แสดงรูปภาพของรถ
+                        const imageContainercar = document.getElementById('imgcartt');
+                        imageContainercar.innerHTML = '';
+
+                        if (carData.img_car) {
+                              var imageElementCar = convertBase64ToImage(carData.img_car);
+                              imageContainercar.appendChild(imageElementCar);
+                              console.log("รถผ่าน");
+                        } else {
+                              console.log("รถไม่ผ่าน");
+                        }
+                        const carpy = document.getElementById('carpy');
+
+                        if (carpy) {
+                              if (carData.cartype) {
+                                    carpy.innerHTML = `ประเภทรถ: ${carData.cartype}`;
+                              } else {carcolor11
+                                    // Handle the case when profileData.gander is null or undefined
+                                    carpy.innerHTML = '';  // You might want to set a default value here
+                              }
+                        }
+                        const colorc = document.getElementById('carcolor11');
+
+                        if (colorc) {
+                              if (carData.carcolor) {
+                                    colorc.innerHTML = `สีรถ: ${carData.carcolor}`;
+                              } else {
+                                    // Handle the case when profileData.gander is null or undefined
+                                    colorc.innerHTML = '';  // You might want to set a default value here
+                              }
+                        }
+                  } else {
+                        console.log("ไม่ผ่าน");
+                        // Handle failure as needed
+                  }
+            },
+
+            error: function (err) {
+                  if (err) {
+                        console.log("ไม่ผ่าน", err);
+                  }
+            }
+      });
+}
+
+
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
       // Get the input element
@@ -741,7 +762,7 @@ $.ajax({
                   const profileData = data.data[0];
 
                   const containerProfile = document.getElementById('container-profile');
-                        containerProfile.innerHTML += `
+                  containerProfile.innerHTML += `
                         <div class="detall-profile is_loading">
                                  <div class="pic-profile-menu is_loading">
                                        <div class="pic-profile img_skeleton">
@@ -761,18 +782,18 @@ $.ajax({
                   const removeClassWithDelay = (selector, className, delay) => {
                         const element = document.querySelector(selector);
                         setTimeout(() => {
-                            element.classList.remove(className);
+                              element.classList.remove(className);
                         }, delay);
-                    };
-                    
-                    // Usage
-                    removeClassWithDelay(".detall-profile", "is_loading", 1000);
-                    removeClassWithDelay(".pic-profile-menu", "is_loading", 1000);
-                    removeClassWithDelay(".text-n1", "hide-text1", 1000);
-                    removeClassWithDelay(".text-n2", "hide-text1", 1000);
-                    removeClassWithDelay(".text-n3", "hide-text1", 1000);
-                    removeClassWithDelay(".header-img", "img_skeleton", 1000);
-                    removeClassWithDelay(".pic-profile", "img_skeleton", 1000);
+                  };
+
+                  // Usage
+                  removeClassWithDelay(".detall-profile", "is_loading", 1000);
+                  removeClassWithDelay(".pic-profile-menu", "is_loading", 1000);
+                  removeClassWithDelay(".text-n1", "hide-text1", 1000);
+                  removeClassWithDelay(".text-n2", "hide-text1", 1000);
+                  removeClassWithDelay(".text-n3", "hide-text1", 1000);
+                  removeClassWithDelay(".header-img", "img_skeleton", 1000);
+                  removeClassWithDelay(".pic-profile", "img_skeleton", 1000);
 
                   function convertBase64ToImage(base64Data) {
                         var image = document.createElement('img');
@@ -837,7 +858,7 @@ $.ajax({
                         var imageElement = convertBase64ToImage(profileData.img_pro);
                         imageContainer.appendChild(imageElement);
                   } else {
-                        
+
                   }
 
 
@@ -877,7 +898,7 @@ $.ajax({
                               <p>อีเมล์ : ${profileData.email}</p>
                               <p>เบอร์โทรศัพท์ : ${profileData.phone}</p>
                               <p id="birthdayParagraph">วัน/เดือน/ปีเกิด : ${profileData.birthday}</p>
-                              <p>เพศ : ${profileData.gander}</p>
+                              <p id="gander12">เพศ : ${profileData.gander}</p>
                               <p>เลขป้ายทะเบียน : ${carData.car_number}/${carData.car_country}</p>
                               <p id = "cartype" >ประเภทรถ : ${carData.cartype}</p>
                               <p id = "carcolor" style="padding-bottom: 30px;">สีรถ : ${carData.carcolor}</p>
@@ -934,6 +955,18 @@ $.ajax({
                               birthdayParagraph.innerHTML = '';
                         }
                   }
+
+                  const gan = document.getElementById('gander12');
+
+                  if (gan) {
+                        if (profileData.gander) {
+                              gan.innerHTML = `เพศ: ${profileData.gander}`;
+                        } else {
+                              // Handle the case when profileData.gander is null or undefined
+                              gan.innerHTML = '';  // You might want to set a default value here
+                        }
+                  }
+
                   if (carData.cartype) {
                         // ทำบางสิ่งเมื่อ carData.cartype ไม่ใช่ค่า null หรือ undefined
                         // เช่น กำหนดค่าให้ HTML element
@@ -1004,7 +1037,7 @@ sl_driving_license.onclick = img_driving_license
 async function driving_licenseimg(a) {
       try {
             const imgdrl = a;
-      
+
             const response = await $.ajax({
                   type: 'post',
                   url: 'http://localhost:3000/api/driving_img',
@@ -1019,12 +1052,12 @@ async function driving_licenseimg(a) {
                         icon: "success",
                         title: "เพิ่มรูปสำเร็จ",
                         showConfirmButton: false,
-                        timer: 1500 
+                        timer: 1500
                   });
                   $(".overlay_img .load-icon").addClass('show');
 
                   $(".overlay_menu .open").addClass('blur-background');
-      
+
                   setTimeout(function () {
                         // Remove the loading icon
                         $("overlay_menu .open").removeClass('blur-background');
@@ -1079,37 +1112,37 @@ $.ajax({
 const removeClassWithDelay = (selector, className, delay) => {
       const element = document.querySelector(selector);
       setTimeout(() => {
-          element.classList.remove(className);
+            element.classList.remove(className);
       }, delay);
-  };
-  
-  // Removing "" class from menu items
-  removeClassWithDelay(".menu-item", "is-loading", 1500);
-  removeClassWithDelay(".menu-item1", "is-loading", 1500);
-  removeClassWithDelay(".menu-item2", "is-loading", 1500);
-  removeClassWithDelay(".menu-item3", "is-loading", 1500);
+};
 
-  // Removing "loading_scan" class from .scanblue element
-  removeClassWithDelay(".scanblue", "loading_scan", 1500);
+// Removing "" class from menu items
+removeClassWithDelay(".menu-item", "is-loading", 1500);
+removeClassWithDelay(".menu-item1", "is-loading", 1500);
+removeClassWithDelay(".menu-item2", "is-loading", 1500);
+removeClassWithDelay(".menu-item3", "is-loading", 1500);
 
-  const removeClassWithDelay1 = (selector, className, delay) => {
+// Removing "loading_scan" class from .scanblue element
+removeClassWithDelay(".scanblue", "loading_scan", 1500);
+
+const removeClassWithDelay1 = (selector, className, delay) => {
       const element = document.querySelector(selector);
       setTimeout(() => {
-          element.classList.remove(className);
+            element.classList.remove(className);
       }, delay);
-  };
-  
-  // Removing "is-loading" class from menu items
-  removeClassWithDelay1(".menu-item", "img_skeleton1", 1500);
-  removeClassWithDelay1(".menu-item1", "img_skeleton1", 1500);
-  removeClassWithDelay1(".menu-item2", "img_skeleton1", 1500);
-  removeClassWithDelay1(".menu-item3", "img_skeleton1", 1500);
+};
 
-  // Removing "loading_scan" class from .scanblue element
+// Removing "is-loading" class from menu items
+removeClassWithDelay1(".menu-item", "img_skeleton1", 1500);
+removeClassWithDelay1(".menu-item1", "img_skeleton1", 1500);
+removeClassWithDelay1(".menu-item2", "img_skeleton1", 1500);
+removeClassWithDelay1(".menu-item3", "img_skeleton1", 1500);
+
+// Removing "loading_scan" class from .scanblue element
 
 
-  
-function closeshow(){
+
+function closeshow() {
       location.reload();
       closeOverlayAll();
 }

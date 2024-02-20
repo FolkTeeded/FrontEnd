@@ -200,10 +200,8 @@
 }
 
 .container-scan {
-    width: 38dvn; 
     height: 38dvh; 
-    display: flex; 
-    align-items: center; 
+    display: flex;  
     justify-content: center;
 }
 
@@ -235,7 +233,7 @@
     height: 100%;
 }
 .container-menu {
-    height: 55dvh;
+    height: 45dvh;
     width: 50dvh;
     display: grid;
     grid-template-columns: 50% 50%;
