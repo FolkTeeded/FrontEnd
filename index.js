@@ -1117,6 +1117,15 @@ $.ajax({
             console.log(err);
       }
 });
+const edit_car1 = document.getElementById('edit_car1')
+const btn_cars = document.getElementById('edit_car3')
+
+function btn_cars_2() {
+      const value_car1 = edit_car1.value
+      console.log(value_car1)
+      // send_data(value_car1, value_car2)
+  }
+btn_cars.onclick = btn_cars_2
 
 const removeClassWithDelay = (selector, className, delay) => {
       const element = document.querySelector(selector);

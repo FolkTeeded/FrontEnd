@@ -277,7 +277,7 @@ async function insert_data(a, b, c, d, s, y, z, p, passComfim) {
                 email: emai_l,
                 studentID: st_id,
                 carint: carnum1,
-                carcouty: carnum2,
+                carcouty : carnum2,
                 password: password
             }),
             success: function (response) {
@@ -302,16 +302,14 @@ async function insert_data(a, b, c, d, s, y, z, p, passComfim) {
                     // Storing token and refresh in localStorage
                     localStorage.setItem('token', JSON.stringify(token));
                     localStorage.setItem('refresh', JSON.stringify(refresh));
-                } 
+                } else {
+                    console.log("ไม่ผ่าน");
+                    // Handle failure as needed
+                }
             },
             error: function (err) {
                 if (err) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "โปรดใส่ข้อมูลให้ครบถ้วน",
-                    });
-
+                    console.log("ไม่ผ่าน", err);
                 }
             }
         });
@@ -319,6 +317,7 @@ async function insert_data(a, b, c, d, s, y, z, p, passComfim) {
         console.log(err);
     }
 }
+
 // async function updateprofile(a, passComfim1) {
 //     try {
 //         var password = a
