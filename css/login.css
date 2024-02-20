@@ -562,7 +562,7 @@ select {
 
 .detall-profile-per {
     padding: 15px;
-    
+    overflow: scroll;
     /* padding-top: 32px; */
 }
 
