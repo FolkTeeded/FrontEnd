@@ -200,6 +200,7 @@
 }
 
 .container-scan {
+    width: 33.33%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -838,6 +839,7 @@ body {
 {
     display: flex;
     flex-direction: column;
+    z-index: 10;
 }
 .overlay_search{
     display: none;
