@@ -428,14 +428,30 @@ $(".supp1").on("click", function () {
 //           $("div[class^=overlay_supp]").removeClass('open');
 //       }
 //   });
-
-
 $(".pers1").on("click", function () {
 
       var direction = "next1";
 
       if (direction === "next1") {
             $("div[class^=overlay_personal]").addClass('open');
+      }
+});
+
+// overlay_search
+$(".searc").on("click", function () {
+
+      var direction = "next1";
+
+      if (direction === "next1") {
+            $("div[class^=overlay_search]").addClass('open');
+      }
+});
+$(".search_edit").on("click", function () {
+
+      var direction = "next1";
+
+      if (direction === "next1") {
+            $("div[class^=overlay_search]").removeClass('open');
       }
 });
 
