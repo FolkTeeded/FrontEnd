@@ -243,7 +243,7 @@ async function updateprofile(a, b, d, e, f, g, h, i, k, l,m) {
                                     icon: "success",
                                     title: "อัพเดทสำเร็จ",
                                     showConfirmButton: false,
-                                    timer: 1500
+                                    timer: 2000
                               });
                               setTimeout(function () {
                                     // Remove the loading icon
@@ -255,7 +255,7 @@ async function updateprofile(a, b, d, e, f, g, h, i, k, l,m) {
                                     // Remove the 'open' class from the overlay to hide it
                                     $("div[class^=overlay_edit]").removeClass('open');
                                     location.reload();
-                              }, 3000);
+                              }, 2000);
 
                         } else {
                               console.log("ไม่ผ่าน", response.status, response.statusText);
