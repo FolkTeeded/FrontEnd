@@ -286,6 +286,18 @@
                                           <label for="car_color" class="brtop">สีรถ</label>
                                           <input id="color_car" type="text" name="car_color" placeholder="สีรถ">
                                     </div>
+                                    <div class="field padding-bottom--24">
+                                          <label for="customPictureInputcar" class="brtop">Profile Picture</label>
+                                          <label class="customPictureLabelcar" id="customPictureLabelcar"
+                                                for="customPictureInputcar" tabIndex="0">
+                                                <img class="customImgPiccar" width="23.33px" height="23.33px"
+                                                      src="./img/Subtract.png" alt="">
+                                                <span class="customPictureImagecar"></span>
+                                          </label>
+                                          <input type="file" name="customPictureInputcar" id="customPictureInputcar"
+                                                style="display: none;">
+
+                                    </div>
                                     <div class="bt-select padding-10">
                                           <div id="btn_confirm" class="bt-con-select" name="edit_car">
                                                 <p>ตกลง</p>
@@ -392,43 +404,46 @@
                               <div style="width: 80%;height: 80%;background-color: #FFE071;border-radius: 17px;"></div>
                         </div> -->
                   </div>
-                  <div onclick="closeshow()" style="width: 100%;height: 15dvh;display: flex;justify-content: center;align-items: center;">
-                  <div style="width: 90%;height: 60%;background-color: #FFE071;border-radius: 40px;display: flex;justify-content: center;
-                  align-items: center;"><p>ตกลง</p></div>
-            </div>
-                      <!-- </form> -->
+                  <div onclick="closeshow()"
+                        style="width: 100%;height: 15dvh;display: flex;justify-content: center;align-items: center;">
+                        <div style="width: 90%;height: 60%;background-color: #FFE071;border-radius: 40px;display: flex;justify-content: center;
+                  align-items: center;">
+                              <p>ตกลง</p>
+                        </div>
                   </div>
-          
-                  <div class="overlay_pass">
-                      <div class="head-title">
-                          <svg class="prev1 arrow_left" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                  <!-- </form> -->
+            </div>
+
+            <div class="overlay_pass">
+                  <div class="head-title">
+                        <svg class="prev1 arrow_left" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                               viewBox="0 0 24 24" fill="none">
-                              <path
-                                  d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
-                                  fill="#ffff" />
-                          </svg>
-                          <p style="color: #ffffff;">ลงทะเบียน</p>
-                      </div>
-                      <div class="formbg-inner padding-horizontal--48">
-                          <form id="form_resister">
+                              <path d="M16.62 2.99C16.13 2.5 15.34 2.5 14.85 2.99L6.54 11.3C6.15 11.69 6.15 12.32 6.54 12.71L14.85 21.02C15.34 21.51 16.13 21.51 16.62 21.02C17.11 20.53 17.11 19.74 16.62 19.25L9.38 12L16.63 4.75C17.11 4.27 17.11 3.47 16.62 2.99Z"
+                                    fill="#ffff" />
+                        </svg>
+                        <p style="color: #ffffff;">ลงทะเบียน</p>
+                  </div>
+                  <div class="formbg-inner padding-horizontal--48">
+                        <form id="form_resister">
                               <div class="field padding-bottom--24">
-                                  <label for="password" class="brtop">ตั้งรหัสผ่าน</label>
-                                  <input id="password_res" type="password" name="password" placeholder="ตั้งรหัสผ่าน">
+                                    <label for="password" class="brtop">ตั้งรหัสผ่าน</label>
+                                    <input id="password_res" type="password" name="password" placeholder="ตั้งรหัสผ่าน">
                               </div>
                               <div class="field padding-bottom--24">
-                                  <label for="password" class="brtop">ยืนยันรหัสผ่าน</label>
-                                  <input id="confirm_pass" type="password" name="password" placeholder="ยืนยันรหัสผ่าน">
+                                    <label for="password" class="brtop">ยืนยันรหัสผ่าน</label>
+                                    <input id="confirm_pass" type="password" name="password"
+                                          placeholder="ยืนยันรหัสผ่าน">
                               </div>
                               <div class="bt-select padding-10">
-                                  <div id="confirm_res" class="bt-con-select" name="login_pass">
-                                      <p>ตกลง</p>
-                                  </div>
+                                    <div id="confirm_res" class="bt-con-select" name="login_pass">
+                                          <p>ตกลง</p>
+                                    </div>
                               </div>
-                          </form>
-                      </div>
-                      </form>
+                        </form>
                   </div>
-              </div>
+                  </form>
+            </div>
+      </div>
       </div>
 
       <!-- </div> -->

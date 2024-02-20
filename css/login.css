@@ -460,6 +460,10 @@
     width: 100%;
     height: 100%;
 }
+#imgcartt img{
+    width: 100%;
+    height: 100%;
+}
 
 .detall-profile_IN {
     width: 100%;
@@ -625,7 +629,20 @@ select {
     align-items: center;
 
 }
-
+label#customPictureLabelcar {
+    width: 100%;
+    height: 200px;
+    background: #FAFAFA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    border: 1px solid;
+}
+img.customPictureImgcar {
+    width: 100%;
+    height: 100%;
+}
 .inputca {
     opacity: 0%;
     position: absolute;

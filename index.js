@@ -67,7 +67,68 @@ custom_img_select(function (custom_base64StringResult) {
       console.log('btn_img1:', btn_img1);
 });
 
+let btnImgCar; // ประกาศ btnImgCar เป็นตัวแปรที่เป็น global
 
+function customImgCarSelect(callback) {
+    const customInputFileCar = document.querySelector("#customPictureInputcar");
+    const customPictureImageCar = document.querySelector(".customPictureImagecar");
+    const customImgPicCar = document.querySelector(".customImgPiccar");
+    const customPictureImageTxtCar = "Select File";
+
+    customInputFileCar.addEventListener("change", function (e) {
+        const customFileCar = e.target.files[0];
+
+        if (customFileCar) {
+            const customReaderCar = new FileReader();
+
+            customReaderCar.addEventListener("load", function (e) {
+                const customImgCar = document.createElement("img");
+                customImgCar.src = e.target.result;
+                customImgCar.classList.add("customPictureImgcar");
+                customPictureImageCar.innerHTML = "";
+                customPictureImageCar.appendChild(customImgCar);
+
+                // ซ่อน element ที่มี class customImgPicCar
+                customImgPicCar.style.display = "none";
+
+                const customBase64StringCar = e.target.result.split(',')[1];
+                console.log('Custom Base64 String:', customBase64StringCar);
+
+                btnImgCar = customBase64StringCar; // กำหนดค่าให้กับตัวแปร btnImgCar
+
+                if (typeof callback === 'function') {
+                    callback(customBase64StringCar);
+                }
+            });
+
+            customReaderCar.readAsDataURL(customFileCar);
+
+            // เรียกใช้ click ที่ label เพื่อจำลองการคลิก
+            document.getElementById('customPictureLabelcar').click();
+        } else {
+            customPictureImageCar.innerHTML = customPictureImageTxtCar;
+
+            // แสดง element ที่มี class customImgPicCar
+            customImgPicCar.style.display = "block";
+
+            btnImgCar = undefined; // รีเซ็ต btnImgCar เมื่อไม่มีการเลือกไฟล์
+        }
+    });
+
+    // ป้องกันพฤติกรรมปกติของ label เพื่อหลีกเลี่ยงปัญหาการคลิกซ้ำ
+    document.getElementById('customPictureLabelcar').addEventListener('dblclick', function (e) {
+        e.preventDefault();
+    });
+}
+
+// การใช้งาน
+customImgCarSelect(function (customBase64StringResult) {
+    // ตอนนี้ customBase64String พร้อมใช้งาน
+    const customBase64StringCar = customBase64StringResult;
+    console.log('Custom Selected Image Base64 String:', customBase64StringCar);
+    // เข้าถึง btnImgCar ที่นี่หากต้องการ
+    console.log('btnImgCar:', btnImgCar);
+});
 
 const editname = document.querySelector('#edit_name')
 const edit_last1 = document.querySelector('#edit_last')
@@ -107,10 +168,11 @@ function btn_editprofile() {
       btn_nunmber1 = edit_nunmber1.value
       car_type = type_res.value
       color_car = colorcar.value
+      btnImgCar
       $(".overlay_edit .load-icon").show();
 
       // Call the updateprofile function with captured values
-      updateprofile(newName, newLastName, newPhone, dt_date, gander_e, btn_img1, btn_nunmber, btn_nunmber1, car_type, color_car);
+      updateprofile(newName, newLastName, newPhone, dt_date, gander_e, btn_img1, btn_nunmber, btn_nunmber1, car_type, color_car,btnImgCar);
 }
 btn_confirm.onclick = btn_editprofile;
 
@@ -136,7 +198,7 @@ confirm_updatapass.onclick = btn_editpassword;
 //       });
 // }
 
-async function updateprofile(a, b, d, e, f, g, h, i, k, l) {
+async function updateprofile(a, b, d, e, f, g, h, i, k, l,m) {
       try {
             var newName = a;
             var newLastName = b;
@@ -148,6 +210,7 @@ async function updateprofile(a, b, d, e, f, g, h, i, k, l) {
             var btn_nunmber1 = i;
             var cartype = k;
             var colorcar = l;
+            var imgcar = m
 
             // Show the loading icon
             $(".overlay_edit .load-icon").addClass('show');
@@ -169,7 +232,8 @@ async function updateprofile(a, b, d, e, f, g, h, i, k, l) {
                         carint: btn_nunmber,
                         carcounty: btn_nunmber1,      
                         cartype: cartype,
-                        carcolor: colorcar
+                        carcolor: colorcar,
+                        piccar:imgcar
                   }),
 
                   success: function (response) {
@@ -548,33 +612,48 @@ function cameraSend(base64String) {
                                     <p>เลขป้ายทะเบียน : ${carData.car_number} ${carData.car_country}</p>
                                     <p>ประเภทรถ : ${carData.cartype}</p> 
                                     <p style="padding-bottom: 30px;">สีรถ : ${carData.carcolor}</p> <!-- Use correct property name -->
+                                    <div style="width: 100%;
+                              height: 25dvh;
+                              border-radius: 40px ;">
+                              <div id = "imgcartt" style="
+                              width: 100%;
+                              height: 100%;
+                          "></div>
+                              </div>
                                 </div>
                             </div>
                         </div>
-                        <div style="width: 100%;height: 25dvh;display: flex;justify-content: center;align-items: center;">
-                        <div style="width: 90%;height: 80%;border-radius: 17px;"></div>
                   </div>
             </div>
                     </div>`;
         
                 $("div[class^=overlay_cardetail]").addClass('open');
-                const imageContainer = document.getElementById('image-picporcar');
-                imageContainer.innerHTML = '';
-
                 function convertBase64ToImage(base64Data) {
-                      var image = document.createElement('img');
-
-                      image.src = "data:image/jpeg;base64," + base64Data;
-
-                      return image;
-                }
-
-                if (profileData.img_pro) {
-                      var imageElement = convertBase64ToImage(profileData.img_pro);
-                      imageContainer.appendChild(imageElement);
-                } else {
-                      
-                }
+                  var image = document.createElement('img');
+                  image.src = "data:image/jpeg;base64," + base64Data;
+                  return image;
+              }
+              
+              // แสดงรูปภาพของโปรไฟล์
+              const imageContainer = document.getElementById('image-picporcar');
+              imageContainer.innerHTML = '';
+              
+              if (profileData.img_pro) {
+                  var imageElementProfile = convertBase64ToImage(profileData.img_pro);
+                  imageContainer.appendChild(imageElementProfile);
+              }
+              
+              // แสดงรูปภาพของรถ
+              const imageContainercar = document.getElementById('imgcartt');
+              imageContainercar.innerHTML = '';
+              
+              if (carData.img_car) {
+                  var imageElementCar = convertBase64ToImage(carData.img_car);
+                  imageContainercar.appendChild(imageElementCar);
+                  console.log("รถผ่าน");
+              } else {
+                  console.log("รถไม่ผ่าน");
+              }
             } else {
                 console.log("ไม่ผ่าน");
                 // Handle failure as needed
