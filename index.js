@@ -1288,7 +1288,11 @@ removeClassWithDelay1(".menu-item2", "img_skeleton1", 1500);
 removeClassWithDelay1(".menu-item3", "img_skeleton1", 1500);
 
 // Removing "loading_scan" class from .scanblue element
-
+$(document).ready(function(){
+      $("#prevupdatapass").click(function(){
+          location.reload();
+      });
+  });
 
 
 function closeshow() {
