@@ -1,10 +1,10 @@
 // const apilogin = 'https://0b01-113-53-150-169.ngrok-free.app/api/login'
 // const apiregister = 'https://0b01-113-53-150-169.ngrok-free.app/api/register'
 
-const apilogin = '140.99.98.129/api/login'
-const apiregister = 'http://localhost:3000/api/register'
-const check_email = 'http://localhost:3000/api/check_email'
-const updatepass = 'http://localhost:3000/api/updatepass'
+const apilogin = 'http://140.99.98.129:3000/api/login'
+const apiregister = 'http://140.99.98.129:3000/api/register'
+const check_email = 'http://140.99.98.129:3000/api/check_email'
+const updatepass = 'http://140.99.98.129:3000/api/api/updatepass'
 
 const btn_login = document.getElementById('loginpress')
 // btn_login.style.backgroundColor = ''
@@ -49,10 +49,10 @@ const confirm_editpass = document.querySelector('#confirm_editpass')
 const confirm_password = document.querySelector('#confirm_password')
 
 function btn_login_2() {
-    console.log(userid_1.value)
+    // console.log(userid_1.value)
     const uid = userid_1.value
     const ps = password_1.value
-    console.log(ps)
+    // console.log(ps)
     send_data(uid, ps)
 }
 btn_login.onclick = btn_login_2
@@ -118,12 +118,12 @@ async function send_data(a, b) {
             localStorage.setItem('token', JSON.stringify(token));
             localStorage.setItem('refresh', JSON.stringify(refresh));
 
-            console.log('Token:', token);
-            console.log('Refresh:', refresh);
+            // console.log('Token:', token);
+            // console.log('Refresh:', refresh);
 
 
         } else {
-            console.log("Login failed");
+            // console.log("Login failed");
             // Handle failure as needed
             Swal.fire({
                 icon: "error",
@@ -157,7 +157,7 @@ async function send_email(a) {
 
         // Assuming the response structure is like { "data": { "token": "...", "token_re": "...", "user_id": "..." }, "status": "success" }
         if (response && response.data && response.data.user_id) {
-            console.log(response.data.user_id)
+            // console.log(response.data.user_id)
 
             Swal.fire({
                 icon: "success",
@@ -212,7 +212,7 @@ function updatapass12(user_id) {
             data: JSON.stringify({ user_id: user_id, password: passw_edit }),
 
             success: function (response) {
-                console.log(response)
+                // console.log(response)
                 if (response) {
                     const c = response.data;
 
