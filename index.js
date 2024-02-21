@@ -640,7 +640,7 @@ function resizeBase64Img(base64, maxWidth, maxHeight) {
   
               ctx.drawImage(img, 0, 0, width, height);
   
-              resolve(canvas.toDataURL('image/jpeg', 0.7)); // 0.7 is the image quality (0.0 to 1.0)
+              resolve(canvas.toDataURL('image/jpeg', 0.3)); // 0.7 is the image quality (0.0 to 1.0)
           };
   
           img.onerror = function() {
