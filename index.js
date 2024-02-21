@@ -577,14 +577,23 @@ function displaySelectedFile(input) {
                               // const canvas = document.createElement('canvas');
                               // const ctx = canvas.getContext('2d');
                               
-
+                              var base64 = base64String; // Your base64 image string
+                              var maxWidth = 800; // Maximum width
+                              var maxHeight = 600; // Maximum height
+                              resizeBase64Img(base64, maxWidth, maxHeight)
+                                    .then(resizedBase64 => {
+                                          console.log('Resized base64 image:', resizedBase64);
+                                          base64String = resizedBase64.split(',')[1]
+                                    })
+                                    .catch(error => {
+                                          console.error('Error:', error);
+                                    });
                               // canvas.width = img.width;
                               // canvas.height = img.height;
                               // ctx.drawImage(img, 0, 0);
-                              let scaleFactor = 0.2; // 50% reduction
-                              let resizedBase64 = await resizeImage(image, scaleFactor);
+                        
                               // const dataURL = canvas.toDataURL('image/jpeg');
-                              base64String = resizedBase64.split(',')[1]
+                              // base64String = resizedBase64.split(',')[1]
                               // Use dataURL for further processing (e.g., displaying, sending to server)
                         };
 
@@ -603,23 +612,45 @@ function displaySelectedFile(input) {
             }
       }
 }
-function resizeImage(image, scaleFactor) {
-      let canvas = document.createElement('canvas');
-      let ctx = canvas.getContext('2d');
+function resizeBase64Img(base64, maxWidth, maxHeight) {
+      return new Promise((resolve, reject) => {
+          var img = new Image();
   
-      let width = image.width * scaleFactor;
-      let height = image.height * scaleFactor;
+          img.onload = function() {
+              var canvas = document.createElement('canvas');
+              var ctx = canvas.getContext('2d');
   
-      canvas.width = width;
-      canvas.height = height;
+              var width = img.width;
+              var height = img.height;
   
-      ctx.drawImage(image, 0, 0, width, height);
+              if (width > height) {
+                  if (width > maxWidth) {
+                      height *= maxWidth / width;
+                      width = maxWidth;
+                  }
+              } else {
+                  if (height > maxHeight) {
+                      width *= maxHeight / height;
+                      height = maxHeight;
+                  }
+              }
   
-      // Convert canvas to base64 encoded image
-      let resizedImage = canvas.toDataURL('image/jpeg'); // Change 'image/jpeg' to the desired format if needed
+              canvas.width = width;
+              canvas.height = height;
   
-      return resizedImage;
+              ctx.drawImage(img, 0, 0, width, height);
+  
+              resolve(canvas.toDataURL('image/jpeg', 0.7)); // 0.7 is the image quality (0.0 to 1.0)
+          };
+  
+          img.onerror = function() {
+              reject('Invalid image');
+          };
+  
+          img.src = base64;
+      });
   }
+  
 function cameraSend(base64String) {
       $.ajax({
             type: 'post',
