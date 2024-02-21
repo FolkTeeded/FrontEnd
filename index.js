@@ -605,7 +605,7 @@ function displaySelectedFile(input) {
 function cameraSend(base64String) {
       $.ajax({
             type: 'post',
-            url: 'http://localhost:3000/api/camerasend',
+            url: 'https://car.ctn-dev.net/api/camerasend',
             contentType: "application/json",
             headers: { "Authorization": localStorage.getItem('token') },
             data: JSON.stringify({ base64String }),
