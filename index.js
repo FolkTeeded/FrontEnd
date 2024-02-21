@@ -568,7 +568,7 @@ function displaySelectedFile(input) {
                   input.value = '';
                   return;
               }
-              else             if (fileSize > maxSize) {
+              else             if (fileSize < 0) {
                   alert('ขนาดรูปไม่ควรเกิน 10 MB');
                   // Optionally clear the selected file
                   input.value = '';
@@ -583,15 +583,22 @@ function displaySelectedFile(input) {
                               // const ctx = canvas.getContext('2d');
                               
                               var base64 = base64String; // Your base64 image string
-                              var maxWidth = 800; // Maximum width
-                              var maxHeight = 600; // Maximum height
+                              var maxWidth = 500; // Maximum width
+                              var maxHeight = 800; // Maximum height
                               resizeBase64Img(base64, maxWidth, maxHeight)
                                     .then(resizedBase64 => {
-                                          console.log('Resized base64 image:', resizedBase64);
-                                          base64String = resizedBase64.split(',')[1]
+                                          // base64String = resizedBase64.split(',')[1]
+                                          cameraSend(resizedBase64)
+                               
+                                          
                                     })
                                     .catch(error => {
-                                          console.error('Error:', error);
+                                          setTimeout(function () {
+                                                Swal.fire({
+                                                      icon: "error",
+                                                      text: "ไม่พบป้ายทะเบียน โปรดถ่ายใหม่!",
+                                                  });
+                                            }, 2000);
                                     });
                               // canvas.width = img.width;
                               // canvas.height = img.height;
@@ -603,13 +610,8 @@ function displaySelectedFile(input) {
                         };
 
                         // alert('Base64 representation: ' + base64String);
-                        Swal.fire({
-                              icon: "success",
-                              title: "กำลังค้นหาป้านทะเบียน",
-                              showConfirmButton: false,
-                              timer: 1500
-                            });
-                        cameraSend(base64String)
+                     
+                        //     cameraSend(base64String)
                         img.src = event.target.result;
 
                   };
@@ -645,7 +647,7 @@ function resizeBase64Img(base64, maxWidth, maxHeight) {
   
               ctx.drawImage(img, 0, 0, width, height);
   
-              resolve(canvas.toDataURL('image/jpeg', 0.3)); // 0.7 is the image quality (0.0 to 1.0)
+              resolve(canvas.toDataURL('image/jpeg', 1.0)); // 0.7 is the image quality (0.0 to 1.0)
           };
   
           img.onerror = function() {
@@ -657,6 +659,12 @@ function resizeBase64Img(base64, maxWidth, maxHeight) {
   }
   
 function cameraSend(base64String) {
+      Swal.fire({
+            icon: "success",
+            title: "กำลังค้นหาป้านทะเบียน",
+            showConfirmButton: false,
+            timer: 3500
+          });
       $.ajax({
             type: 'post',
             url: 'https://car.ctn-dev.net/api/camerasend',
