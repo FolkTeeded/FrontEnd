@@ -37,7 +37,7 @@ async function token() {
             });
         } else {
             // console.error('Token is null. Unable to make the request.');
-            window.location.href = "/login.html"
+            if (window.location.pathname !== "/login.html"){window.location.href = "/login.html"} 
         }
     } catch (err) {
         // console.error(err);
