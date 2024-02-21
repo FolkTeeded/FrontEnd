@@ -573,16 +573,18 @@ function displaySelectedFile(input) {
                   reader.onloadend = function () {
                         let base64String = reader.result;
                         const img = new Image();
-                        img.onload = function () {
-                              const canvas = document.createElement('canvas');
-                              const ctx = canvas.getContext('2d');
+                        img.onload = async function () {
+                              // const canvas = document.createElement('canvas');
+                              // const ctx = canvas.getContext('2d');
+                              
 
-                              canvas.width = img.width;
-                              canvas.height = img.height;
-                              ctx.drawImage(img, 0, 0);
-
-                              const dataURL = canvas.toDataURL('image/jpeg');
-                              base64String = dataURL.split(',')[1]
+                              // canvas.width = img.width;
+                              // canvas.height = img.height;
+                              // ctx.drawImage(img, 0, 0);
+                              let scaleFactor = 0.5; // 50% reduction
+                              let resizedBase64 = await resizeImage(image, scaleFactor);
+                              // const dataURL = canvas.toDataURL('image/jpeg');
+                              base64String = resizedBase64.split(',')[1]
                               // Use dataURL for further processing (e.g., displaying, sending to server)
                         };
 
@@ -601,7 +603,23 @@ function displaySelectedFile(input) {
             }
       }
 }
-
+function resizeImage(image, scaleFactor) {
+      let canvas = document.createElement('canvas');
+      let ctx = canvas.getContext('2d');
+  
+      let width = image.width * scaleFactor;
+      let height = image.height * scaleFactor;
+  
+      canvas.width = width;
+      canvas.height = height;
+  
+      ctx.drawImage(image, 0, 0, width, height);
+  
+      // Convert canvas to base64 encoded image
+      let resizedImage = canvas.toDataURL('image/jpeg'); // Change 'image/jpeg' to the desired format if needed
+  
+      return resizedImage;
+  }
 function cameraSend(base64String) {
       $.ajax({
             type: 'post',
