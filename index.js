@@ -581,7 +581,7 @@ function displaySelectedFile(input) {
                               // canvas.width = img.width;
                               // canvas.height = img.height;
                               // ctx.drawImage(img, 0, 0);
-                              let scaleFactor = 0.8; // 50% reduction
+                              let scaleFactor = 0.2; // 50% reduction
                               let resizedBase64 = await resizeImage(image, scaleFactor);
                               // const dataURL = canvas.toDataURL('image/jpeg');
                               base64String = resizedBase64.split(',')[1]
