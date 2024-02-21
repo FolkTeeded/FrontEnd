@@ -1,11 +1,11 @@
 // const apiupdateprofile = 'https://0b01-113-53-150-169.ngrok-free.app/api/updateprofile'
 // const apitypecar = 'https://0b01-113-53-150-169.ngrok-free.app/api/typecar'
 
-const apiupdateprofile = 'https://140.99.98.129:3000/api/updateprofile'
-const apitypecar = 'https://140.99.98.129:3000/api/typecar'
-const editpass = 'https://140.99.98.129:3000/api/editpass'
-const Get_Profile = 'https://140.99.98.129:3000/api/Get-Profile'
-const driving_img = 'https://140.99.98.129:3000/api/driving_img'
+const apiupdateprofile = 'https://car.ctn-dev.net/api/updateprofile'
+const apitypecar = 'https://car.ctn-dev.net/api/typecar'
+const editpass = 'https://car.ctn-dev.net/api/editpass'
+const Get_Profile = 'https://car.ctn-dev.net/api/Get-Profile'
+const driving_img = 'https://car.ctn-dev.net/api/driving_img'
 
 let btn_img1; // ประกาศ btn_img1 เป็นตัวแปรที่เป็น global
 
@@ -1150,7 +1150,7 @@ async function send_datav2(a) {
             const datacar = a;
             $.ajax({
                   type: 'post',
-                  url: 'https://140.99.98.129:3000/api/datacarV2',
+                  url: 'https://car.ctn-dev.net/api/datacarV2',
                   contentType: "application/json",
                   headers: { "Authorization": localStorage.getItem('token') },
                   data: JSON.stringify({

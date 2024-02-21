@@ -1,10 +1,10 @@
 // const apilogin = 'https://0b01-113-53-150-169.ngrok-free.app/api/login'
 // const apiregister = 'https://0b01-113-53-150-169.ngrok-free.app/api/register'
 
-const apilogin = 'https://140.99.98.129:3000/api/login'
-const apiregister = 'https://140.99.98.129:3000/api/register'
-const check_email = 'https://140.99.98.129:3000/api/check_email'
-const updatepass = 'https://140.99.98.129:3000/api/api/updatepass'
+const apilogin = 'https://car.ctn-dev.net/api/login'
+const apiregister = 'https://car.ctn-dev.net/api/register'
+const check_email = 'https://car.ctn-dev.net/api/check_email'
+const updatepass = 'https://car.ctn-dev.net/api/api/updatepass'
 
 const btn_login = document.getElementById('loginpress')
 // btn_login.style.backgroundColor = ''
