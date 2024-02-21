@@ -560,11 +560,16 @@ function displaySelectedFile(input) {
       if (file) {
             // Check file size (in bytes)
             const fileSize = file.size;
+        
             // Limit the file size to, for example, 1 MB
             const maxSize = 10 * 1024 * 1024; // 1 MB in bytes
-
-            if (fileSize > maxSize) {
-                  alert('File size exceeds the allowed limit.');
+            if (!file.type.startsWith('image/jpg')&& !file.type.startsWith('image/jpeg') &&  !file.type.startsWith('image/bmp')&&  !file.type.startsWith('image/png') ) {
+                  alert('ภาพที่จะใช้ค้นหาและอ่านตัวอักษรป้ายทะเบียนในรูปจะรองรับเฉพาะไฟล์สกุล Jpg, jpeg, bmp และ png');
+                  input.value = '';
+                  return;
+              }
+              else             if (fileSize > maxSize) {
+                  alert('ขนาดรูปไม่ควรเกิน 10 MB');
                   // Optionally clear the selected file
                   input.value = '';
             } else {
