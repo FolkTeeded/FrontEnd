@@ -6,7 +6,7 @@ async function token() {
         let token = localStorage.getItem('token');
 
         // Check if token is not null before attempting to access its properties
-        if (token !== null) {
+        if (token) {
             let token_json = JSON.parse(token).token;
 
             $.ajax({
@@ -37,6 +37,7 @@ async function token() {
             });
         } else {
             // console.error('Token is null. Unable to make the request.');
+            window.location.href = "/login.html"
         }
     } catch (err) {
         // console.error(err);
